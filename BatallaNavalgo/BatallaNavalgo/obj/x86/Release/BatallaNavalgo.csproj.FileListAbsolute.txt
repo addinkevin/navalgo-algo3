@@ -3,3 +3,5 @@ E:\FIUBA\Apuntes\Algoritmos y Programacion III\TP3\Repositorio\BatallaNavalgo\Ba
 E:\FIUBA\Apuntes\Algoritmos y Programacion III\TP3\Repositorio\BatallaNavalgo\BatallaNavalgo\bin\Release\BatallaNavalgo.pdb
 E:\FIUBA\Apuntes\Algoritmos y Programacion III\TP3\Repositorio\BatallaNavalgo\BatallaNavalgo\obj\x86\Release\BatallaNavalgo.exe
 E:\FIUBA\Apuntes\Algoritmos y Programacion III\TP3\Repositorio\BatallaNavalgo\BatallaNavalgo\obj\x86\Release\BatallaNavalgo.pdb
+C:\Users\acer\Desktop\Juegos\Facultad\Alg y Prog\Alg y Prog 3\TP2\navalgo-algo3\BatallaNavalgo\BatallaNavalgo\obj\x86\Release\BatallaNavalgo.exe
+C:\Users\acer\Desktop\Juegos\Facultad\Alg y Prog\Alg y Prog 3\TP2\navalgo-algo3\BatallaNavalgo\BatallaNavalgo\obj\x86\Release\BatallaNavalgo.pdb
