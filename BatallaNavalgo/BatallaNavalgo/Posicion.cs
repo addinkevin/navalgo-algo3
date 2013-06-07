@@ -40,6 +40,11 @@ namespace BatallaNavalgo
         }
         //-----------------------------------------------------------
 
-        
+        public Boolean EstaDentroDe(int fila1, int columna1, int fila2, int columna2)
+        {
+            Boolean dentroDeFilas = (this.fila >= fila1 && this.fila <= fila2);
+            Boolean dentroDeColumnas = (this.columna >= columna1 && this.columna <= columna2);
+            return (dentroDeFilas && dentroDeColumnas);
+        }
     }
 }
