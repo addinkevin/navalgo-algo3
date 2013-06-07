@@ -18,5 +18,12 @@ namespace BatallaNavalgoTests
             Assert.AreEqual(3, posicion.GetFila());
             Assert.AreEqual(6, posicion.GetColumna());
         }
+
+        [Test]
+        public void testDeberiaEstarEnElRangoEspecificado()
+        {
+            Posicion posicion = new Posicion(3, 6);
+            Assert.IsTrue(posicion.EstaDentroDe(0, 0, 7, 7));
+        }
     }
 }
