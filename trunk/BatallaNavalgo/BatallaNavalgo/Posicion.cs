@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Batalla_Navalgo
+namespace BatallaNavalgo
 {
-    class Posicion
+    public class Posicion
     {
         private int fila, columna;
 
