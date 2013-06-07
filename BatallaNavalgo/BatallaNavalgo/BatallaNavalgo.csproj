@@ -33,9 +33,43 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="nunit.framework, Version=2.6.2.12296, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Armamento.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ArmamentoFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Atacable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Juego.cs" />
+    <Compile Include="Mina.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MinaConRetardo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MinaPorContacto.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Nave.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Parte.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Posicion.cs" />
+    <Compile Include="Tablero.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
