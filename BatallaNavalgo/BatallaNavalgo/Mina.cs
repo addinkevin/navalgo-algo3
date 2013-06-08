@@ -5,14 +5,14 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    public class DisparoComun: Armamento
+    public class Mina: Armamento
     {
-        private int costo = 0;
         private Posicion posicion;
+        private int costo;
 
-        public DisparoComun(Posicion posicion)
+        public Mina(Posicion posicionInicial)
         {
-            this.posicion = posicion;
+            posicion = posicionInicial;
         }
 
         public Posicion GetPosicion()
@@ -29,5 +29,6 @@ namespace BatallaNavalgo
         {
             return costo;
         }
+
     }
 }
