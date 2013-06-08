@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    class MinaPorContacto: Mina
+    public class MinaPorContacto: Mina
     {
         public MinaPorContacto(int radio, int costo, Posicion posicionInicial) 
         {
