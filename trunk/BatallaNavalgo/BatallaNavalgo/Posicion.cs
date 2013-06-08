@@ -34,5 +34,10 @@ namespace BatallaNavalgo
             Boolean dentroDeColumnas = (this.columna >= posicion1.GetColumna() && this.columna <= posicion2.GetColumna());
             return (dentroDeFilas && dentroDeColumnas);
         }
+
+        public Boolean EsIgualA(Posicion otraPosicion)
+        {
+            return (this.fila == otraPosicion.fila && this.columna == otraPosicion.columna);
+        }
     }
 }

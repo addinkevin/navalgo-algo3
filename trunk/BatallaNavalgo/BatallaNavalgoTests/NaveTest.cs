@@ -50,6 +50,32 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(10, 3, new Posicion(6, 6), Nave.VERTICAL);
         }
 
+        [Test]
+        public void deberiaLaNaveEstarNoDestruidaAlMomentoDeSuCreacion()
+        {
+            Nave nave = new Nave(3, 3, new Posicion(1, 1), Nave.VERTICAL);
+            Assert.False(nave.EstaDestruida());
+        }
 
+        [Test]
+        public void deberiaNaveDeUnaParteSeguirNoDestruidaSiTieneResistenciaMayorAUnoYRecibeDisparo()
+        {
+            Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
+            nave.RecibirAtaque(new DisparoComun(new Posicion(1,1)));
+
+            Assert.False(nave.EstaDestruida());
+
+        }
+
+        [Test]
+        public void deberiaDestruirLaNaveDeUnaParteSiTieneResistenciaDosYRecibeDosDisparos()
+        {
+            Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
+
+            nave.RecibirAtaque(new DisparoComun(new Posicion(1,1)));
+            nave.RecibirAtaque(new DisparoComun(new Posicion(1,1)));
+
+            Assert.True(nave.EstaDestruida());
+        }
     }
 }

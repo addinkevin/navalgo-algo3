@@ -27,5 +27,14 @@ namespace BatallaNavalgoTests
             Posicion posLimite2 = new Posicion(7, 7);
             Assert.IsTrue(posicion.EstaDentroDe(posLimite1, posLimite2));
         }
+
+        [Test]
+        public void testVerificarIgualdadDePosiciones()
+        {
+            Posicion posicion = new Posicion(3, 4);
+            Posicion otraPosicion = new Posicion(3, 4);
+
+            Assert.True(posicion.EsIgualA(otraPosicion));
+        }
     }
 }
