@@ -9,6 +9,7 @@ namespace BatallaNavalgo
     {
         private int retardo;
 
+        //-----------------------------------------------------------
         public MinaConRetardo(int radio, int costo, int retardo, Posicion posicionInicial) 
         {
             this.radio = radio;
@@ -17,19 +18,12 @@ namespace BatallaNavalgo
             this.posicion = posicionInicial;
             this.explotado = false;
         }
+
         //-----------------------------------------------------------
-
-
-        public override void Atacar(IAtacable i)
-        {
-            ;
-        }
-        //-----------------------------------------------------------
-
         public override void Actualizar() 
         {
         }
 
-
+        //-----------------------------------------------------------
     }
 }

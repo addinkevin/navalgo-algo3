@@ -7,18 +7,19 @@ namespace BatallaNavalgo
 {
     public class DisparoComun: Armamento
     {
-       
+        //-----------------------------------------------------------
         public DisparoComun(Posicion posicion)
         {
             this.posicion = posicion;
         }
-        
 
+        //-----------------------------------------------------------
         public void SetCosto(int costo)
         {
             this.costo = costo;
         }
 
+        //-----------------------------------------------------------
         public int GetCosto()
         {
             return costo;
@@ -27,11 +28,14 @@ namespace BatallaNavalgo
         //-----------------------------------------------------------
         public override void Atacar(IAtacable i) 
         {
+            i.RecibirAtaque(this);
         }
-        //-----------------------------------------------------------
 
+        //-----------------------------------------------------------
         public override void Actualizar() 
         { 
         }
+
+        //-----------------------------------------------------------
     }
 }

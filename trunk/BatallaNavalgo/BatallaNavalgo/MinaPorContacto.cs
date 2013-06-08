@@ -14,18 +14,13 @@ namespace BatallaNavalgo
             this.posicion = posicionInicial;
             this.explotado = false;
         }
-        //-----------------------------------------------------------
 
+        //-----------------------------------------------------------
         public override void Actualizar()
         { 
         
         }
-        //-----------------------------------------------------------
 
-        public override void Atacar(IAtacable atacable) 
-        {
-
-        }
         //-----------------------------------------------------------
        
     }
