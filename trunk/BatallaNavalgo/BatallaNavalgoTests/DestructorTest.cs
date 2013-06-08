@@ -10,7 +10,7 @@ namespace BatallaNavalgoTests
     [TestFixture]
     class DestructorTest
     {
-        [Test]
+       /* [Test]
         public void testNoDeberiaDestruirloSiLoAtacoConMinas()
         {
             Destructor destructor = new Destructor( new Posicion(3,3), Nave.VERTICAL);
@@ -20,7 +20,7 @@ namespace BatallaNavalgoTests
             destructor.RecibirAtaque(new Mina(new Posicion(5,3)));
 
             Assert.False(destructor.EstaDestruida());
-        }
+        }*/
 
         [Test]
         public void testDeberiaDestruirloSiLoAtacoConDisparosComunes()

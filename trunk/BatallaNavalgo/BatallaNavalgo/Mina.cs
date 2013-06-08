@@ -5,9 +5,12 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    public class Mina: Armamento
+    public abstract class Mina: Armamento
     {
-      
+        protected int radio;
+        public Mina() 
+        {
+        }
 
         public Mina(Posicion posicionInicial)
         {

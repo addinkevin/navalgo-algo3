@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    class ArmamentoFactory
+    public class ArmamentoFactory
     {
         public static Armamento CrearMinaPuntual(Posicion posicion)
         {

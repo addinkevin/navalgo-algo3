@@ -30,9 +30,10 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaDestruirElBuqueAlRecibirUnaMina()
         {
+            Armamento mina = ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3));
             Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
 
-            buque.RecibirAtaque(new Mina(new Posicion(3, 3)));
+            buque.RecibirAtaque((Mina)mina);
 
             Assert.True(buque.EstaDestruida());
         }
