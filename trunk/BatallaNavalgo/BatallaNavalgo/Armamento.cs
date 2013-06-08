@@ -5,11 +5,29 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    interface Armamento
+    abstract class Armamento
     {
+        protected Posicion posicion;
+        protected int costo;
+        protected Boolean explotado;
 
-        Posicion GetPosicion();
+        public void Atacar(Atacable i)
+        {
 
-        int GetCosto();
+        }
+        //-----------------------------------------------------------
+
+        public void Actualizar()
+        {
+
+        }
+        //-----------------------------------------------------------
+
+        public Boolean EstaExplotado()
+        {
+            return this.explotado;
+        }
+        //-----------------------------------------------------------
+
     }
 }
