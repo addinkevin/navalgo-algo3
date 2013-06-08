@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
@@ -22,8 +23,8 @@ namespace BatallaNavalgo
 
         private Boolean ValidarPosicion(Posicion posicion)
         {
-            Boolean posicionValida = posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
-            return posicionValida;
+            Boolean valida = posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
+            return valida;
         }
 
         private void CrearPartes(int numeroDePartes, int resistencia, Posicion posicionInicial, int orientacion)
@@ -34,7 +35,7 @@ namespace BatallaNavalgo
             {
                 if (!this.ValidarPosicion(posicion))
                 {
-                    throw new Exception();
+                    throw new ImposibleCrearNaveException();
                 }
                 partes.Add(new ParteNave(resistencia, posicion));
                 if (orientacion == VERTICAL)
