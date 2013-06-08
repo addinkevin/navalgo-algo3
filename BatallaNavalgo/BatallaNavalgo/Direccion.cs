@@ -24,6 +24,12 @@ namespace BatallaNavalgo
             return new Posicion(filaNueva,columnaNueva);
         }
 
+        /* Invierte el sentido de la direccion */
+        public void Invertir()
+        {
+            movimientoEnColumnas *= -1;
+            movimientoEnFilas *= -1;
+        }
 
     }
 }
