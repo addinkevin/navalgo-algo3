@@ -7,17 +7,20 @@ namespace BatallaNavalgo
 {
     public class ParteNave
     {
-        private Boolean destruida;
         private int resistencia;
         private Posicion posicionActual;
 
-        public ParteNave(int resistencia, Posicion posicionInicial) 
+        public ParteNave(int resistenciaInicial, Posicion posicionInicial) 
         {
-            this.destruida = false;
-            this.resistencia = resistencia;
+            this.resistencia = resistenciaInicial;
             this.posicionActual = posicionInicial;
         }
         //-----------------------------------------------------------
+
+        public void RecibirAtaque()
+        {
+            resistencia -= 1;
+        }
 
         public Posicion GetPosicion() {
             return posicionActual;
@@ -25,7 +28,7 @@ namespace BatallaNavalgo
 
         public Boolean EstaDestruida()
         {
-            return this.destruida;
+            return (resistencia <= 0);
         }
         //-----------------------------------------------------------
 

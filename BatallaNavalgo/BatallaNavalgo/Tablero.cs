@@ -9,7 +9,7 @@ namespace BatallaNavalgo
     {
         public static Posicion ESQUINA_IZQUIERDA_ARRIBA = new Posicion(1, 1);
         public static Posicion ESQUINA_DERECHA_ABAJO = new Posicion(10, 10);
-        private List<Armamento> Armamentos;
+        //private List<Armamento> Armamentos;
         //private List<Nave> Naves;
 
        /* public void AgregarNave(Nave nave) 

@@ -46,22 +46,8 @@
     <Compile Include="Armamento.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ArmamentoFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Atacable.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="DisparoComun.cs" />
     <Compile Include="Juego.cs" />
-    <Compile Include="Mina.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MinaConRetardo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MinaPorContacto.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Nave.cs">
       <SubType>Code</SubType>
     </Compile>

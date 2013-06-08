@@ -12,11 +12,9 @@ namespace BatallaNavalgo
         public static int HORIZONTAL = 1;
 
         private List<ParteNave> partes;
-        private Boolean destruida;
 
         public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, int orientacion)
         {
-            this.destruida = false;
             this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);
         }
         //-----------------------------------------------------------
@@ -61,9 +59,30 @@ namespace BatallaNavalgo
 
         public Boolean EstaDestruida() 
         {
-            return this.destruida;
+            foreach (ParteNave parte in partes)
+            {
+                if (!parte.EstaDestruida())
+                {
+                    return false;
+                }
+            }
+            return true;
         }
+        
         //-----------------------------------------------------------
+        public void RecibirAtaque(DisparoComun disparo)
+        {
+            foreach (ParteNave parte in partes)
+            {
+                if (parte.GetPosicion().EsIgualA(disparo.GetPosicion()))
+                {
+                    parte.RecibirAtaque();
+                    return;
+                }
+
+            }
+        }
+        
 
 
     }
