@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    interface IAtacable
+    public interface IAtacable
     {
         void RecibirAtaque(DisparoComun disparo);
         void RecibirAtaque(Mina mina);
