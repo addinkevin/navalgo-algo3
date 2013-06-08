@@ -57,5 +57,16 @@ namespace BatallaNavalgoTests
 
             Assert.True(tablero.HayNave(new Posicion(6, 5)));
         }
+
+        [Test]
+        public void testDeberiaHaberUnaNaveEnUnaPosicionLuegoDeAgregarla()
+        {
+            Tablero tablero = new Tablero();
+            Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
+            tablero.AgregarNave(nave);
+            List<Nave> naves = tablero.GetNavesEn(new Posicion(5, 5));
+
+            Assert.AreEqual(nave, naves[0]);
+        }
     }
 }
