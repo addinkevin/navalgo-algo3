@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    class Nave
+    public class Nave
     {
         public static int VERTICAL = 0;
         public static int HORIZONTAL = 1;
@@ -46,6 +46,16 @@ namespace BatallaNavalgo
                     posicion = new Posicion(posicion.GetFila(), posicion.GetColumna() + 1);
                 }
             }
+        }
+
+        public List<Posicion> GetPosiciones()
+        {
+            List<Posicion> lista = new List<Posicion>();
+            foreach ( ParteNave parte in partes)
+            {
+                lista.Add(parte.GetPosicion());
+            }
+            return lista;
         }
 
         public Boolean EstaDestruida() 
