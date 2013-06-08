@@ -10,7 +10,7 @@ namespace BatallaNavalgo
     {
         public static int VERTICAL = 0;
         public static int HORIZONTAL = 1;
-
+        
         private List<ParteNave> partes;
 
         public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, int orientacion)
