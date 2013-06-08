@@ -10,28 +10,44 @@ namespace BatallaNavalgo
     {
         public static int VERTICAL = 0;
         public static int HORIZONTAL = 1;
-        
+
+        private Direccion direccion;
         private List<ParteNave> partes;
 
+        /* Constructor
+         * resistenciaDePartes: numero de golpes necesarios para destruir la parte
+         * posicionInicial: Posicion donde arranca la nave.
+         * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
+         * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
+         */
         public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, int orientacion)
         {
             this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);
         }
-        //-----------------------------------------------------------
 
-        private Boolean ValidarPosicion(Posicion posicion)
+        public void SetDireccion( Direccion direccion )
+        {
+            this.direccion = direccion;
+        }
+        
+        /* Permite verificar si la posicion es valida. Es valida cuando esta dentro del rango especificado por el Tablero */
+        private Boolean EsPosicionValida(Posicion posicion)
         {
             Boolean valida = posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
             return valida;
         }
 
+        /* Permite crear todas las partes de las naves.
+         * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
+         * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
+         */
         private void CrearPartes(int numeroDePartes, int resistencia, Posicion posicionInicial, int orientacion)
         {
             partes = new List<ParteNave>();
             Posicion posicion = posicionInicial;
             for (int i = 0; i < numeroDePartes; i++)
             {
-                if (!this.ValidarPosicion(posicion))
+                if (!this.EsPosicionValida(posicion))
                 {
                     throw new ImposibleCrearNaveException();
                 }
@@ -47,6 +63,7 @@ namespace BatallaNavalgo
             }
         }
 
+        /* Obtiene las posiciones donde se encuentra la nave */
         public List<Posicion> GetPosiciones()
         {
             List<Posicion> lista = new List<Posicion>();
@@ -57,6 +74,7 @@ namespace BatallaNavalgo
             return lista;
         }
 
+        /* Permite verificar si la nave esta destruida en su totalidad */
         public Boolean EstaDestruida() 
         {
             foreach (ParteNave parte in partes)
@@ -69,7 +87,7 @@ namespace BatallaNavalgo
             return true;
         }
         
-        //-----------------------------------------------------------
+        /* Permite atacar a la nave, en la posicion especificada por el disparo */
         public void RecibirAtaque(DisparoComun disparo)
         {
             foreach (ParteNave parte in partes)
@@ -82,7 +100,31 @@ namespace BatallaNavalgo
 
             }
         }
-        
+
+        /* Verifica que la nueva posicion de las partes este dentro del rango del Tablero */
+        private Boolean SePuedenMoverLasPartes()
+        {
+            foreach (ParteNave parte in partes)
+            {
+                if (!EsPosicionValida(direccion.GetNuevaPosicion(parte.GetPosicion())))
+                    return false;
+            }
+            return true;
+        }
+
+        /* Mueve todas las posiciones de la nave, segun la direccion especificada */
+        public void Mover ( )
+        {
+            if (!SePuedenMoverLasPartes())
+            {
+                direccion.Invertir();
+            }
+
+            foreach(ParteNave parte in partes)
+            {
+                parte.SetPosicion(direccion.GetNuevaPosicion(parte.GetPosicion()));
+            }
+        }
 
 
     }
