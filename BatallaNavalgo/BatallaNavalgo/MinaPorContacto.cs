@@ -16,16 +16,17 @@ namespace BatallaNavalgo
         }
         //-----------------------------------------------------------
 
-        public void Actualizar()
+        public override void Actualizar()
         { 
         
         }
         //-----------------------------------------------------------
 
-        public void Atacar(IAtacable atacable) 
+        public override void Atacar(IAtacable atacable) 
         {
 
         }
         //-----------------------------------------------------------
+       
     }
 }

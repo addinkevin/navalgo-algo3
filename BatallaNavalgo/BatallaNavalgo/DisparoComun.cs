@@ -23,5 +23,15 @@ namespace BatallaNavalgo
         {
             return costo;
         }
+
+        //-----------------------------------------------------------
+        public override void Atacar(IAtacable i) 
+        {
+        }
+        //-----------------------------------------------------------
+
+        public override void Actualizar() 
+        { 
+        }
     }
 }

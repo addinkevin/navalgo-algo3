@@ -8,20 +8,15 @@ namespace BatallaNavalgo
 {
     public abstract class Armamento
     {
-        protected Posicion posicion;
         protected int costo;
         protected Boolean explotado;
+        protected Posicion posicion;
 
-        public void Atacar(IAtacable i)
-        {
-
-        }
+        public abstract void Atacar(IAtacable i);
+       
         //-----------------------------------------------------------
 
-        public void Actualizar()
-        {
-
-        }
+        public abstract void Actualizar();        
         //-----------------------------------------------------------
 
         public Boolean EstaExplotado()
