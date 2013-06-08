@@ -7,15 +7,17 @@ namespace BatallaNavalgo
 {
     public class Buque: Nave
     {
+        private static int NUMERO_DE_PARTES_DEL_BUQUE = 4;
+        private static int RESISTENCIA_DE_PARTES_DEL_BUQUE = 1;
         private Boolean estaDestruida;
 
-        public Buque(int numeroDePartes, Posicion posicionInicial, int orientacion)
-            :base(numeroDePartes,1,posicionInicial,orientacion)
+        public Buque(Posicion posicionInicial, int orientacion)
+            :base(NUMERO_DE_PARTES_DEL_BUQUE , RESISTENCIA_DE_PARTES_DEL_BUQUE,
+                  posicionInicial,orientacion)
         {
             estaDestruida = false;
         }
-
-
+        
         public override void RecibirAtaque(DisparoComun disparo)
         {
             estaDestruida = true;

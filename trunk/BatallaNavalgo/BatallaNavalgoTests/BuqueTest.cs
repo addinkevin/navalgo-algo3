@@ -13,7 +13,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaNoEstarDestruidaEnElMomentoDeLaCreacion()
         {
-            Buque buque = new Buque(3, new Posicion(3, 3), Nave.VERTICAL);
+            Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
 
             Assert.False(buque.EstaDestruida());
         }
@@ -21,7 +21,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaDestruirElBuqueAlRecibirUnDisparoComun()
         {
-            Buque buque = new Buque(3, new Posicion(3, 3), Nave.VERTICAL);
+            Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
 
             buque.RecibirAtaque(new DisparoComun(new Posicion(3, 3)));
 
@@ -30,7 +30,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaDestruirElBuqueAlRecibirUnaMina()
         {
-            Buque buque = new Buque(3, new Posicion(3, 3), Nave.VERTICAL);
+            Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
 
             buque.RecibirAtaque(new Mina(new Posicion(3, 3)));
 
