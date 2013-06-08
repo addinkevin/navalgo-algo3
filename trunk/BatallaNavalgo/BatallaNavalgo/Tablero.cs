@@ -82,5 +82,22 @@ namespace BatallaNavalgo
             }
             return false;
         }
+
+        public List<Nave> GetNavesEn(Posicion posicion)
+        {
+            List<Nave> listaNavesEnPosicion = new List<Nave>();
+            foreach (Nave nave in naves)
+            {
+                List<Posicion> listaPosicionesDePartes = (nave.GetPosiciones());
+                foreach (Posicion posicionParteNave in listaPosicionesDePartes)
+                {
+                    if (posicion.EsIgualA(posicionParteNave))
+                    {
+                        listaNavesEnPosicion.Add(nave);
+                    }
+                }
+            }
+            return listaNavesEnPosicion;
+        }
     }
 }
