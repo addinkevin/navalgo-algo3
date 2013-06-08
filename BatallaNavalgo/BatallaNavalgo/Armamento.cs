@@ -24,7 +24,7 @@ namespace BatallaNavalgo
         //-----------------------------------------------------------                
         public Posicion GetPosicion()
         {
-            throw new NotImplementedException();
+            return this.posicion;
         }
     }
 }
