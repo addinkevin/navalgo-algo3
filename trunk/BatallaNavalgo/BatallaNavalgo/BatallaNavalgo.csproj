@@ -48,7 +48,9 @@
     </Compile>
     <Compile Include="Direccion.cs" />
     <Compile Include="DisparoComun.cs" />
+    <Compile Include="IAtacable.cs" />
     <Compile Include="Juego.cs" />
+    <Compile Include="Mina.cs" />
     <Compile Include="Nave.cs">
       <SubType>Code</SubType>
     </Compile>

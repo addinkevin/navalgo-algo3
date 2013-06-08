@@ -6,7 +6,7 @@ using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
-    public class Nave
+    public class Nave: IAtacable
     {
         public static int VERTICAL = 0;
         public static int HORIZONTAL = 1;
@@ -88,17 +88,29 @@ namespace BatallaNavalgo
         }
         
         /* Permite atacar a la nave, en la posicion especificada por el disparo */
-        public void RecibirAtaque(DisparoComun disparo)
+        private void RecibirAtaqueGeneral(Armamento armamento)
         {
             foreach (ParteNave parte in partes)
             {
-                if (parte.GetPosicion().EsIgualA(disparo.GetPosicion()))
+                if (parte.GetPosicion().EsIgualA(armamento.GetPosicion()))
                 {
                     parte.RecibirAtaque();
                     return;
                 }
 
             }
+        }
+
+        /* Ataca a la nave, dado un disparo */
+        public void RecibirAtaque(DisparoComun disparo)
+        {
+            RecibirAtaqueGeneral(disparo);
+        }
+
+        /* Ataca a la nave, dada una mina */
+        public void RecibirAtaque(Mina mina)
+        {
+            RecibirAtaqueGeneral(mina);
         }
 
         /* Verifica que la nueva posicion de las partes este dentro del rango del Tablero */

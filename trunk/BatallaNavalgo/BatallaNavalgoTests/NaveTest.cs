@@ -79,6 +79,17 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
+        public void deberiaDestruirLaNaveDeUnaParteSiTieneResistenciaDosYRecibeDosMinasDeAtaque()
+        {
+            Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
+
+            nave.RecibirAtaque(new Mina(new Posicion(1, 1)));
+            nave.RecibirAtaque(new Mina(new Posicion(1, 1)));
+
+            Assert.True(nave.EstaDestruida());
+        }
+
+        [Test]
         public void testMoverUnaNaveDadaUnaDireccion()
         {
             Nave nave = new Nave(2, 1, new Posicion(5, 5), Nave.VERTICAL);
