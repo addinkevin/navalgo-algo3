@@ -46,6 +46,7 @@
     <Compile Include="Armamento.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ArmamentoFactory.cs" />
     <Compile Include="Buque.cs" />
     <Compile Include="Destructor.cs" />
     <Compile Include="Direccion.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="IAtacable.cs" />
     <Compile Include="Juego.cs" />
     <Compile Include="Mina.cs" />
+    <Compile Include="MinaConRetardo.cs" />
+    <Compile Include="MinaPorContacto.cs" />
     <Compile Include="Nave.cs">
       <SubType>Code</SubType>
     </Compile>
