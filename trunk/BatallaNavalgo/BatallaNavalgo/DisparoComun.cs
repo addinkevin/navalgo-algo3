@@ -7,18 +7,12 @@ namespace BatallaNavalgo
 {
     public class DisparoComun: Armamento
     {
-        private int costo = 0;
-        private Posicion posicion;
-
+       
         public DisparoComun(Posicion posicion)
         {
             this.posicion = posicion;
         }
-
-        public Posicion GetPosicion()
-        {
-            return posicion;
-        }
+        
 
         public void SetCosto(int costo)
         {
