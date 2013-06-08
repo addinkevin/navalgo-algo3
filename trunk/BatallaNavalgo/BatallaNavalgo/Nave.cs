@@ -75,7 +75,7 @@ namespace BatallaNavalgo
         }
 
         /* Permite verificar si la nave esta destruida en su totalidad */
-        public Boolean EstaDestruida() 
+        public virtual Boolean EstaDestruida() 
         {
             foreach (ParteNave parte in partes)
             {
@@ -102,13 +102,13 @@ namespace BatallaNavalgo
         }
 
         /* Ataca a la nave, dado un disparo */
-        public void RecibirAtaque(DisparoComun disparo)
+        public virtual void RecibirAtaque(DisparoComun disparo)
         {
             RecibirAtaqueGeneral(disparo);
         }
 
         /* Ataca a la nave, dada una mina */
-        public void RecibirAtaque(Mina mina)
+        public virtual void RecibirAtaque(Mina mina)
         {
             RecibirAtaqueGeneral(mina);
         }
