@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    class ParteNave
+    public class ParteNave
     {
         private Boolean destruida;
         private int resistencia;
@@ -18,6 +18,10 @@ namespace BatallaNavalgo
             this.posicionActual = posicionInicial;
         }
         //-----------------------------------------------------------
+
+        public Posicion GetPosicion() {
+            return posicionActual;
+        }
 
         public Boolean EstaDestruida()
         {
