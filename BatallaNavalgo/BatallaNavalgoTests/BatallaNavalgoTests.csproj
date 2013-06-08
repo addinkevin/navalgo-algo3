@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BuqueTest.cs" />
+    <Compile Include="DestructorTest.cs" />
     <Compile Include="DireccionTest.cs" />
     <Compile Include="NaveTest.cs" />
     <Compile Include="ParteNaveTest.cs" />

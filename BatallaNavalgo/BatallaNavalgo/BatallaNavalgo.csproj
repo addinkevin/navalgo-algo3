@@ -47,6 +47,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Buque.cs" />
+    <Compile Include="Destructor.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="DisparoComun.cs" />
     <Compile Include="IAtacable.cs" />
