@@ -7,10 +7,8 @@ namespace BatallaNavalgo
 {
     class Tablero
     {
-        public static int MIN_FILA = 1;
-        public static int MIN_COLUMNA = 10;
-        public static int MAX_FILA = 10;
-        public static int MAX_COLUMNA = 10;
+        public static Posicion ESQUINA_IZQUIERDA_ARRIBA = new Posicion(1, 1);
+        public static Posicion ESQUINA_DERECHA_ABAJO = new Posicion(10, 10);
         private List<Armamento> Armamentos;
         //private List<Nave> Naves;
 

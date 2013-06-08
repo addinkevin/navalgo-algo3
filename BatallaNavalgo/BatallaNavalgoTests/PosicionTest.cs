@@ -23,7 +23,9 @@ namespace BatallaNavalgoTests
         public void testDeberiaEstarEnElRangoEspecificado()
         {
             Posicion posicion = new Posicion(3, 6);
-            Assert.IsTrue(posicion.EstaDentroDe(0, 0, 7, 7));
+            Posicion posLimite1 = new Posicion(0, 0);
+            Posicion posLimite2 = new Posicion(7, 7);
+            Assert.IsTrue(posicion.EstaDentroDe(posLimite1, posLimite2));
         }
     }
 }
