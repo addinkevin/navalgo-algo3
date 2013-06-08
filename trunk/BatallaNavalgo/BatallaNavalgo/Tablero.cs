@@ -44,7 +44,7 @@ namespace BatallaNavalgo
                 List<Posicion> listaPosiciones = (nave.GetPosiciones());
                 foreach (Posicion posicionParteNave in listaPosiciones)
                 {
-                    if (posicion.EsIgualA(posicionParteNave)
+                    if (posicion.EsIgualA(posicionParteNave))
                     {
                         return true;
                     }
@@ -58,7 +58,7 @@ namespace BatallaNavalgo
             foreach (Armamento mina in armamentos)
             {
                 Posicion posicionMina = mina.GetPosicion();
-                if (posicion.EsIgualA(posicionMina)
+                if (posicion.EsIgualA(posicionMina))
                 {
                     return true;
                 }
