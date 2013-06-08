@@ -13,20 +13,16 @@ namespace BatallaNavalgo
         protected Posicion posicion;
 
         public abstract void Atacar(IAtacable i);
-       
-        //-----------------------------------------------------------
-
         public abstract void Actualizar();        
-        //-----------------------------------------------------------
 
+        //-----------------------------------------------------------
         public Boolean EstaExplotado()
         {
             return this.explotado;
         }
-        //-----------------------------------------------------------
 
-
-        internal Posicion GetPosicion()
+        //-----------------------------------------------------------                
+        public Posicion GetPosicion()
         {
             throw new NotImplementedException();
         }
