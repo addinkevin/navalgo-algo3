@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BatallaNavalgo;
+using BatallaNavalgoExcepciones;
 using NUnit.Framework;
 
 namespace BatallaNavalgoTests
@@ -36,6 +37,19 @@ namespace BatallaNavalgoTests
             Assert.True(pos2.GetFila() == 5 && pos2.GetColumna() == 3);
 
         }
+
+        [Test, ExpectedException(typeof(ImposibleCrearNaveException))]
+        public void testDeberiaLanzarExcepcionAlCrearUnaNaveFueraDelTablero()
+        {
+            Nave nave = new Nave(2, 2, new Posicion(100, 100), Nave.VERTICAL);
+        }
+
+        [Test, ExpectedException(typeof(ImposibleCrearNaveException))]
+        public void testDeberiaLanzarExcepcionSiQuedaAlgunaParteFueraDelTablero()
+        {
+            Nave nave = new Nave(10, 3, new Posicion(6, 6), Nave.VERTICAL);
+        }
+
 
     }
 }
