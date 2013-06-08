@@ -77,5 +77,34 @@ namespace BatallaNavalgoTests
 
             Assert.True(nave.EstaDestruida());
         }
+
+        [Test]
+        public void testMoverUnaNaveDadaUnaDireccion()
+        {
+            Nave nave = new Nave(2, 1, new Posicion(5, 5), Nave.VERTICAL);
+            nave.SetDireccion(new Direccion(1, 0));
+
+            nave.Mover();
+            List<Posicion> posiciones = nave.GetPosiciones();
+
+            Assert.True(posiciones[0].EsIgualA(new Posicion(6, 5)));
+            Assert.True(posiciones[1].EsIgualA(new Posicion(7, 5)));
+        }
+
+        [Test]
+        public void testMoverNaveHaciaPosicionFueraDeRangoYVerQueSeMueveASentidoContrario()
+        {
+            // Posicion de la nave: (9,9) y (10,9)
+            Nave nave = new Nave(2, 1, new Posicion(9, 9), Nave.VERTICAL);
+            nave.SetDireccion(new Direccion(1, 0));
+
+            // Deberia Moverse invirtiendo sentido, ya que se va del tablero.
+            nave.Mover();
+            List<Posicion> posiciones = nave.GetPosiciones();
+
+            Assert.True(posiciones[0].EsIgualA(new Posicion(8, 9)));
+            Assert.True(posiciones[1].EsIgualA(new Posicion(9, 9)));
+            
+        }
     }
 }
