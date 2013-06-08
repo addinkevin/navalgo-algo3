@@ -22,7 +22,7 @@ namespace BatallaNavalgo
 
         private Boolean ValidarPosicion(Posicion posicion)
         {
-            Boolean posicionValida = posicion.EstaDentroDe( Tablero.MIN_FILA, Tablero.MIN_COLUMNA, Tablero.MAX_FILA, Tablero.MAX_COLUMNA);
+            Boolean posicionValida = posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
             return posicionValida;
         }
 
@@ -39,11 +39,11 @@ namespace BatallaNavalgo
                 partes.Add(new ParteNave(resistencia, posicion));
                 if (orientacion == VERTICAL)
                 {
-                    posicion.SetFila(posicion.GetFila() + 1);
+                    posicion = new Posicion(posicion.GetFila() + 1, posicion.GetColumna());
                 }
                 else
                 {
-                    posicion.SetColumna(posicion.GetColumna() + 1);
+                    posicion = new Posicion(posicion.GetFila(), posicion.GetColumna() + 1);
                 }
             }
         }

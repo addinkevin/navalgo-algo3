@@ -28,22 +28,10 @@ namespace BatallaNavalgo
         }
         //-----------------------------------------------------------
 
-        public void SetFila(int nuevaFila)
+        public Boolean EstaDentroDe(Posicion posicion1, Posicion posicion2)
         {
-            this.fila = nuevaFila;
-        }
-        //-----------------------------------------------------------
-
-        public void SetColumna(int nuevaColumna)
-        {
-            this.columna = nuevaColumna;
-        }
-        //-----------------------------------------------------------
-
-        public Boolean EstaDentroDe(int fila1, int columna1, int fila2, int columna2)
-        {
-            Boolean dentroDeFilas = (this.fila >= fila1 && this.fila <= fila2);
-            Boolean dentroDeColumnas = (this.columna >= columna1 && this.columna <= columna2);
+            Boolean dentroDeFilas = (this.fila >= posicion1.GetFila() && this.fila <= posicion2.GetFila());
+            Boolean dentroDeColumnas = (this.columna >= posicion1.GetColumna() && this.columna <= posicion2.GetColumna());
             return (dentroDeFilas && dentroDeColumnas);
         }
     }
