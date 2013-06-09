@@ -59,6 +59,7 @@
     <Compile Include="Nave.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="NaveFactory.cs" />
     <Compile Include="ParteNave.cs">
       <SubType>Code</SubType>
     </Compile>
