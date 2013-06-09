@@ -7,6 +7,6 @@ namespace BatallaNavalgo
 {
     public abstract class Mina: Armamento
     {
-        protected int radio;
+        
     }
 }
