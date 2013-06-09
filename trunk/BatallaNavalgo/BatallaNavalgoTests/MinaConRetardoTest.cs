@@ -43,7 +43,6 @@ namespace BatallaNavalgoTests
 
             mina.SetPosicion(posicionMina);
             mina.Actualizar();
-            mina.Actualizar();
 
             Assert.True(nave.EstaDestruida());
         }

@@ -18,10 +18,12 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void testNoDeberiaExplotarAlActualizar()
+        public void testNoDeberiaExplotarAlActualizarSiNoHayNavesAlAlrededor()
         {
             MinaPorContacto mina = new MinaPorContacto();
+            mina.SetTablero(new Tablero());
             mina.Actualizar();
+
             Assert.False(mina.EstaExplotado());
         }
 
