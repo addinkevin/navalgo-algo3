@@ -18,13 +18,14 @@ namespace BatallaNavalgo
         //-----------------------------------------------------------
         public override void Actualizar() 
         {
-            List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
+            if (EstaExplotado()) return;
 
-            DispararA(naves);
-
-            if (HaceContactoConNave(naves)) 
+            if (GetTablero().HayNave(GetPosicion())) 
             {
                 estaExplotado = true;
+                List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
+
+                DispararA(naves);
             }
         }
 
