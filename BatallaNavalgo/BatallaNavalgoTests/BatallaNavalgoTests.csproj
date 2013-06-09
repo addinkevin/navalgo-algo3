@@ -44,6 +44,8 @@
     <Compile Include="BuqueTest.cs" />
     <Compile Include="DestructorTest.cs" />
     <Compile Include="DireccionTest.cs" />
+    <Compile Include="DisparoComunTest.cs" />
+    <Compile Include="MinaConRetardoTest.cs" />
     <Compile Include="NaveTest.cs" />
     <Compile Include="ParteNaveTest.cs" />
     <Compile Include="PosicionTest.cs" />

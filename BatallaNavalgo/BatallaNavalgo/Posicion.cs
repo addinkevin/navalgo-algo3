@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    public class Posicion
+    public class Posicion : IEquatable<Posicion>
     {
         private int fila, columna;
 
@@ -38,6 +38,10 @@ namespace BatallaNavalgo
         public Boolean EsIgualA(Posicion otraPosicion)
         {
             return (this.fila == otraPosicion.fila && this.columna == otraPosicion.columna);
+        }
+        public Boolean Equals(Posicion otraPosicion)
+        {
+            return this.EsIgualA(otraPosicion);
         }
     }
 }
