@@ -67,7 +67,7 @@ namespace BatallaNavalgo
             return rompeHielos;          
         }
 
-        public static Buque CrearRomeHielos(Posicion posicion, int orientacion)
+        public static Buque CrearBuque(Posicion posicion, int orientacion)
         {
             Buque buque = new Buque(posicion, orientacion);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
