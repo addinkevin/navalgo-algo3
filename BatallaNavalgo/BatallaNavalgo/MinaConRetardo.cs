@@ -56,11 +56,6 @@ namespace BatallaNavalgo
             {
                 nave.RecibirAtaque(this);
             }
-        }
-
-        public int GetRadio() 
-        {
-            return radio;
-        }
+        }        
     }
 }
