@@ -7,11 +7,7 @@ namespace BatallaNavalgo
 {
     public class MinaPorContacto: Mina
     {
-        public MinaPorContacto()
-        {
-            
-        }
-
+        
         //-----------------------------------------------------------
         public override void Actualizar() 
         {
