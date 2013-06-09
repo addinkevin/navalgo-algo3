@@ -22,6 +22,8 @@ namespace BatallaNavalgo
             naves = new List<Nave>();
         }
 
+        //---------------------------------------------------------------------
+
         public void AgregarNave(Nave nave) 
         {
             naves.Add(nave);
@@ -32,10 +34,60 @@ namespace BatallaNavalgo
             armamentos.Add(arma);
         }
 
-        /*public void Actualizar() 
+        public List<Nave> GetNavesEn(Posicion posicion)
         {
+            List<Nave> listaNavesEnPosicion = new List<Nave>();
+            foreach (Nave nave in naves)
+            {
+                List<Posicion> listaPosicionesDePartes = (nave.GetPosiciones());
+                foreach (Posicion posicionParteNave in listaPosicionesDePartes)
+                {
+                    if (posicion.EsIgualA(posicionParteNave))
+                    {
+                        listaNavesEnPosicion.Add(nave);
+                    }
+                }
+            }
+            return listaNavesEnPosicion;
         }
-        */
+
+        //---------------------------------------------------------------------
+
+        public void Actualizar() 
+        {
+            this.ActualizarArmamentos();
+            this.BorrarArmamentosExplotados();
+            this.ActualizarPosicionDeNaves();
+        }
+
+        public void ActualizarPosicionDeNaves()
+        {
+            foreach (Nave nave in naves)
+            {
+                nave.Mover();
+            }
+        }
+
+        public void ActualizarArmamentos()
+        {
+            foreach (Armamento armamento in armamentos)
+            {
+                armamento.Actualizar();
+            }
+        }
+
+        public void BorrarArmamentosExplotados()
+        {
+            foreach (Armamento armamento in armamentos)
+            {
+                if (armamento.EstaExplotado())
+                {
+                    armamentos.Remove(armamento);
+                }
+            }
+        }
+
+        //---------------------------------------------------------------------
 
         public Boolean HayNave(Posicion posicion) 
         {
@@ -66,14 +118,6 @@ namespace BatallaNavalgo
             return false;
         }
 
-        public void ActualizarPosicionDeNaves() 
-        {
-            foreach (Nave nave in naves)
-            {
-                nave.Mover();
-            }
-        }
-
         public Boolean EstaVacio()
         {
             if ((naves.Count()).Equals(0) && (armamentos.Count()).Equals(0))
@@ -81,23 +125,6 @@ namespace BatallaNavalgo
                 return true;
             }
             return false;
-        }
-
-        public List<Nave> GetNavesEn(Posicion posicion)
-        {
-            List<Nave> listaNavesEnPosicion = new List<Nave>();
-            foreach (Nave nave in naves)
-            {
-                List<Posicion> listaPosicionesDePartes = (nave.GetPosiciones());
-                foreach (Posicion posicionParteNave in listaPosicionesDePartes)
-                {
-                    if (posicion.EsIgualA(posicionParteNave))
-                    {
-                        listaNavesEnPosicion.Add(nave);
-                    }
-                }
-            }
-            return listaNavesEnPosicion;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
             nave.SetDireccion(new Direccion(1, 0));
             tablero.AgregarNave(nave);
-            tablero.ActualizarPosicionDeNaves();
+            tablero.Actualizar();
 
             Assert.True(tablero.HayNave(new Posicion(6, 5)));
         }
