@@ -22,7 +22,7 @@ namespace BatallaNavalgo
         {
             estaDestruida = true;
         }
-        public override  void RecibirAtaque(Mina mina)
+        public override void RecibirAtaque(Mina mina)
         {
             estaDestruida = true;
         }

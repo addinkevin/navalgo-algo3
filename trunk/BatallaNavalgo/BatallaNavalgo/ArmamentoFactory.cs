@@ -11,6 +11,7 @@ namespace BatallaNavalgo
         {
             DisparoComun disparo = new DisparoComun();
             disparo.SetPosicion(posicion);
+            disparo.SetCosto(200);
             return disparo;
         }
 
@@ -32,7 +33,6 @@ namespace BatallaNavalgo
 
         public static MinaConRetardo CrearMinaTriple(Posicion posicion)
         {
-
             MinaConRetardo mina = new MinaConRetardo(2, 3);
             mina.SetPosicion(posicion);
             mina.SetCosto(125);
