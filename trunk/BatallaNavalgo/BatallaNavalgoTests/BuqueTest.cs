@@ -23,7 +23,7 @@ namespace BatallaNavalgoTests
         {
             Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
 
-            buque.RecibirAtaque(new DisparoComun(new Posicion(3, 3)));
+            buque.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Posicion(3,3)));
 
             Assert.True(buque.EstaDestruida());
         }

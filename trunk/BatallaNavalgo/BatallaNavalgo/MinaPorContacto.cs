@@ -7,21 +7,19 @@ namespace BatallaNavalgo
 {
     public class MinaPorContacto: Mina
     {
-        public MinaPorContacto(int radio, int costo, Posicion posicionInicial) 
+        public MinaPorContacto()
         {
-            this.radio = radio;
-            this.costo = costo;            
-            this.posicion = posicionInicial;
-            this.explotado = false;
         }
 
         //-----------------------------------------------------------
-        public override void Actualizar()
-        { 
-        
+        public override void Actualizar() 
+        {
         }
 
         //-----------------------------------------------------------
-       
+        public override bool EstaExplotado()
+        {
+            return true;
+        }
     }
 }

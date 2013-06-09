@@ -74,6 +74,8 @@ namespace BatallaNavalgo
             return lista;
         }
 
+
+
         /* Permite verificar si la nave esta destruida en su totalidad */
         public virtual Boolean EstaDestruida() 
         {

@@ -8,22 +8,38 @@ namespace BatallaNavalgo
     public class MinaConRetardo: Mina
     {
         private int retardo;
+        private int radio;
+        private Boolean estaExplotado;
 
-        //-----------------------------------------------------------
-        public MinaConRetardo(int radio, int costo, int retardo, Posicion posicionInicial) 
+        /* Constructor.
+         * Radio: Cantidad de casillas adyacentes a la posicion de la mina, en la cual tiene rango de acción.
+         * Retardo: Cantidad de Actualizaciones que puede recibir la mina, para luego explotar.
+         */
+        public MinaConRetardo(int radio, int retardo) 
         {
-            this.radio = radio;
-            this.costo = costo;
+            this.estaExplotado = false;
             this.retardo = retardo;
-            this.posicion = posicionInicial;
-            this.explotado = false;
+            this.radio = radio;
         }
 
-        //-----------------------------------------------------------
-        public override void Actualizar() 
+        /* Actualizacion del retardo de la mina */
+        public override void Actualizar()
         {
+            if (retardo <= 0) return;
+
+            retardo -= 1;   // Actualizacion del retardo
+
+            if (retardo == 0)
+            {
+                estaExplotado = true;
+            }
+
         }
 
-        //-----------------------------------------------------------
+        /* Devuelve true si la mina ya fue explotada */
+        public override Boolean EstaExplotado()
+        {
+            return estaExplotado;
+        }
     }
 }

@@ -14,9 +14,9 @@ namespace BatallaNavalgoTests
         public void testNoDeberiaDestruirloSiLoAtacoConMinas()
         {
             Destructor destructor = new Destructor( new Posicion(3,3), Nave.VERTICAL);
-            MinaPorContacto mina1 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3));
-            MinaPorContacto mina2 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(4, 3));
-            MinaPorContacto mina3 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(5, 3));
+            Mina mina1 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3));
+            Mina mina2 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(4, 3));
+            Mina mina3 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(5, 3));
             destructor.RecibirAtaque(mina1);
             destructor.RecibirAtaque(mina2);
             destructor.RecibirAtaque(mina3);
@@ -29,13 +29,13 @@ namespace BatallaNavalgoTests
         {
             Destructor destructor = new Destructor(new Posicion(3, 3), Nave.VERTICAL);
 
-            destructor.RecibirAtaque(new DisparoComun(new Posicion(3, 3)));
-            destructor.RecibirAtaque(new DisparoComun(new Posicion(4, 3)));
-            destructor.RecibirAtaque(new DisparoComun(new Posicion(5, 3)));
+            destructor.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3)));
+            destructor.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Posicion(4, 3)));
+            destructor.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Posicion(5, 3)));
 
             Assert.True(destructor.EstaDestruida());
-
         }
+
 
 
     }

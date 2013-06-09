@@ -7,35 +7,37 @@ namespace BatallaNavalgo
 {
     public class DisparoComun: Armamento
     {
-        //-----------------------------------------------------------
-        public DisparoComun(Posicion posicion)
+        private Boolean estaExplotado;
+
+        public DisparoComun()
         {
-            this.posicion = posicion;
+            estaExplotado = false;
         }
 
-        //-----------------------------------------------------------
-        public void SetCosto(int costo)
+        /* Dispara a cada una de las naves en la lista */
+        private void DispararA(List<Nave> naves)
         {
-            this.costo = costo;
+            foreach (Nave nave in naves)
+            {
+                nave.RecibirAtaque(this);
+            }
         }
 
-        //-----------------------------------------------------------
-        public int GetCosto()
-        {
-            return costo;
-        }
-
-        //-----------------------------------------------------------
-        public override void Atacar(IAtacable i) 
-        {
-            i.RecibirAtaque(this);
-        }
-
-        //-----------------------------------------------------------
+        /* Realiza la actualicion del disparo.*/
         public override void Actualizar() 
-        { 
+        {
+            if (EstaExplotado()) return;
+
+            List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
+
+            DispararA(naves);
+            
+            estaExplotado = true;
         }
 
-        //-----------------------------------------------------------
+        public override Boolean EstaExplotado()
+        {
+            return estaExplotado;
+        }
     }
 }
