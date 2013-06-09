@@ -43,5 +43,23 @@ namespace BatallaNavalgo
         {
             return this.EsIgualA(otraPosicion);
         }
+
+        public List<Posicion> GetPosicionesEnUnRadioDe(int r)
+        {
+            List<Posicion> posiciones = new List<Posicion>();
+
+            for (int i = this.fila - r; i <= this.fila + r; i++)
+            {
+                for (int j = this.columna - r; j <= this.columna + r; j++)
+                {
+                    if (!(i == this.fila && j == this.columna))
+                    {
+                        posiciones.Add(new Posicion(i, j));
+                    }
+                }
+            }
+
+            return posiciones;
+        }
     }
 }
