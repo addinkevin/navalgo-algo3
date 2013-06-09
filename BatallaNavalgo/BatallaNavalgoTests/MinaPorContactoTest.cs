@@ -18,7 +18,7 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void NoDeberiaExplotarAlActualizar()
+        public void testNoDeberiaExplotarAlActualizar()
         {
             MinaPorContacto mina = new MinaPorContacto();
             mina.Actualizar();
@@ -26,7 +26,7 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void DeberiaExplotarSiSuPosicionCoincideConLaDeUnaNave()
+        public void testDeberiaExplotarSiSuPosicionCoincideConLaDeUnaNave()
         {
             MinaPorContacto mina = new MinaPorContacto();
             Posicion posicion = new Posicion(5,5);
@@ -41,7 +41,7 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void SiColisionaConVariasNavesTodasLasColisionadasRecibenImpacto()
+        public void testSiColisionaConVariasNavesTodasLasColisionadasRecibenImpacto()
         {
             /*En este caso las naves son puntuales para comprobar su destruccion total*/
             MinaPorContacto mina = new MinaPorContacto();
@@ -59,7 +59,7 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void SiHayNaveEnPosicionVecinaNoExplota()
+        public void testSiHayNaveEnPosicionVecinaNoExplota()
         {
             /*En este caso las naves son puntuales para comprobar su destruccion total*/
             MinaPorContacto mina = new MinaPorContacto();
