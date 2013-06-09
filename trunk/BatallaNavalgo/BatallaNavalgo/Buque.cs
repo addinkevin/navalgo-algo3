@@ -32,5 +32,10 @@ namespace BatallaNavalgo
             return estaDestruida;
         }
 
+        public override void RecibirAtaque(MinaConRetardo mina)
+        {
+            estaDestruida = true;
+        }
+
     }
 }
