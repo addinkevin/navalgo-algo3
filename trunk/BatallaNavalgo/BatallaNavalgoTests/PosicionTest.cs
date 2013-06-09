@@ -36,5 +36,24 @@ namespace BatallaNavalgoTests
 
             Assert.True(posicion.EsIgualA(otraPosicion));
         }
+
+        [Test]
+        public void testObtenerPosicionesAdyacentesAUnaPosicion()
+        {
+            Posicion posicion = new Posicion(5, 5);
+            List<Posicion> posAdyacentes = new List<Posicion>();
+            posAdyacentes.Add(new Posicion(4,4)); posAdyacentes.Add(new Posicion(4,5)); posAdyacentes.Add(new Posicion(4,6));
+            posAdyacentes.Add(new Posicion(5,4)); posAdyacentes.Add(new Posicion(5,6));
+            posAdyacentes.Add(new Posicion(6,4)); posAdyacentes.Add(new Posicion(6,5)); posAdyacentes.Add(new Posicion(6,6));
+            
+
+            List<Posicion> posiciones = posicion.GetPosicionesEnUnRadioDe(1);
+
+            Assert.AreEqual(8, posiciones.Count());
+            foreach (Posicion pos in posAdyacentes){
+                Assert.True(posiciones.Contains(pos));
+            }
+
+        }
     }
 }
