@@ -14,7 +14,6 @@ namespace BatallaNavalgo
             int OrientacionNave = orientar.Next(0, 2);
             return OrientacionNave;        
         }
-       
 
         private static Direccion ObtenerDireccionAleatoria() 
         {
@@ -35,41 +34,46 @@ namespace BatallaNavalgo
             return direccion;
         }
 
-        public static Nave CrearLancha (Posicion posicion, int orientacion)
+        public static Nave CrearLancha (Posicion posicion)
         {
-            Nave lancha = new Nave(2, 1, posicion, orientacion);
+            int orientacionNave = ObtenerCeroOUnoAlAzar();
+            Nave lancha = new Nave(2, 1, posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
             lancha.SetDireccion(direccionDeNave);
             return lancha;               
         }
 
-        public static Destructor CrearDestructor(Posicion posicion, int orientacion)
+        public static Destructor CrearDestructor(Posicion posicion)
         {
-            Destructor destructor = new Destructor(posicion, orientacion);
+            int orientacionNave = ObtenerCeroOUnoAlAzar();
+            Destructor destructor = new Destructor(posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
             destructor.SetDireccion(direccionDeNave);
             return destructor;
         }
 
-        public static Nave CrearPortaAviones(Posicion posicion, int orientacion)
+        public static Nave CrearPortaAviones(Posicion posicion)
         {
-            Nave portaAviones = new Nave(5, 1, posicion, orientacion);
+            int orientacionNave = ObtenerCeroOUnoAlAzar();
+            Nave portaAviones = new Nave(5, 1, posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
             portaAviones.SetDireccion(direccionDeNave);
             return portaAviones;  
         }
 
-        public static Nave CrearRompeHielos(Posicion posicion, int orientacion) 
+        public static Nave CrearRompeHielos(Posicion posicion) 
         {
-            Nave rompeHielos = new Nave(3, 2, posicion, orientacion);
+            int orientacionNave = ObtenerCeroOUnoAlAzar();
+            Nave rompeHielos = new Nave(3, 2, posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
             rompeHielos.SetDireccion(direccionDeNave);
             return rompeHielos;          
         }
 
-        public static Buque CrearBuque(Posicion posicion, int orientacion)
+        public static Buque CrearBuque(Posicion posicion)
         {
-            Buque buque = new Buque(posicion, orientacion);
+            int orientacionNave = ObtenerCeroOUnoAlAzar();
+            Buque buque = new Buque(posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
             buque.SetDireccion(direccionDeNave);
             return buque;
