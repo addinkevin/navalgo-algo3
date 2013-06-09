@@ -15,7 +15,7 @@ namespace BatallaNavalgo
             estaExplotado = false;        
         }
         
-        //-----------------------------------------------------------
+        /* Actualiza la mina por contacto. Explota si hay alguna nave en su posición */
         public override void Actualizar() 
         {
             if (EstaExplotado()) return;
@@ -27,23 +27,6 @@ namespace BatallaNavalgo
 
                 DispararA(naves);
             }
-        }
-
-        /* Comprueba colisión de mina con alguna nave */
-        private bool HaceContactoConNave(List<Nave> naves)
-        {
-            foreach (Nave nave in naves) 
-            {
-                List<Posicion> posicionesDeNave = nave.GetPosiciones();
-                foreach (Posicion posicion in posicionesDeNave) 
-                {
-                    if (posicion.EsIgualA(this.GetPosicion()))
-                    {
-                        return true;
-                    }
-                }                              
-            }
-            return false;
         }
 
         //-----------------------------------------------------------
