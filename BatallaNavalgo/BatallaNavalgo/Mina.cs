@@ -7,6 +7,10 @@ namespace BatallaNavalgo
 {
     public abstract class Mina: Armamento
     {
-        
+        protected int radio;
+        public int GetRadio() 
+        {
+            return radio;
+        }
     }
 }

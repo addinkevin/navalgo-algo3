@@ -23,10 +23,6 @@ namespace BatallaNavalgo
         public override void RecibirAtaque(Mina mina)
         {
             //No hace nada. No le afecta las minas.
-        }
-        public override void RecibirAtaque(MinaConRetardo mina) 
-        {
-            //No hace nada. No le afecta las minas.
-        }
+        }       
     }
 }
