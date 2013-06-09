@@ -17,8 +17,12 @@ namespace BatallaNavalgo
         public BatallaNavalgo()
         {
             this.tablero = new Tablero();
-            //Hay que agregar el tema para agregar naves en el tablero de manera aleatoria.
-            //Forma aleatoria -> tablero.AgregarNave(nave).
+
+            /*Agregado de Naves al Tablero con: 
+             * Posicion ya establecida.
+             * Direccion y Orientacion aleatoria.
+             */
+            AgregarNavesAlTablero(tablero);
             this.jugador = new Jugador(tablero);
         }
         //---------------------------------------------------------------------
@@ -28,6 +32,19 @@ namespace BatallaNavalgo
             jugador.DescontarPuntosPorPasoDeTurno();
             tablero.Actualizar();
         }
+        //---------------------------------------------------------------------
+
+        private void AgregarNavesAlTablero(Tablero tablero)
+        {
+            tablero.AgregarNave(NaveFactory.CrearLancha(new Posicion(2,2)));
+            tablero.AgregarNave(NaveFactory.CrearLancha(new Posicion(9, 9)));
+            tablero.AgregarNave(NaveFactory.CrearDestructor(new Posicion(4, 3)));
+            tablero.AgregarNave(NaveFactory.CrearDestructor(new Posicion(7, 8)));
+            tablero.AgregarNave(NaveFactory.CrearRompeHielos(new Posicion(3, 6)));
+            tablero.AgregarNave(NaveFactory.CrearBuque(new Posicion(6, 4)));
+            tablero.AgregarNave(NaveFactory.CrearPortaAviones(new Posicion(5, 5)));
+        }
+        //---------------------------------------------------------------------
 
         public void EfectuarDisparoComun(Posicion posicion)
         {
@@ -58,6 +75,7 @@ namespace BatallaNavalgo
             MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(posicion);
             jugador.Disparar(minaContacto);
         }
+        //---------------------------------------------------------------------
 
         public static void Main(string[] args)
         {
