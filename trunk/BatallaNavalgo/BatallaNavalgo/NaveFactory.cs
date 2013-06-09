@@ -67,5 +67,13 @@ namespace BatallaNavalgo
             return rompeHielos;          
         }
 
+        public static Buque CrearRomeHielos(Posicion posicion, int orientacion)
+        {
+            Buque buque = new Buque(posicion, orientacion);
+            Direccion direccionDeNave = ObtenerDireccionAleatoria();
+            buque.SetDireccion(direccionDeNave);
+            return buque;
+        }
+
     }
 }
