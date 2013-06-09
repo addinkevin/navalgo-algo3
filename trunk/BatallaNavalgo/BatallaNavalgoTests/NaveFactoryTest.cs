@@ -43,7 +43,7 @@ namespace BatallaNavalgoTests
             int orientacion = 0;
             int cantidadDePartes;
 
-            Destructor buque = NaveFactory.CrearDestructor(posicion, orientacion);
+            Buque buque = NaveFactory.CrearBuque(posicion, orientacion);
             cantidadDePartes = buque.GetPosiciones().Count;
 
             Assert.True(cantidadDePartes == 4);
@@ -73,7 +73,7 @@ namespace BatallaNavalgoTests
             cantidadDePartes = rompehielos.GetPosiciones().Count;
 
             Assert.True(cantidadDePartes == 3);
-        }
+        }      
 
 
     }
