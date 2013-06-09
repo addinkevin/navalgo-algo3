@@ -7,8 +7,7 @@ namespace BatallaNavalgo
 {
     public class MinaConRetardo: Mina
     {
-        private int retardo;
-        private int radio;
+        private int retardo;        
         private Boolean estaExplotado;
 
         /* Constructor.
