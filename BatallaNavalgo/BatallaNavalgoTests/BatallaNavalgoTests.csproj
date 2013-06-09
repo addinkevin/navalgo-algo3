@@ -47,6 +47,7 @@
     <Compile Include="DisparoComunTest.cs" />
     <Compile Include="MinaConRetardoTest.cs" />
     <Compile Include="MinaPorContactoTest.cs" />
+    <Compile Include="NaveFactoryTest.cs" />
     <Compile Include="NaveTest.cs" />
     <Compile Include="ParteNaveTest.cs" />
     <Compile Include="PosicionTest.cs" />
