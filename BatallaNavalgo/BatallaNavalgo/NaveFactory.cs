@@ -59,7 +59,7 @@ namespace BatallaNavalgo
             return portaAviones;  
         }
 
-        public static Nave CrearRomeHielos(Posicion posicion, int orientacion) 
+        public static Nave CrearRompeHielos(Posicion posicion, int orientacion) 
         {
             Nave rompeHielos = new Nave(3, 2, posicion, orientacion);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
