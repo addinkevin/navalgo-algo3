@@ -22,6 +22,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaEstarExplotadaSiLaActualizoTantasVecesComoSuRetardo()
         {
             MinaConRetardo mina = new MinaConRetardo(1, 2);
+            mina.SetTablero(new Tablero());
 
             mina.Actualizar();
             mina.Actualizar();
