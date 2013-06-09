@@ -45,6 +45,7 @@
     <Compile Include="DestructorTest.cs" />
     <Compile Include="DireccionTest.cs" />
     <Compile Include="DisparoComunTest.cs" />
+    <Compile Include="JugadorTest.cs" />
     <Compile Include="MinaConRetardoTest.cs" />
     <Compile Include="MinaPorContactoTest.cs" />
     <Compile Include="NaveFactoryTest.cs" />

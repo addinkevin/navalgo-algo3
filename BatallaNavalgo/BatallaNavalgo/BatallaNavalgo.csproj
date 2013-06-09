@@ -47,12 +47,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ArmamentoFactory.cs" />
+    <Compile Include="BatallaNavalgo.cs" />
     <Compile Include="Buque.cs" />
     <Compile Include="Destructor.cs" />
     <Compile Include="Direccion.cs" />
     <Compile Include="DisparoComun.cs" />
     <Compile Include="IAtacable.cs" />
-    <Compile Include="Juego.cs" />
+    <Compile Include="Jugador.cs" />
     <Compile Include="Mina.cs" />
     <Compile Include="MinaConRetardo.cs" />
     <Compile Include="MinaPorContacto.cs" />
