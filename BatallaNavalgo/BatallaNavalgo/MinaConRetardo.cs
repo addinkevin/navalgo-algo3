@@ -31,6 +31,7 @@ namespace BatallaNavalgo
 
             if (retardo == 0)
             {
+                Explotar();
                 estaExplotado = true;
             }
 
@@ -40,6 +41,27 @@ namespace BatallaNavalgo
         public override Boolean EstaExplotado()
         {
             return estaExplotado;
+        }
+
+        public void Explotar() 
+        {
+            List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
+            DispararA(naves);
+        
+        }
+
+        /* Ataca a las naves */
+        private void DispararA(List<Nave> naves)
+        {
+            foreach (Nave nave in naves)
+            {
+                nave.RecibirAtaque(this);
+            }
+        }
+
+        public int GetRadio() 
+        {
+            return radio;
         }
     }
 }
