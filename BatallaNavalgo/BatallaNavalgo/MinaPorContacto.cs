@@ -8,6 +8,7 @@ namespace BatallaNavalgo
     public class MinaPorContacto: Mina
     {
         private Boolean estaExplotado;
+
         public MinaPorContacto() 
         {
             estaExplotado = false;        
