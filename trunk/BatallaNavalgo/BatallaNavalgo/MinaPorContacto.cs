@@ -9,7 +9,7 @@ namespace BatallaNavalgo
     {
         public MinaPorContacto()
         {
-            this.radio = 0;
+            
         }
 
         //-----------------------------------------------------------
