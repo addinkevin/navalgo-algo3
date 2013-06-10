@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    public class BatallaNavalgo
+    public class Juego
     {
         private Jugador jugador;
         private Tablero tablero;
@@ -14,7 +14,7 @@ namespace BatallaNavalgo
          * jugador: sera el jugador que este jugando BatallaNavalgo.
          * tablero: sera el tablero asociado al juego.
          */
-        public BatallaNavalgo()
+        public Juego()
         {
             this.tablero = new Tablero();
 
@@ -27,7 +27,7 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
-        public void AvanzarTurno()
+        private void AvanzarTurno()
         {
             jugador.DescontarPuntosPorPasoDeTurno();
             tablero.Actualizar();
@@ -50,30 +50,35 @@ namespace BatallaNavalgo
         {
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(posicion);
             jugador.Disparar(disparo);
+            AvanzarTurno();
         }
 
         public void ColocarMinaPuntual(Posicion posicion)
         {
             MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(posicion);
             jugador.Disparar(minaPuntual);
+            AvanzarTurno();
         }
 
         public void ColocarMinaDoble(Posicion posicion)
         {
             MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(posicion);
             jugador.Disparar(minaDoble);
+            AvanzarTurno();
         }
 
         public void ColocarMinaTriple(Posicion posicion)
         {
             MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(posicion);
             jugador.Disparar(minaTriple);
+            AvanzarTurno();
         }
 
         public void ColocarMinaPorContacto(Posicion posicion)
         {
             MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(posicion);
             jugador.Disparar(minaContacto);
+            AvanzarTurno();
         }
         //---------------------------------------------------------------------
 

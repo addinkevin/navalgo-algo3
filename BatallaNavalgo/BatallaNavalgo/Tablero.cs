@@ -78,13 +78,15 @@ namespace BatallaNavalgo
 
         public void BorrarArmamentosExplotados()
         {
+            List<Armamento> armamentosActualizados = new List<Armamento>();
             foreach (Armamento armamento in armamentos)
             {
-                if (armamento.EstaExplotado())
+                if (!armamento.EstaExplotado())
                 {
-                    armamentos.Remove(armamento);
+                    armamentosActualizados.Add(armamento);
                 }
             }
+            this.armamentos = armamentosActualizados;
         }
 
         //---------------------------------------------------------------------
@@ -123,6 +125,18 @@ namespace BatallaNavalgo
             if ((naves.Count()).Equals(0) && (armamentos.Count()).Equals(0))
             {
                 return true;
+            }
+            return false;
+        }
+
+        public Boolean TieneNavesConVida()
+        {
+            foreach (Nave nave in this.naves)
+            {
+                if (!nave.EstaDestruida())
+                {
+                    return true;
+                }
             }
             return false;
         }

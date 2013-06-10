@@ -53,6 +53,7 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
             nave.SetDireccion(new Direccion(1, 0));
             tablero.AgregarNave(nave);
+            
             tablero.Actualizar();
 
             Assert.True(tablero.HayNave(new Posicion(6, 5)));
@@ -64,9 +65,34 @@ namespace BatallaNavalgoTests
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
             tablero.AgregarNave(nave);
+            
             List<Nave> naves = tablero.GetNavesEn(new Posicion(5, 5));
 
             Assert.AreEqual(nave, naves[0]);
+        }
+
+        [Test]
+        public void testDeberiaTenerLaNaveConVidaSiNoSeLaAtaco()
+        {
+            Tablero tablero = new Tablero();
+            tablero.AgregarNave(NaveFactory.CrearLancha(new Posicion(3, 3)));
+
+            Assert.True(tablero.TieneNavesConVida());
+        }
+        [Test]
+        public void testDeberiaNoTenerNaveConVidaSiLaAtaco()
+        {
+            Tablero tablero = new Tablero();
+            Nave nave = new Nave(1, 1, new Posicion(3, 3), Nave.HORIZONTAL);
+            nave.SetDireccion(new Direccion(1, 0));
+            tablero.AgregarNave(nave);
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
+            disparo.SetTablero(tablero);
+
+            tablero.Impactar(disparo);
+            tablero.Actualizar();
+
+            Assert.False(tablero.TieneNavesConVida());
         }
     }
 }
