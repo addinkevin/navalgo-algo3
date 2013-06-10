@@ -18,11 +18,11 @@ namespace BatallaNavalgo
             estaDestruida = false;
         }
         
-        public override void RecibirAtaque(DisparoComun disparo)
+        public override void RecibirAtaque(DisparoComun disparo, Posicion posicion)
         {
             estaDestruida = true;
         }
-        public override void RecibirAtaque(Mina mina)
+        public override void RecibirAtaque(Mina mina, Posicion posicion)
         {
             estaDestruida = true;
         }
