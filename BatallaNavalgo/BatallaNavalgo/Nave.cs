@@ -115,20 +115,6 @@ namespace BatallaNavalgo
             RecibirAtaqueGeneral(mina, posicion);
         }
 
-        /* Ataca a la nave, dada una mina particular. */
-        public virtual void RecibirAtaqueDesdeMinaConRadio(Mina mina)
-        {
-            int radioDeMina= mina.GetRadio();
-            Posicion posicionDeMina = mina.GetPosicion();
-            List<Posicion> posicionesDondeImpacta = posicionDeMina.GetPosicionesEnUnRadioDe(radioDeMina);
-            posicionesDondeImpacta.Add(posicionDeMina);
-
-            foreach (Posicion posicion in posicionesDondeImpacta) 
-            {
-                RecibirAtaqueEn(posicion);
-            }
-        }
-
         /* Ataca la parte de la nave correspondiente a la posicion pasada */
         private void RecibirAtaqueEn(Posicion posicion)
         {
