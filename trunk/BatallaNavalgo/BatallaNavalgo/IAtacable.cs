@@ -7,7 +7,7 @@ namespace BatallaNavalgo
 {
     public interface IAtacable
     {
-        void RecibirAtaque(DisparoComun disparo);
-        void RecibirAtaque(Mina mina);
+        void RecibirAtaque(DisparoComun disparo, Posicion posicion);
+        void RecibirAtaque(Mina mina, Posicion posicion);
     }
 }
