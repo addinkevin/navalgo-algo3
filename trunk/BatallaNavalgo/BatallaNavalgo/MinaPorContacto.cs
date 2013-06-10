@@ -41,7 +41,7 @@ namespace BatallaNavalgo
         {
             foreach (Nave nave in naves)
             {
-                nave.RecibirAtaque(this);
+                nave.RecibirAtaque(this, GetPosicion());
             }
         }
         /* ---------------------------------------------*/
