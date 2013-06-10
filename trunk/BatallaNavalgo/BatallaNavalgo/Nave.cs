@@ -89,12 +89,12 @@ namespace BatallaNavalgo
             return true;
         }
         
-        /* Permite atacar a la nave, en la posicion especificada por el disparo */
-        private void RecibirAtaqueGeneral(Armamento armamento)
+        /* Permite atacar a la nave, en la posicion especificada*/
+        private void RecibirAtaqueGeneral(Armamento armamento, Posicion posicion)
         {
             foreach (ParteNave parte in partes)
             {
-                if (parte.GetPosicion().EsIgualA(armamento.GetPosicion()))
+                if (parte.GetPosicion().EsIgualA(posicion))
                 {
                     parte.RecibirAtaque();
                     return;
@@ -104,9 +104,15 @@ namespace BatallaNavalgo
         }
 
         /* Ataca a la nave, dado un disparo */
-        public virtual void RecibirAtaque(DisparoComun disparo)
+        public virtual void RecibirAtaque(DisparoComun disparo, Posicion posicion)
         {
-            RecibirAtaqueGeneral(disparo);
+            RecibirAtaqueGeneral(disparo, posicion);
+        }
+
+        /* Ataca a la nave, dada una mina */
+        public virtual void RecibirAtaque(Mina mina, Posicion posicion)
+        {
+            RecibirAtaqueGeneral(mina, posicion);
         }
 
         /* Ataca a la nave, dada una mina particular. */
@@ -115,24 +121,12 @@ namespace BatallaNavalgo
             int radioDeMina= mina.GetRadio();
             Posicion posicionDeMina = mina.GetPosicion();
             List<Posicion> posicionesDondeImpacta = posicionDeMina.GetPosicionesEnUnRadioDe(radioDeMina);
+            posicionesDondeImpacta.Add(posicionDeMina);
+
             foreach (Posicion posicion in posicionesDondeImpacta) 
             {
                 RecibirAtaqueEn(posicion);
             }
-        }
-
-        /* Ataca a la nave, dada una mina */
-        public virtual void RecibirAtaque(Mina mina)
-        {
-            if (mina.GetRadio() == 0)
-            {
-                RecibirAtaqueGeneral(mina);
-            }
-            else 
-            {
-                RecibirAtaqueDesdeMinaConRadio(mina);
-            }
-            
         }
 
         /* Ataca la parte de la nave correspondiente a la posicion pasada */
