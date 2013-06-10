@@ -15,12 +15,12 @@ namespace BatallaNavalgo
         {
         }
 
-        public override void  RecibirAtaque(DisparoComun disparo)
+        public override void  RecibirAtaque(DisparoComun disparo, Posicion posicion)
         {
- 	        base.RecibirAtaque(disparo);
+ 	        base.RecibirAtaque(disparo, posicion);
         }
 
-        public override void RecibirAtaque(Mina mina)
+        public override void RecibirAtaque(Mina mina, Posicion posicion)
         {
             //No hace nada. No le afecta las minas.
         }       
