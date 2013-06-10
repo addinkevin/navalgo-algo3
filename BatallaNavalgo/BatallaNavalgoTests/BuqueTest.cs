@@ -21,19 +21,21 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaDestruirElBuqueAlRecibirUnDisparoComun()
         {
-            Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
+            Posicion posicion = new Posicion(3, 3);
+            Buque buque = new Buque(posicion, Nave.VERTICAL);
 
-            buque.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Posicion(3,3)));
+            buque.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(posicion), posicion);
 
             Assert.True(buque.EstaDestruida());
         }
         [Test]
         public void testDeberiaDestruirElBuqueAlRecibirUnaMina()
         {
-            Armamento mina = ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3));
-            Buque buque = new Buque(new Posicion(3, 3), Nave.VERTICAL);
+            Posicion posicion = new Posicion(3, 3);
+            Mina mina = ArmamentoFactory.CrearMinaPorContacto(posicion);
+            Buque buque = new Buque(posicion, Nave.VERTICAL);
 
-            buque.RecibirAtaque((Mina)mina);
+            buque.RecibirAtaque(mina,posicion);
 
             Assert.True(buque.EstaDestruida());
         }
