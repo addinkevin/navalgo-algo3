@@ -7,6 +7,9 @@ namespace BatallaNavalgo
 {
     public class Jugador
     {
+        public static int PUNTAJE_INICIAL_JUGADOR = 10000;
+        public static int PUNTAJE_DESCONTADO_POR_TURNO = 10;
+
         private int puntos;
         private Tablero tablero;
 
@@ -16,7 +19,7 @@ namespace BatallaNavalgo
          */
         public Jugador(Tablero tablero)
         {
-            this.puntos = 10000;
+            this.puntos = PUNTAJE_INICIAL_JUGADOR;
             this.tablero = tablero;
         }
         //---------------------------------------------------------------------
@@ -28,7 +31,7 @@ namespace BatallaNavalgo
 
         public void DescontarPuntosPorPasoDeTurno()
         {
-            puntos -= 10;
+            puntos -= PUNTAJE_DESCONTADO_POR_TURNO;
         }
 
         public void Disparar(Armamento armamento)
