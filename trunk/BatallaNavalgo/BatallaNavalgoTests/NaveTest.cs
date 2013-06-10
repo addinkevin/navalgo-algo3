@@ -61,7 +61,8 @@ namespace BatallaNavalgoTests
         public void deberiaNaveDeUnaParteSeguirNoDestruidaSiTieneResistenciaMayorAUnoYRecibeDisparo()
         {
             Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
-            nave.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Posicion(1, 1)));
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(1, 1));
+            nave.RecibirAtaque(disparo, disparo.GetPosicion());
 
             Assert.False(nave.EstaDestruida());
 
@@ -74,8 +75,8 @@ namespace BatallaNavalgoTests
 
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(1,1));
             
-            nave.RecibirAtaque(disparo);
-            nave.RecibirAtaque(disparo);
+            nave.RecibirAtaque(disparo,disparo.GetPosicion());
+            nave.RecibirAtaque(disparo, disparo.GetPosicion());
 
             Assert.True(nave.EstaDestruida());
         }
@@ -86,8 +87,8 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
 
             Mina mina = ArmamentoFactory.CrearMinaPorContacto(new Posicion(1, 1));
-            nave.RecibirAtaque(mina);
-            nave.RecibirAtaque(mina);
+            nave.RecibirAtaque(mina, mina.GetPosicion());
+            nave.RecibirAtaque(mina, mina.GetPosicion());
 
             Assert.True(nave.EstaDestruida());
         }
