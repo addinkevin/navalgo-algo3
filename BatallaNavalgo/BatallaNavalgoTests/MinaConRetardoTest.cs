@@ -22,6 +22,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaEstarExplotadaSiLaActualizoTantasVecesComoSuRetardo()
         {
             MinaConRetardo mina = new MinaConRetardo(1, 2);
+            mina.SetPosicion(new Posicion(3, 3));
             mina.SetTablero(new Tablero());
 
             mina.Actualizar();
@@ -33,15 +34,15 @@ namespace BatallaNavalgoTests
         [Test]
         public void testSiHayNaveEnSuRadioDeAlcanceDeberiaDañarla()
         {
-            Tablero tablero = new Tablero();
-            MinaConRetardo mina = new MinaConRetardo(1, 1);
-            Posicion posicionMina = new Posicion(3, 3);
             Posicion posicionNave = new Posicion(2, 3);
             Nave nave = new Nave(1, 1, posicionNave, Nave.HORIZONTAL);
-            mina.SetTablero(tablero);
+            Tablero tablero = new Tablero();
             tablero.AgregarNave(nave);
-
+            MinaConRetardo mina = new MinaConRetardo(1, 1);
+            Posicion posicionMina = new Posicion(3, 3);
             mina.SetPosicion(posicionMina);
+            mina.SetTablero(tablero);
+            
             mina.Actualizar();
 
             Assert.True(nave.EstaDestruida());
