@@ -44,17 +44,22 @@ namespace BatallaNavalgo
 
         public void Explotar() 
         {
-            List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
-            DispararA(naves);
-        
+            List<Posicion> posicionesAImpactar = GetPosicion().GetPosicionesEnUnRadioDe(GetRadio());
+            posicionesAImpactar.Add(GetPosicion());
+
+            foreach (Posicion posicion in posicionesAImpactar)
+            {
+                List<Nave> naves = GetTablero().GetNavesEn(posicion);
+                DispararA(naves, posicion);
+            }
         }
 
         /* Ataca a las naves */
-        private void DispararA(List<Nave> naves)
+        private void DispararA(List<Nave> naves, Posicion posicion)
         {
             foreach (Nave nave in naves)
             {
-                nave.RecibirAtaque(this);
+                nave.RecibirAtaque(this, posicion);
             }
         }        
     }
