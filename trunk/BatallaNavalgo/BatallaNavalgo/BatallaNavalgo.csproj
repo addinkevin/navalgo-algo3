@@ -47,7 +47,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ArmamentoFactory.cs" />
-    <Compile Include="BatallaNavalgo.cs" />
+    <Compile Include="Juego.cs" />
     <Compile Include="Buque.cs" />
     <Compile Include="Destructor.cs" />
     <Compile Include="Direccion.cs" />
