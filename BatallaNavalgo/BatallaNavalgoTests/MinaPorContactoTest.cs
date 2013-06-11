@@ -77,6 +77,25 @@ namespace BatallaNavalgoTests
             Assert.False(mina.EstaExplotado());
         }
 
+        [Test]
+        public void testSiDespuesDeExplotadaLaMinaUnaNaveVuelveAPasarPorEncimaNoExplotaDeNuevo()
+        {
+            MinaPorContacto mina = new MinaPorContacto();
+            Posicion posicion = new Posicion(5, 5);
+            Tablero tablero = new Tablero();
+            Nave nave = new Nave(1, 1, posicion, Nave.VERTICAL);
+            Nave nave2 = new Nave(5, 5, posicion, Nave.VERTICAL);
+            tablero.AgregarNave(nave);
+            mina.SetPosicion(posicion);
+            mina.SetTablero(tablero);
+            mina.Actualizar();
+
+            tablero.AgregarNave(nave2);
+            mina.Actualizar();
+
+            Assert.True(nave.EstaDestruida() && !nave2.EstaDestruida());
+        }
+
 
     }
 }
