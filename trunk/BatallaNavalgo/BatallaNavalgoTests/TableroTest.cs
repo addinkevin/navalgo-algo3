@@ -94,5 +94,31 @@ namespace BatallaNavalgoTests
 
             Assert.False(tablero.TieneNavesConVida());
         }
+
+        [Test]
+        public void testDeberiaEstarVacioDespuesDeIngresarUnArmamentoYExplotarlo()
+        {
+            Tablero tablero = new Tablero();
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
+            disparo.SetTablero(tablero);
+
+            tablero.Impactar(disparo);
+            tablero.Actualizar();
+
+            Assert.True(tablero.EstaVacio());
+        }
+
+        public void testNoDeberiaEstarVacioSiIngresoUnarmamentoPeroNoLoExploto()
+        {
+            Tablero tablero = new Tablero();
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
+            disparo.SetTablero(tablero);
+
+            tablero.Actualizar();
+
+            Assert.False(tablero.EstaVacio());
+        }
+
+
     }
 }

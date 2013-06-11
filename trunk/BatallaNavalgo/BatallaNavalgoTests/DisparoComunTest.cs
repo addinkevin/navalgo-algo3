@@ -17,6 +17,7 @@ namespace BatallaNavalgoTests
 
             Assert.False(disparo.EstaExplotado());
         }
+        /*-------------------------------------------*/
         [Test]
         public void testDeberiaEstarExplotadoCuandoLoActualizo()
         {
@@ -27,8 +28,8 @@ namespace BatallaNavalgoTests
             disparo.Actualizar();
 
             Assert.True(disparo.EstaExplotado());
-
         }
+        /*-------------------------------------------*/
 
         [Test]
         public void testDeberiaAtacarALaNaveSoloUnaVez()
@@ -46,5 +47,45 @@ namespace BatallaNavalgoTests
             // Es una nave de una parte con resistencia dos. Solo recibio un disparo. No debe estar destruida.
             Assert.False(nave.EstaDestruida());
         }
+        /*-------------------------------------------*/
+
+        [Test]
+        public void testSiHayVariasNavesEnUnaPosicionAlExplotarLasAtacaATodas()
+        {
+            Tablero tablero = new Tablero();
+            Nave nave = new Nave(1, 1, new Posicion(1, 1), Nave.VERTICAL);
+            Nave nave2 = new Nave(1, 1, new Posicion(1, 1), Nave.VERTICAL);
+            tablero.AgregarNave(nave);
+            tablero.AgregarNave(nave2);
+            DisparoComun disparo = new DisparoComun();
+            disparo.SetTablero(tablero);
+            disparo.SetPosicion(new Posicion(1, 1));
+
+            disparo.Actualizar();
+            disparo.Actualizar();
+            
+            Assert.True(nave.EstaDestruida() && nave2.EstaDestruida());
+        }
+        /*-------------------------------------------*/
+
+        [Test]
+        public void testSiHayUnaNaveEnUnaPosicionVecinaNoLaAtaca()
+        {
+            Tablero tablero = new Tablero();
+            Nave nave = new Nave(1, 1, new Posicion(1, 1), Nave.VERTICAL);
+            
+            tablero.AgregarNave(nave);            
+            DisparoComun disparo = new DisparoComun();
+            disparo.SetTablero(tablero);
+            disparo.SetPosicion(new Posicion(1, 2));
+
+            disparo.Actualizar();
+            disparo.Actualizar();
+
+            Assert.False(nave.EstaDestruida());
+        }
+
+
+
     }
 }
