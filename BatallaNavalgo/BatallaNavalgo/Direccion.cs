@@ -19,6 +19,17 @@ namespace BatallaNavalgo
             this.movimientoEnFilas = movimientoEnFilas;
         }
 
+        public Boolean EsigualA(Direccion direccion)
+        {
+            if ((this.movimientoEnFilas == direccion.movimientoEnFilas) && (this.movimientoEnColumnas== direccion.movimientoEnColumnas))
+            {
+                return true;
+            }
+            return false;
+        }
+
+
+        /*Comprueba si con la fila y direccion actual corresponde invertir el sentido*/
         private Boolean ChocaEnFilas(int filaActual) 
         {
             if ((movimientoEnFilas == 1) && (filaActual == FILAS)) 
@@ -34,6 +45,7 @@ namespace BatallaNavalgo
             return false;
         }
 
+        /*Comprueba si con la columna y direccion actual corresponde invertir el sentido*/
         private Boolean ChocaEnColumnas(int columnaActual)
         {
             if ((movimientoEnColumnas == 1) && (columnaActual == COLUMNAS))
@@ -49,6 +61,7 @@ namespace BatallaNavalgo
             return false;
         }
 
+        /*Comprueba si con la posicion y direccion actual corresponde invertir el sentido*/
         private void ValidarMovimientoParaPosicionSiguiente(Posicion posicionActual)
         {
             int columnaActual, filaActual;
