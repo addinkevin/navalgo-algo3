@@ -18,7 +18,7 @@ namespace BatallaNavalgo
         {
             this.estaExplotado = false;
             this.retardo = retardo;
-            this.radio = radio;
+            SetRadio(radio);
         }
 
         /* Actualizacion del retardo de la mina */

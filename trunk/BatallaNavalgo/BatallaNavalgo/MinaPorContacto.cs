@@ -11,7 +11,7 @@ namespace BatallaNavalgo
 
         public MinaPorContacto() 
         {
-            this.radio = 0;
+            SetRadio(0);
             estaExplotado = false;        
         }
         
