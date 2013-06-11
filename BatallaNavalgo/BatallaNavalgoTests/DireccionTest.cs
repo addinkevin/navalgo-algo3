@@ -44,5 +44,16 @@ namespace BatallaNavalgoTests
             Assert.True(nuevaPosicion.EsIgualA(new Posicion(1, 5)));
 
         }
+
+        [Test]
+        public void testEstandoEnLaPrimerFilaDelTableroEIntentandoIrAlNorteSeInvierteLaDireccion()
+        {
+            Posicion posicion = new Posicion(1, 5);
+            Direccion direccion = new Direccion(-1, 0);            
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+            
+            Assert.True(nuevaPosicion.EsIgualA(new Posicion(2, 5)));
+        }
     }
 }
