@@ -51,7 +51,7 @@ namespace BatallaNavalgo
         public void testCreaUnaMinaPorContactoConCostoValido()
         {
             Posicion posicion = new Posicion(3, 4);
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(posicion);
+            MinaPorContacto disparo = ArmamentoFactory.CrearMinaPorContacto(posicion);
             Assert.True(disparo.GetCosto() == 150);
         }
 
