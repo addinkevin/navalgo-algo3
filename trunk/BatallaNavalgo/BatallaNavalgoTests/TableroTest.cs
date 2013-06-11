@@ -37,6 +37,14 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
+        public void testNoDeberiaHaberNaveEnUnaPosicionSiNoSeLaAgrego()
+        {
+            Tablero tablero = new Tablero();            
+
+            Assert.False(tablero.HayNave(new Posicion(1, 1)));
+        }
+
+        [Test]
         public void testDeberiaHaberArmamentoEnUnaPosicionLuegoDeQueSeAgrego()
         {
             Tablero tablero = new Tablero();
@@ -44,6 +52,14 @@ namespace BatallaNavalgoTests
             tablero.Impactar(mina);
 
             Assert.True(tablero.HayMina(new Posicion(3, 3)));
+        }
+
+        [Test]
+        public void testNoDeberiaHaberArmamentoEnUnaPosicionSiNoSeLoAgrego()
+        {
+            Tablero tablero = new Tablero();                        
+
+            Assert.False(tablero.HayMina(new Posicion(3, 3)));
         }
 
         [Test]
