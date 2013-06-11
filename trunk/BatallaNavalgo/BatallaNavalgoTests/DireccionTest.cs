@@ -58,7 +58,7 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void testAlChocharEnFilaUnoYendoAlNorteInvierteLaDireccion()
+        public void testAlChocharEnFilaUnoYendoAlNorteInvierteLaDireccionDandoUnaPosicionValidaParaElTablero()
         {
             Posicion posicion = new Posicion(1, 5);
             Direccion direccion = new Direccion(-1, 0);
@@ -67,6 +67,77 @@ namespace BatallaNavalgoTests
 
             Assert.True(nuevaPosicion.EsIgualA(new Posicion(2, 5)));
         }
+
+        [Test]
+        public void testEstandoEnUltimaFilaDelTableroEIntentandoIrAlSurSeInvierteLaDireccion()
+        {
+            Posicion posicion = new Posicion(10, 5);
+            Direccion direccion = new Direccion(1, 0);
+            Direccion direccionDespuesDeChocar = new Direccion(-1, 0);
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+
+            Assert.True(direccion.EsigualA(direccionDespuesDeChocar));
+        }
+
+        [Test]
+        public void testAlChocharEnFilaDiezYendoAlSurInvierteLaDireccionDandoUnaPosicionValidaParaElTablero()
+        {
+            Posicion posicion = new Posicion(10, 5);
+            Direccion direccion = new Direccion(1, 0);
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+
+            Assert.True(nuevaPosicion.EsIgualA(new Posicion(9, 5)));
+        }
+
+        [Test]
+        public void testEstandoEnPrimeraColumnaDelTableroEIntentandoIrAlOesteSeInvierteLaDireccion()
+        {
+            Posicion posicion = new Posicion(4, 1);
+            Direccion direccion = new Direccion(0, -1);
+            Direccion direccionDespuesDeChocar = new Direccion(0, 1);
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+
+            Assert.True(direccion.EsigualA(direccionDespuesDeChocar));
+        }
+
+        [Test]
+        public void testAlChocharEnColumnaunoYendoAlOesteInvierteLaDireccionDandoUnaPosicionValidaParaElTablero()
+        {
+            Posicion posicion = new Posicion(4, 1);
+            Direccion direccion = new Direccion(0, -1);
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+
+            Assert.True(nuevaPosicion.EsIgualA(new Posicion(4, 2)));
+        }
+
+        [Test]
+        public void testEstandoEnUltimaColumnaDelTableroEIntentandoIrAlEsteSeInvierteLaDireccion()
+        {
+            Posicion posicion = new Posicion(4, 10);
+            Direccion direccion = new Direccion(0, 1);
+            Direccion direccionDespuesDeChocar = new Direccion(0, -1);
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+
+            Assert.True(direccion.EsigualA(direccionDespuesDeChocar));
+        }
+
+        [Test]
+        public void testAlChocharEnColumnaDiezYendoAlEsteInvierteLaDireccionDandoUnaPosicionValidaParaElTablero()
+        {
+            Posicion posicion = new Posicion(4, 10);
+            Direccion direccion = new Direccion(0, 1);
+
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
+
+            Assert.True(nuevaPosicion.EsIgualA(new Posicion(4, 9)));
+        }
+
+        
 
     }
 }
