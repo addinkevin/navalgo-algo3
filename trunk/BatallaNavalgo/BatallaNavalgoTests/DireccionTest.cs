@@ -50,10 +50,23 @@ namespace BatallaNavalgoTests
         {
             Posicion posicion = new Posicion(1, 5);
             Direccion direccion = new Direccion(-1, 0);            
+            Direccion direccionDespuesDeChocar = new Direccion(1, 0);
+            
+            Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);            
+            
+            Assert.True(direccion.EsigualA(direccionDespuesDeChocar));
+        }
+
+        [Test]
+        public void testAlChocharEnFilaUnoYendoAlNorteInvierteLaDireccion()
+        {
+            Posicion posicion = new Posicion(1, 5);
+            Direccion direccion = new Direccion(-1, 0);
 
             Posicion nuevaPosicion = direccion.GetNuevaPosicion(posicion);
-            
+
             Assert.True(nuevaPosicion.EsIgualA(new Posicion(2, 5)));
         }
+
     }
 }
