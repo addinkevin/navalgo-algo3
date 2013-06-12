@@ -8,6 +8,11 @@ namespace BatallaNavalgo
 {
     public class Nave: IAtacable
     {
+        enum Orientacion 
+        {
+            Vertical = 0,
+            Horizontal = 1
+        }
         public static int VERTICAL = 0;
         public static int HORIZONTAL = 1;
 
@@ -25,10 +30,11 @@ namespace BatallaNavalgo
             this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);
         }
 
-        public void SetDireccion( Direccion direccion )
+        public Direccion Direccion 
         {
-            this.direccion = direccion;
+            set { direccion = value; }
         }
+        
         
         /* Permite verificar si la posicion es valida. Es valida cuando esta dentro del rango especificado por el Tablero */
         private Boolean EsPosicionValida(Posicion posicion)
@@ -54,11 +60,11 @@ namespace BatallaNavalgo
                 partes.Add(new ParteNave(resistencia, posicion));
                 if (orientacion == VERTICAL)
                 {
-                    posicion = new Posicion(posicion.GetFila() + 1, posicion.GetColumna());
+                    posicion = new Posicion(posicion.Fila + 1, posicion.Columna);
                 }
                 else
                 {
-                    posicion = new Posicion(posicion.GetFila(), posicion.GetColumna() + 1);
+                    posicion = new Posicion(posicion.Fila, posicion.Columna + 1);
                 }
             }
         }
@@ -69,7 +75,7 @@ namespace BatallaNavalgo
             List<Posicion> lista = new List<Posicion>();
             foreach ( ParteNave parte in partes)
             {
-                lista.Add(parte.GetPosicion());
+                lista.Add(parte.Posicion);
             }
             return lista;
         }
@@ -94,7 +100,7 @@ namespace BatallaNavalgo
         {
             foreach (ParteNave parte in partes)
             {
-                if (parte.GetPosicion().EsIgualA(posicion))
+                if (parte.Posicion.EsIgualA(posicion))
                 {
                     parte.RecibirAtaque();
                     return;
@@ -120,7 +126,7 @@ namespace BatallaNavalgo
         {
             foreach (ParteNave parte in partes)
             {
-                if (parte.GetPosicion().EsIgualA(posicion))
+                if (parte.Posicion.EsIgualA(posicion))
                 {
                     parte.RecibirAtaque();
                     return;
@@ -133,7 +139,7 @@ namespace BatallaNavalgo
         {
             foreach (ParteNave parte in partes)
             {
-                if (!EsPosicionValida(direccion.GetNuevaPosicion(parte.GetPosicion())))
+                if (!EsPosicionValida(direccion.GetNuevaPosicion(parte.Posicion)))
                     return false;
             }
             return true;
@@ -149,7 +155,7 @@ namespace BatallaNavalgo
 
             foreach(ParteNave parte in partes)
             {
-                parte.SetPosicion(direccion.GetNuevaPosicion(parte.GetPosicion()));
+                parte.Posicion = direccion.GetNuevaPosicion(parte.Posicion);
             }
         }
 

@@ -14,17 +14,17 @@ namespace BatallaNavalgoTests
         public void testDeberiaNoEstarExplotadaAlCrearla()
         {
             MinaPorContacto mina = new MinaPorContacto();
-            Assert.False(mina.EstaExplotado());            
+            Assert.False(mina.Explotado);            
         }
 
         [Test]
         public void testNoDeberiaExplotarAlActualizarSiNoHayNavesAlAlrededor()
         {
             MinaPorContacto mina = new MinaPorContacto();
-            mina.SetTablero(new Tablero());
+            mina.TableroEnElQueEsta = (new Tablero());
             mina.Actualizar();
 
-            Assert.False(mina.EstaExplotado());
+            Assert.False(mina.Explotado);
         }
 
         [Test]
@@ -36,10 +36,10 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, posicion, Nave.VERTICAL);
             tablero.AgregarNave(nave);
             mina.SetPosicion(posicion);
-            mina.SetTablero(tablero);
+            mina.TableroEnElQueEsta = (tablero);
 
             mina.Actualizar();
-            Assert.True(mina.EstaExplotado());
+            Assert.True(mina.Explotado);
         }
 
         [Test]
@@ -54,7 +54,7 @@ namespace BatallaNavalgoTests
             tablero.AgregarNave(nave1);
             tablero.AgregarNave(nave2);
             mina.SetPosicion(posicion);
-            mina.SetTablero(tablero);
+            mina.TableroEnElQueEsta = tablero;
 
             mina.Actualizar();
             Assert.True(nave1.EstaDestruida() && nave2.EstaDestruida());
@@ -71,10 +71,10 @@ namespace BatallaNavalgoTests
             Nave nave1 = new Nave(1, 1, posicionNave, Nave.HORIZONTAL);            
             tablero.AgregarNave(nave1);            
             mina.SetPosicion(posicionMina);
-            mina.SetTablero(tablero);
+            mina.TableroEnElQueEsta = tablero;
 
             mina.Actualizar();
-            Assert.False(mina.EstaExplotado());
+            Assert.False(mina.Explotado);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace BatallaNavalgoTests
             Nave nave2 = new Nave(5, 5, posicion, Nave.VERTICAL);
             tablero.AgregarNave(nave);
             mina.SetPosicion(posicion);
-            mina.SetTablero(tablero);
+            mina.TableroEnElQueEsta = tablero;
             mina.Actualizar();
 
             tablero.AgregarNave(nave2);

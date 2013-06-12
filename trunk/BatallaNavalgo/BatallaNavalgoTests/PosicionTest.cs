@@ -15,8 +15,8 @@ namespace BatallaNavalgoTests
         public void testCrearUnaPosicionYObtenerFilaYColumna()
         {
             Posicion posicion = new Posicion(3, 6);
-            Assert.AreEqual(3, posicion.GetFila());
-            Assert.AreEqual(6, posicion.GetColumna());
+            Assert.AreEqual(3, posicion.Fila);
+            Assert.AreEqual(6, posicion.Columna);
         }
 
         [Test]

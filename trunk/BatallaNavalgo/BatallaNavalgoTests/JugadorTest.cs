@@ -17,7 +17,7 @@ namespace BatallaNavalgoTests
             Tablero tablero = new Tablero();
             Jugador jugador = new Jugador(tablero);
 
-            Assert.True(jugador.GetPuntos().Equals(10000));
+            Assert.True(jugador.Puntos.Equals(10000));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace BatallaNavalgoTests
             Jugador jugador = new Jugador(tablero);
             jugador.DescontarPuntosPorPasoDeTurno();
 
-            Assert.True(jugador.GetPuntos().Equals(9990));
+            Assert.True(jugador.Puntos.Equals(9990));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace BatallaNavalgoTests
             Jugador jugador = new Jugador(tablero);
             jugador.Disparar(ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3)));
 
-            Assert.True(jugador.GetPuntos().Equals(9800));
+            Assert.True(jugador.Puntos.Equals(9800));
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace BatallaNavalgoTests
             Jugador jugador = new Jugador(tablero);
             jugador.Disparar(ArmamentoFactory.CrearMinaPuntual(new Posicion(3, 3)));
 
-            Assert.True(jugador.GetPuntos().Equals(9950));
+            Assert.True(jugador.Puntos.Equals(9950));
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace BatallaNavalgoTests
             Jugador jugador = new Jugador(tablero);
             jugador.Disparar(ArmamentoFactory.CrearMinaDoble(new Posicion(3, 3)));
 
-            Assert.True(jugador.GetPuntos().Equals(9900));
+            Assert.True(jugador.Puntos.Equals(9900));
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace BatallaNavalgoTests
             Jugador jugador = new Jugador(tablero);
             jugador.Disparar(ArmamentoFactory.CrearMinaTriple(new Posicion(3, 3)));
 
-            Assert.True(jugador.GetPuntos().Equals(9875));
+            Assert.True(jugador.Puntos.Equals(9875));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace BatallaNavalgoTests
             Jugador jugador = new Jugador(tablero);
             jugador.Disparar(ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3)));
 
-            Assert.True(jugador.GetPuntos().Equals(9850));
+            Assert.True(jugador.Puntos.Equals(9850));
         }
     }
 }

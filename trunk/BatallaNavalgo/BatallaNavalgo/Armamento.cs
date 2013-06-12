@@ -10,22 +10,20 @@ namespace BatallaNavalgo
         private int costo;
         private Posicion posicion;
         private Tablero tablero;
+        protected Boolean estaExplotado;
 
-        public abstract void Actualizar();        
+        public abstract void Actualizar();
 
-        public abstract Boolean EstaExplotado();
-
-        /* Setea el tablero en el cual se ubica el Armamento */
-        public void SetTablero(Tablero tablero)
+        public Boolean Explotado         
         {
-            this.tablero = tablero;
+            get { return estaExplotado; }            
         }
 
-        /* Devuelve el tablero en el cual se encuentra el Armamento */
-        public Tablero GetTablero()
+        public Tablero TableroEnElQueEsta 
         {
-            return tablero;
-        }
+            get { return tablero; }
+            set { tablero = value; }
+        }       
 
         /* Setea la posicion del Armamento */
         public void SetPosicion(Posicion posicion)

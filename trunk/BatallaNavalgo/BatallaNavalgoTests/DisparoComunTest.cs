@@ -15,7 +15,7 @@ namespace BatallaNavalgoTests
         {
             DisparoComun disparo = new DisparoComun();
 
-            Assert.False(disparo.EstaExplotado());
+            Assert.False(disparo.Explotado);
         }
         /*-------------------------------------------*/
         [Test]
@@ -23,11 +23,11 @@ namespace BatallaNavalgoTests
         {
             DisparoComun disparo = new DisparoComun();
             disparo.SetPosicion(new Posicion(3, 3));
-            disparo.SetTablero(new Tablero());
+            disparo.TableroEnElQueEsta = (new Tablero());
 
             disparo.Actualizar();
 
-            Assert.True(disparo.EstaExplotado());
+            Assert.True(disparo.Explotado);
         }
         /*-------------------------------------------*/
 
@@ -38,7 +38,7 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
             tablero.AgregarNave(nave);
             DisparoComun disparo = new DisparoComun();
-            disparo.SetTablero(tablero);
+            disparo.TableroEnElQueEsta = (tablero);
             disparo.SetPosicion(new Posicion(1, 1));
 
             disparo.Actualizar();
@@ -58,7 +58,7 @@ namespace BatallaNavalgoTests
             tablero.AgregarNave(nave);
             tablero.AgregarNave(nave2);
             DisparoComun disparo = new DisparoComun();
-            disparo.SetTablero(tablero);
+            disparo.TableroEnElQueEsta = tablero;
             disparo.SetPosicion(new Posicion(1, 1));
 
             disparo.Actualizar();
@@ -76,7 +76,7 @@ namespace BatallaNavalgoTests
             
             tablero.AgregarNave(nave);            
             DisparoComun disparo = new DisparoComun();
-            disparo.SetTablero(tablero);
+            disparo.TableroEnElQueEsta = tablero;
             disparo.SetPosicion(new Posicion(1, 2));
 
             disparo.Actualizar();

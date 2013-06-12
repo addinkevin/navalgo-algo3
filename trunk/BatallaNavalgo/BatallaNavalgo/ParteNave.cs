@@ -22,15 +22,12 @@ namespace BatallaNavalgo
             resistencia -= 1;
         }
 
-        public void SetPosicion(Posicion posicion)
+        public Posicion Posicion
         {
-            posicionActual = posicion;
+            get { return posicionActual; }
+            set { posicionActual = value; }
         }
-
-        public Posicion GetPosicion() {
-            return posicionActual;
-        }
-
+        
         public Boolean EstaDestruida()
         {
             return (resistencia <= 0);

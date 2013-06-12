@@ -65,8 +65,8 @@ namespace BatallaNavalgo
         private void ValidarMovimientoParaPosicionSiguiente(Posicion posicionActual)
         {
             int columnaActual, filaActual;
-            columnaActual = posicionActual.GetColumna();
-            filaActual = posicionActual.GetFila();
+            columnaActual = posicionActual.Columna;
+            filaActual = posicionActual.Fila;
 
             if (ChocaEnFilas(filaActual) || ChocaEnColumnas(columnaActual))             
             {
@@ -78,8 +78,8 @@ namespace BatallaNavalgo
         /* Obtiene una nueva posicion, en base al movimiento de filas y columnas de la direccion */
         public Posicion GetNuevaPosicion(Posicion pos){
             ValidarMovimientoParaPosicionSiguiente(pos);
-            int filaNueva = pos.GetFila() + movimientoEnFilas;
-            int columnaNueva = pos.GetColumna() + movimientoEnColumnas;
+            int filaNueva = pos.Fila + movimientoEnFilas;
+            int columnaNueva = pos.Columna + movimientoEnColumnas;
 
             return new Posicion(filaNueva,columnaNueva);
         }

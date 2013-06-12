@@ -24,9 +24,9 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
-        public int GetPuntos()
+        public int Puntos
         {
-            return this.puntos;
+            get {return this.puntos;}            
         }
 
         public void DescontarPuntosPorPasoDeTurno()

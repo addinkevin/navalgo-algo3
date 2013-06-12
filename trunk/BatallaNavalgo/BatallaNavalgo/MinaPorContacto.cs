@@ -7,33 +7,29 @@ namespace BatallaNavalgo
 {
     public class MinaPorContacto: Mina
     {
-        private Boolean estaExplotado;
-
+        
         public MinaPorContacto() 
         {
-            SetRadio(0);
+            this.Radio = 0;            
             estaExplotado = false;        
         }
         
         /* Actualiza la mina por contacto. Explota si hay alguna nave en su posición */
         public override void Actualizar() 
         {
-            if (EstaExplotado()) return;
+            if (this.Explotado) return;
 
-            if (GetTablero().HayNave(GetPosicion())) 
+            if (this.TableroEnElQueEsta.HayNave(GetPosicion())) 
             {
                 estaExplotado = true;
-                List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
+                List<Nave> naves = this.TableroEnElQueEsta.GetNavesEn(GetPosicion());
 
                 DispararA(naves);
             }
         }
 
         //-----------------------------------------------------------
-        public override bool EstaExplotado()
-        {
-            return this.estaExplotado;
-        }
+        
 
 
         /* Dispara a cada una de las naves en la lista */
