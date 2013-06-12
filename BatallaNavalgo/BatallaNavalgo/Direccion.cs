@@ -6,9 +6,9 @@ using System.Text;
 namespace BatallaNavalgo
 {
     public class Direccion
-    {
-        public static int FILAS = 10;
-        public static int COLUMNAS = 10;
+    {      
+        private int filasEnTablero = Tablero.Filas;
+        private int columnasEnTablero = Tablero.Columnas;        
 
         private int movimientoEnFilas;
         private int movimientoEnColumnas;
@@ -32,7 +32,7 @@ namespace BatallaNavalgo
         /*Comprueba si con la fila y direccion actual corresponde invertir el sentido*/
         private Boolean ChocaEnFilas(int filaActual) 
         {
-            if ((movimientoEnFilas == 1) && (filaActual == FILAS)) 
+            if ((movimientoEnFilas == 1) && (filaActual == filasEnTablero)) 
             {
                 return true;
             }
@@ -48,7 +48,7 @@ namespace BatallaNavalgo
         /*Comprueba si con la columna y direccion actual corresponde invertir el sentido*/
         private Boolean ChocaEnColumnas(int columnaActual)
         {
-            if ((movimientoEnColumnas == 1) && (columnaActual == COLUMNAS))
+            if ((movimientoEnColumnas == 1) && (columnaActual == columnasEnTablero))
             {
                 return true;
             }
