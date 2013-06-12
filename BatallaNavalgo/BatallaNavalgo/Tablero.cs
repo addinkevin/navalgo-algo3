@@ -11,6 +11,7 @@ namespace BatallaNavalgo
         public static Posicion ESQUINA_DERECHA_ABAJO = new Posicion(10, 10);
         private List<Armamento> armamentos;
         private List<Nave> naves;
+        
 
         /* Constructor
          * armamentos: seran los armamentos que se encuentren en el tablero.
@@ -81,7 +82,7 @@ namespace BatallaNavalgo
             List<Armamento> armamentosActualizados = new List<Armamento>();
             foreach (Armamento armamento in armamentos)
             {
-                if (!armamento.EstaExplotado())
+                if (!armamento.Explotado)
                 {
                     armamentosActualizados.Add(armamento);
                 }

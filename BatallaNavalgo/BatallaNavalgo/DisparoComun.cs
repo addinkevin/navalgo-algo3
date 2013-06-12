@@ -7,7 +7,7 @@ namespace BatallaNavalgo
 {
     public class DisparoComun: Armamento
     {
-        private Boolean estaExplotado;
+       
 
         public DisparoComun()
         {
@@ -26,18 +26,16 @@ namespace BatallaNavalgo
         /* Realiza la actualicion del disparo.*/
         public override void Actualizar() 
         {
-            if (EstaExplotado()) return;
+            if (this.Explotado) return;
 
-            List<Nave> naves = GetTablero().GetNavesEn(GetPosicion());
+            List<Nave> naves = this.TableroEnElQueEsta.GetNavesEn(GetPosicion());
 
             DispararA(naves);
             
             estaExplotado = true;
         }
 
-        public override Boolean EstaExplotado()
-        {
-            return estaExplotado;
-        }
+       
+        
     }
 }

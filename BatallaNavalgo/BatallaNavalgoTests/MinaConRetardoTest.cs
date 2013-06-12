@@ -15,7 +15,7 @@ namespace BatallaNavalgoTests
         {
             MinaConRetardo mina = new MinaConRetardo(1, 1);
 
-            Assert.False(mina.EstaExplotado());
+            Assert.False(mina.Explotado);
         }
 
         [Test]
@@ -23,12 +23,12 @@ namespace BatallaNavalgoTests
         {
             MinaConRetardo mina = new MinaConRetardo(1, 2);
             mina.SetPosicion(new Posicion(3, 3));
-            mina.SetTablero(new Tablero());
+            mina.TableroEnElQueEsta =(new Tablero());
 
             mina.Actualizar();
             mina.Actualizar();
 
-            Assert.True(mina.EstaExplotado());
+            Assert.True(mina.Explotado);
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace BatallaNavalgoTests
             MinaConRetardo mina = new MinaConRetardo(1, 1);
             Posicion posicionMina = new Posicion(3, 3);
             mina.SetPosicion(posicionMina);
-            mina.SetTablero(tablero);
+            mina.TableroEnElQueEsta = (tablero);
             
             mina.Actualizar();
 

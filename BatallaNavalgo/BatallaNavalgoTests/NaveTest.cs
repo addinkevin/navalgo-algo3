@@ -20,8 +20,8 @@ namespace BatallaNavalgoTests
             Posicion pos1 = posiciones[0];
             Posicion pos2 = posiciones[1];
 
-            Assert.True(pos1.GetFila() == 3 && pos1.GetColumna() == 3);
-            Assert.True(pos2.GetFila() == 3 && pos2.GetColumna() == 4);
+            Assert.True(pos1.Fila == 3 && pos1.Columna == 3);
+            Assert.True(pos2.Fila == 3 && pos2.Columna == 4);
             
         }
         [Test]
@@ -33,8 +33,8 @@ namespace BatallaNavalgoTests
             Posicion pos1 = posiciones[0];
             Posicion pos2 = posiciones[1];
 
-            Assert.True(pos1.GetFila() == 4 && pos1.GetColumna() == 3);
-            Assert.True(pos2.GetFila() == 5 && pos2.GetColumna() == 3);
+            Assert.True(pos1.Fila == 4 && pos1.Columna == 3);
+            Assert.True(pos2.Fila == 5 && pos2.Columna == 3);
 
         }
 
@@ -97,7 +97,7 @@ namespace BatallaNavalgoTests
         public void testMoverUnaNaveDadaUnaDireccion()
         {
             Nave nave = new Nave(2, 1, new Posicion(5, 5), Nave.VERTICAL);
-            nave.SetDireccion(new Direccion(1, 0));
+            nave.Direccion = (new Direccion(1, 0));
 
             nave.Mover();
             List<Posicion> posiciones = nave.GetPosiciones();
@@ -111,7 +111,7 @@ namespace BatallaNavalgoTests
         {
             // Posicion de la nave: (9,9) y (10,9)
             Nave nave = new Nave(2, 1, new Posicion(9, 9), Nave.VERTICAL);
-            nave.SetDireccion(new Direccion(1, 0));
+            nave.Direccion = (new Direccion(1, 0));
 
             // Deberia Moverse invirtiendo sentido, ya que se va del tablero.
             nave.Mover();

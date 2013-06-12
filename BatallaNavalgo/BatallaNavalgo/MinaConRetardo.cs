@@ -7,8 +7,7 @@ namespace BatallaNavalgo
 {
     public class MinaConRetardo: Mina
     {
-        private int retardo;        
-        private Boolean estaExplotado;
+        private int retardo;                
 
         /* Constructor.
          * Radio: Cantidad de casillas adyacentes a la posicion de la mina, en la cual tiene rango de acción.
@@ -18,7 +17,7 @@ namespace BatallaNavalgo
         {
             this.estaExplotado = false;
             this.retardo = retardo;
-            SetRadio(radio);
+            this.Radio = radio;
         }
 
         /* Actualizacion del retardo de la mina */
@@ -36,20 +35,15 @@ namespace BatallaNavalgo
 
         }
 
-        /* Devuelve true si la mina ya fue explotada */
-        public override Boolean EstaExplotado()
+       
+        private void Explotar() 
         {
-            return estaExplotado;
-        }
-
-        public void Explotar() 
-        {
-            List<Posicion> posicionesAImpactar = GetPosicion().GetPosicionesEnUnRadioDe(GetRadio());
+            List<Posicion> posicionesAImpactar = GetPosicion().GetPosicionesEnUnRadioDe(this.Radio);
             posicionesAImpactar.Add(GetPosicion());
 
             foreach (Posicion posicion in posicionesAImpactar)
             {
-                List<Nave> naves = GetTablero().GetNavesEn(posicion);
+                List<Nave> naves = this.TableroEnElQueEsta.GetNavesEn(posicion);
                 DispararA(naves, posicion);
             }
         }

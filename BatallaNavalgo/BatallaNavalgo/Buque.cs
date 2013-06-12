@@ -26,7 +26,7 @@ namespace BatallaNavalgo
         {
             estaDestruida = true;
         }
-
+               
         public override Boolean EstaDestruida()
         {
             return estaDestruida;

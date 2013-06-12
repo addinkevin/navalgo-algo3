@@ -67,7 +67,7 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
-            nave.SetDireccion(new Direccion(1, 0));
+            nave.Direccion = (new Direccion(1, 0));
             tablero.AgregarNave(nave);
             
             tablero.Actualizar();
@@ -100,10 +100,10 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 1, new Posicion(3, 3), Nave.HORIZONTAL);
-            nave.SetDireccion(new Direccion(1, 0));
+            nave.Direccion = (new Direccion(1, 0));
             tablero.AgregarNave(nave);
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
-            disparo.SetTablero(tablero);
+            disparo.TableroEnElQueEsta = (tablero);
 
             tablero.Impactar(disparo);
             tablero.Actualizar();
@@ -116,7 +116,7 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
-            disparo.SetTablero(tablero);
+            disparo.TableroEnElQueEsta = (tablero);
 
             tablero.Impactar(disparo);
             tablero.Actualizar();
@@ -128,7 +128,7 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
-            disparo.SetTablero(tablero);
+            disparo.TableroEnElQueEsta = tablero;
 
             tablero.Actualizar();
 

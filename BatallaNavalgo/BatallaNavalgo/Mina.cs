@@ -9,14 +9,11 @@ namespace BatallaNavalgo
     {
         private int radio;
 
-        public void SetRadio(int radio)
+        public int Radio 
         {
-            this.radio = radio;
+            get { return radio; }
+            set { radio = value; }
         }
-
-        public int GetRadio() 
-        {
-            return radio;
-        }
+        
     }
 }

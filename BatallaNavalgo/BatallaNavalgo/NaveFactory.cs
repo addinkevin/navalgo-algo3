@@ -39,7 +39,7 @@ namespace BatallaNavalgo
             int orientacionNave = ObtenerCeroOUnoAlAzar();
             Nave lancha = new Nave(2, 1, posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            lancha.SetDireccion(direccionDeNave);
+            lancha.Direccion = direccionDeNave;
             return lancha;               
         }
 
@@ -48,7 +48,7 @@ namespace BatallaNavalgo
             int orientacionNave = ObtenerCeroOUnoAlAzar();
             Destructor destructor = new Destructor(posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            destructor.SetDireccion(direccionDeNave);
+            destructor.Direccion = direccionDeNave;
             return destructor;
         }
 
@@ -57,7 +57,7 @@ namespace BatallaNavalgo
             int orientacionNave = ObtenerCeroOUnoAlAzar();
             Nave portaAviones = new Nave(5, 1, posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            portaAviones.SetDireccion(direccionDeNave);
+            portaAviones.Direccion = direccionDeNave;
             return portaAviones;  
         }
 
@@ -66,7 +66,7 @@ namespace BatallaNavalgo
             int orientacionNave = ObtenerCeroOUnoAlAzar();
             Nave rompeHielos = new Nave(3, 2, posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            rompeHielos.SetDireccion(direccionDeNave);
+            rompeHielos.Direccion = direccionDeNave;
             return rompeHielos;          
         }
 
@@ -75,7 +75,7 @@ namespace BatallaNavalgo
             int orientacionNave = ObtenerCeroOUnoAlAzar();
             Buque buque = new Buque(posicion, orientacionNave);
             Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            buque.SetDireccion(direccionDeNave);
+            buque.Direccion = direccionDeNave;
             return buque;
         }
 

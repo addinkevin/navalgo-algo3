@@ -15,23 +15,21 @@ namespace BatallaNavalgo
             this.columna = columna;
         }
         //-----------------------------------------------------------
-
-        public int GetFila() 
+        public int Fila 
         {
-            return this.fila;
+            get { return fila; }
         }
         //-----------------------------------------------------------
-
-        public int GetColumna()
+        public int Columna
         {
-            return this.columna;
-        }
+            get { return columna; }
+        }               
         //-----------------------------------------------------------
 
         public Boolean EstaDentroDe(Posicion posicion1, Posicion posicion2)
         {
-            Boolean dentroDeFilas = (this.fila >= posicion1.GetFila() && this.fila <= posicion2.GetFila());
-            Boolean dentroDeColumnas = (this.columna >= posicion1.GetColumna() && this.columna <= posicion2.GetColumna());
+            Boolean dentroDeFilas = (this.fila >= posicion1.Fila && this.fila <= posicion2.Fila);
+            Boolean dentroDeColumnas = (this.columna >= posicion1.Columna && this.columna <= posicion2.Columna);
             return (dentroDeFilas && dentroDeColumnas);
         }
 

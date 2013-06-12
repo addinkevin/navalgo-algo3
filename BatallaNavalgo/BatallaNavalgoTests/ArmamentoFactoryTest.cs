@@ -61,7 +61,7 @@ namespace BatallaNavalgo
         {
             Posicion posicion = new Posicion(3, 4);
             MinaConRetardo mina = ArmamentoFactory.CrearMinaPuntual(posicion);
-            Assert.True(mina.GetRadio() == 0);   
+            Assert.True(mina.Radio == 0);   
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace BatallaNavalgo
         {
             Posicion posicion = new Posicion(3, 4);
             MinaConRetardo mina = ArmamentoFactory.CrearMinaDoble(posicion);
-            Assert.True(mina.GetRadio() == 1);
+            Assert.True(mina.Radio == 1);
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace BatallaNavalgo
         {
             Posicion posicion = new Posicion(3, 4);
             MinaConRetardo mina = ArmamentoFactory.CrearMinaTriple(posicion);
-            Assert.True(mina.GetRadio() == 2);
+            Assert.True(mina.Radio == 2);
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace BatallaNavalgo
         {
             Posicion posicion = new Posicion(3, 4);
             MinaPorContacto mina = ArmamentoFactory.CrearMinaPorContacto(posicion);
-            Assert.True(mina.GetRadio() == 0);
+            Assert.True(mina.Radio == 0);
         }
     }
 }
