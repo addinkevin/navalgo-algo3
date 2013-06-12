@@ -9,9 +9,8 @@ namespace BatallaNavalgo
     {
         private static int ObtenerCeroOUnoAlAzar() 
         {
-            Random orientar = new Random();    
-            /*El 2 no se incluye en el intervalo */
-            int OrientacionNave = orientar.Next(0, 2);
+            Random orientar = new Random();              
+            int OrientacionNave = orientar.Next(0, 1);
             return OrientacionNave;        
         }
 
