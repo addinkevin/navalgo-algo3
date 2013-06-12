@@ -27,7 +27,7 @@ namespace BatallaNavalgo
          */
         public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, int orientacion)
         {
-            this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);
+            this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);            
         }
 
         public Direccion Direccion 

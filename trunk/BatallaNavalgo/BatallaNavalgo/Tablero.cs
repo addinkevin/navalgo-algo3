@@ -7,6 +7,8 @@ namespace BatallaNavalgo
 {
     public class Tablero
     {
+        private const int CANTIDAD_DE_FILAS = 10;
+        private const int CANTIDAD_DE_COLUMNAS = 10;
         public static Posicion ESQUINA_IZQUIERDA_ARRIBA = new Posicion(1, 1);
         public static Posicion ESQUINA_DERECHA_ABAJO = new Posicion(10, 10);
         private List<Armamento> armamentos;
@@ -18,12 +20,22 @@ namespace BatallaNavalgo
          * posicionInicial: seran las naves que se encuentren en el talero.
          */
         public Tablero()
-        {
+        {            
             armamentos = new List<Armamento>();
             naves = new List<Nave>();
         }
 
         //---------------------------------------------------------------------
+        public static int Filas 
+        {
+            get { return CANTIDAD_DE_FILAS; }
+        }
+
+        public static int Columnas
+        {
+            get { return CANTIDAD_DE_COLUMNAS; }
+        }
+
 
         public void AgregarNave(Nave nave) 
         {
