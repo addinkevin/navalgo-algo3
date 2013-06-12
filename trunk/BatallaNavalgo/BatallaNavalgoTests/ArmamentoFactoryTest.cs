@@ -5,10 +5,10 @@ using System.Text;
 using BatallaNavalgo;
 using NUnit.Framework;
 
-namespace BatallaNavalgo
+namespace BatallaNavalgoTests
 {
     [TestFixture]
-    public class ArmamentoFactoryTest
+    class ArmamentoFactoryTest
     {
         [Test]
         /*Comprueba coste de creacion*/
