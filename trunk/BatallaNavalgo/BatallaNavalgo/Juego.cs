@@ -36,13 +36,28 @@ namespace BatallaNavalgo
 
         private void AgregarNavesAlTablero(Tablero tablero)
         {
-            tablero.AgregarNave(NaveFactory.CrearLancha(new Posicion(2,2)));
-            tablero.AgregarNave(NaveFactory.CrearLancha(new Posicion(9, 9)));
-            tablero.AgregarNave(NaveFactory.CrearDestructor(new Posicion(4, 3)));
-            tablero.AgregarNave(NaveFactory.CrearDestructor(new Posicion(7, 8)));
-            tablero.AgregarNave(NaveFactory.CrearRompeHielos(new Posicion(3, 6)));
-            tablero.AgregarNave(NaveFactory.CrearBuque(new Posicion(6, 4)));
-            tablero.AgregarNave(NaveFactory.CrearPortaAviones(new Posicion(5, 5)));
+            Posicion posicionAuxiliar = new Posicion(1,1);
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+
+            tablero.AgregarNave(NaveFactory.CrearLancha(posicionAuxiliar));
+
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+            tablero.AgregarNave(NaveFactory.CrearLancha(posicionAuxiliar));
+            
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+            tablero.AgregarNave(NaveFactory.CrearDestructor(posicionAuxiliar));
+            
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+            tablero.AgregarNave(NaveFactory.CrearDestructor(posicionAuxiliar));
+            
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+            tablero.AgregarNave(NaveFactory.CrearRompeHielos(posicionAuxiliar));
+            
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+            tablero.AgregarNave(NaveFactory.CrearBuque(posicionAuxiliar));
+            
+            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
+            tablero.AgregarNave(NaveFactory.CrearPortaAviones(posicionAuxiliar));
         }
         //---------------------------------------------------------------------
 
