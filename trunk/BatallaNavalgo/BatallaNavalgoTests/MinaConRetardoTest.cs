@@ -22,7 +22,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaEstarExplotadaSiLaActualizoTantasVecesComoSuRetardo()
         {
             MinaConRetardo mina = new MinaConRetardo(1, 2);
-            mina.SetPosicion(new Posicion(3, 3));
+            mina.Posicion = new Posicion(3, 3);
             mina.TableroEnElQueEsta =(new Tablero());
 
             mina.Actualizar();
@@ -40,7 +40,7 @@ namespace BatallaNavalgoTests
             tablero.AgregarNave(nave);
             MinaConRetardo mina = new MinaConRetardo(1, 1);
             Posicion posicionMina = new Posicion(3, 3);
-            mina.SetPosicion(posicionMina);
+            mina.Posicion = posicionMina;
             mina.TableroEnElQueEsta = (tablero);
             
             mina.Actualizar();

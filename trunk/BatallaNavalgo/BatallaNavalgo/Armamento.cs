@@ -25,28 +25,18 @@ namespace BatallaNavalgo
             set { tablero = value; }
         }       
 
-        /* Setea la posicion del Armamento */
-        public void SetPosicion(Posicion posicion)
+        /* Posicion del Armamento */
+        public Posicion Posicion
         {
-            this.posicion = posicion;
+            get { return this.posicion; }
+            set { this.posicion = value; }
         }
 
-        /* Devuelve la posicion del Armamento */
-        public Posicion GetPosicion()
+        /* Costo del disparo */
+        public int Costo
         {
-            return posicion;
-        }
-
-        /* Setea el costo del disparo */
-        public void SetCosto(int costo)
-        {
-            this.costo = costo;
-        }
-
-        /* Devuelve el costo del disparo */
-        public int GetCosto()
-        {
-            return costo;
+            get { return this.costo; }
+            set { this.costo = value; }
         }
     }
 }

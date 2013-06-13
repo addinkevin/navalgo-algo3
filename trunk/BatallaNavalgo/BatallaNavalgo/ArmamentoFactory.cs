@@ -11,8 +11,8 @@ namespace BatallaNavalgo
         public static DisparoComun CrearDisparoComun(Posicion posicion)
         {
             DisparoComun disparo = new DisparoComun();
-            disparo.SetPosicion(posicion);
-            disparo.SetCosto(200);
+            disparo.Posicion = posicion;
+            disparo.Costo = 200;
             return disparo;
         }
 
@@ -20,8 +20,8 @@ namespace BatallaNavalgo
         public static MinaConRetardo CrearMinaPuntual(Posicion posicion)
         {
             MinaConRetardo mina = new MinaConRetardo(0,3);
-            mina.SetPosicion(posicion);
-            mina.SetCosto(50);
+            mina.Posicion = posicion;
+            mina.Costo = 50;
             return mina;
         }
 
@@ -29,8 +29,8 @@ namespace BatallaNavalgo
         public static MinaConRetardo CrearMinaDoble(Posicion posicion)
         {
             MinaConRetardo mina = new MinaConRetardo(1, 3);
-            mina.SetPosicion(posicion);
-            mina.SetCosto(100);
+            mina.Posicion = posicion;
+            mina.Costo = 100;
             return mina;
         }
 
@@ -38,8 +38,8 @@ namespace BatallaNavalgo
         public static MinaConRetardo CrearMinaTriple(Posicion posicion)
         {
             MinaConRetardo mina = new MinaConRetardo(2, 3);
-            mina.SetPosicion(posicion);
-            mina.SetCosto(125);
+            mina.Posicion = posicion;
+            mina.Costo = 125;
             return mina;
         }
 
@@ -47,8 +47,8 @@ namespace BatallaNavalgo
         public static MinaPorContacto CrearMinaPorContacto(Posicion posicion)
         {
             MinaPorContacto mina = new MinaPorContacto();
-            mina.SetPosicion(posicion);
-            mina.SetCosto(150);
+            mina.Posicion = posicion;
+            mina.Costo = 150;
             return mina;
         }
     }

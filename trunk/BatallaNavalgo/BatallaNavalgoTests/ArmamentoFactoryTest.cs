@@ -16,7 +16,7 @@ namespace BatallaNavalgoTests
         {
             Posicion posicion = new Posicion(3, 4);
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(posicion);
-            Assert.True(disparo.GetCosto() == 200);
+            Assert.True(disparo.Costo == 200);
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace BatallaNavalgoTests
         {
             Posicion posicion = new Posicion(3, 4);
             MinaConRetardo mina = ArmamentoFactory.CrearMinaPuntual(posicion);
-            Assert.True(mina.GetCosto() == 50);
+            Assert.True(mina.Costo == 50);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace BatallaNavalgoTests
         {
             Posicion posicion = new Posicion(3, 4);
             MinaConRetardo mina = ArmamentoFactory.CrearMinaDoble(posicion);
-            Assert.True(mina.GetCosto() == 100);
+            Assert.True(mina.Costo == 100);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace BatallaNavalgoTests
         {
             Posicion posicion = new Posicion(3, 4);
             MinaConRetardo mina = ArmamentoFactory.CrearMinaTriple(posicion);
-            Assert.True(mina.GetCosto() == 125);
+            Assert.True(mina.Costo == 125);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace BatallaNavalgoTests
         {
             Posicion posicion = new Posicion(3, 4);
             MinaPorContacto disparo = ArmamentoFactory.CrearMinaPorContacto(posicion);
-            Assert.True(disparo.GetCosto() == 150);
+            Assert.True(disparo.Costo == 150);
         }
 
         [Test]

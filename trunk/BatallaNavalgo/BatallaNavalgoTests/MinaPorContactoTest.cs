@@ -35,7 +35,7 @@ namespace BatallaNavalgoTests
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 1, posicion, Nave.VERTICAL);
             tablero.AgregarNave(nave);
-            mina.SetPosicion(posicion);
+            mina.Posicion = posicion;
             mina.TableroEnElQueEsta = (tablero);
 
             mina.Actualizar();
@@ -53,7 +53,7 @@ namespace BatallaNavalgoTests
             Nave nave2 = new Nave(1, 1, posicion, Nave.HORIZONTAL);            
             tablero.AgregarNave(nave1);
             tablero.AgregarNave(nave2);
-            mina.SetPosicion(posicion);
+            mina.Posicion = posicion;
             mina.TableroEnElQueEsta = tablero;
 
             mina.Actualizar();
@@ -69,8 +69,8 @@ namespace BatallaNavalgoTests
             Posicion posicionNave = new Posicion(6, 5);
             Tablero tablero = new Tablero();
             Nave nave1 = new Nave(1, 1, posicionNave, Nave.HORIZONTAL);            
-            tablero.AgregarNave(nave1);            
-            mina.SetPosicion(posicionMina);
+            tablero.AgregarNave(nave1);
+            mina.Posicion = posicionMina;
             mina.TableroEnElQueEsta = tablero;
 
             mina.Actualizar();
@@ -86,7 +86,7 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, posicion, Nave.VERTICAL);
             Nave nave2 = new Nave(5, 5, posicion, Nave.VERTICAL);
             tablero.AgregarNave(nave);
-            mina.SetPosicion(posicion);
+            mina.Posicion = posicion;
             mina.TableroEnElQueEsta = tablero;
             mina.Actualizar();
 

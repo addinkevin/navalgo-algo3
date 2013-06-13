@@ -19,7 +19,7 @@ namespace BatallaNavalgo
         {
             foreach (Nave nave in naves)
             {
-                nave.RecibirAtaque(this,GetPosicion());
+                nave.RecibirAtaque(this,this.Posicion);
             }
         }
 
@@ -28,7 +28,7 @@ namespace BatallaNavalgo
         {
             if (this.Explotado) return;
 
-            List<Nave> naves = this.TableroEnElQueEsta.GetNavesEn(GetPosicion());
+            List<Nave> naves = this.TableroEnElQueEsta.GetNavesEn(this.Posicion);
 
             DispararA(naves);
             

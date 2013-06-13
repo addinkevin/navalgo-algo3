@@ -37,7 +37,7 @@ namespace BatallaNavalgo
         public void Disparar(Armamento armamento)
         {
             tablero.Impactar(armamento);
-            puntos -= (armamento.GetCosto());
+            puntos -= (armamento.Costo);
         }
     }
 }
