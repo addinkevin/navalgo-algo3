@@ -38,8 +38,8 @@ namespace BatallaNavalgo
        
         private void Explotar() 
         {
-            List<Posicion> posicionesAImpactar = GetPosicion().GetPosicionesEnUnRadioDe(this.Radio);
-            posicionesAImpactar.Add(GetPosicion());
+            List<Posicion> posicionesAImpactar = this.Posicion.GetPosicionesEnUnRadioDe(this.Radio);
+            posicionesAImpactar.Add(this.Posicion);
 
             foreach (Posicion posicion in posicionesAImpactar)
             {

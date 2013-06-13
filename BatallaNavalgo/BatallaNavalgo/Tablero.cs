@@ -124,7 +124,7 @@ namespace BatallaNavalgo
         {
             foreach (Armamento mina in armamentos)
             {
-                Posicion posicionMina = mina.GetPosicion();
+                Posicion posicionMina = mina.Posicion;
                 if (posicion.EsIgualA(posicionMina))
                 {
                     return true;
