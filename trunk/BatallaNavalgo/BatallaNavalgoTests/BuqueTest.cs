@@ -24,7 +24,7 @@ namespace BatallaNavalgoTests
             Posicion posicion = new Posicion(3, 3);
             Buque buque = new Buque(posicion, Nave.VERTICAL);
 
-            buque.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(posicion), posicion);
+            buque.RecibirAtaque(ArmamentoFactory.CrearDisparoComun(new Tablero(), posicion), posicion);
 
             Assert.True(buque.EstaDestruida());
         }
@@ -32,7 +32,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaDestruirElBuqueAlRecibirUnaMina()
         {
             Posicion posicion = new Posicion(3, 3);
-            Mina mina = ArmamentoFactory.CrearMinaPorContacto(posicion);
+            Mina mina = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), posicion);
             Buque buque = new Buque(posicion, Nave.VERTICAL);
 
             buque.RecibirAtaque(mina,posicion);

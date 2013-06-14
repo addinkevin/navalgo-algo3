@@ -48,7 +48,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaHaberArmamentoEnUnaPosicionLuegoDeQueSeAgrego()
         {
             Tablero tablero = new Tablero();
-            Armamento mina = ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3));
+            Armamento mina = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(3, 3));
             tablero.Impactar(mina);
 
             Assert.True(tablero.HayMina(new Posicion(3, 3)));
@@ -102,7 +102,7 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, new Posicion(3, 3), Nave.HORIZONTAL);
             nave.Direccion = (new Direccion(1, 0));
             tablero.AgregarNave(nave);
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
             disparo.TableroEnElQueEsta = (tablero);
 
             tablero.Impactar(disparo);
@@ -115,7 +115,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaEstarVacioDespuesDeIngresarUnArmamentoYExplotarlo()
         {
             Tablero tablero = new Tablero();
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
             disparo.TableroEnElQueEsta = (tablero);
 
             tablero.Impactar(disparo);
@@ -127,7 +127,7 @@ namespace BatallaNavalgoTests
         public void testNoDeberiaEstarVacioSiIngresoUnarmamentoPeroNoLoExploto()
         {
             Tablero tablero = new Tablero();
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
             disparo.TableroEnElQueEsta = tablero;
 
             tablero.Actualizar();

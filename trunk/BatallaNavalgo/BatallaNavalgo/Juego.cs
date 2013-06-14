@@ -63,7 +63,7 @@ namespace BatallaNavalgo
 
         public void EfectuarDisparoComun(Posicion posicion)
         {
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(posicion);
+            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(this.tablero, posicion);
             tablero.Impactar(disparo);
             jugador.DescontarPuntosPorDisparar(disparo);
             AvanzarTurno();
@@ -71,7 +71,7 @@ namespace BatallaNavalgo
 
         public void ColocarMinaPuntual(Posicion posicion)
         {
-            MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(posicion);
+            MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(this.tablero, posicion);
             tablero.Impactar(minaPuntual);
             jugador.DescontarPuntosPorDisparar(minaPuntual);
             AvanzarTurno();
@@ -79,7 +79,7 @@ namespace BatallaNavalgo
 
         public void ColocarMinaDoble(Posicion posicion)
         {
-            MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(posicion);
+            MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(this.tablero, posicion);
             tablero.Impactar(minaDoble);
             jugador.DescontarPuntosPorDisparar(minaDoble);
             AvanzarTurno();
@@ -87,7 +87,7 @@ namespace BatallaNavalgo
 
         public void ColocarMinaTriple(Posicion posicion)
         {
-            MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(posicion);
+            MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(this.tablero, posicion);
             tablero.Impactar(minaTriple);
             jugador.DescontarPuntosPorDisparar(minaTriple);
             AvanzarTurno();
@@ -95,7 +95,7 @@ namespace BatallaNavalgo
 
         public void ColocarMinaPorContacto(Posicion posicion)
         {
-            MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(posicion);
+            MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(this.tablero, posicion);
             tablero.Impactar(minaContacto);
             jugador.DescontarPuntosPorDisparar(minaContacto);
             AvanzarTurno();

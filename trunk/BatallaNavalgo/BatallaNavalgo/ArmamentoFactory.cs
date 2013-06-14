@@ -8,47 +8,47 @@ namespace BatallaNavalgo
     public class ArmamentoFactory
     {
 		/*Crea y devuelve DisparoComun valido*/
-        public static DisparoComun CrearDisparoComun(Posicion posicion)
+        public static DisparoComun CrearDisparoComun(Tablero tablero, Posicion posicion)
         {
-            DisparoComun disparo = new DisparoComun();
-            disparo.Posicion = posicion;
-            disparo.Costo = 200;
+            DisparoComun disparo = new DisparoComun(tablero, posicion, 200);
             return disparo;
         }
 
 		/*Crea y devuelve MinaConRetardo valida*/
-        public static MinaConRetardo CrearMinaPuntual(Posicion posicion)
+        public static MinaConRetardo CrearMinaPuntual(Tablero tablero, Posicion posicion)
         {
-            MinaConRetardo mina = new MinaConRetardo(0,3);
-            mina.Posicion = posicion;
-            mina.Costo = 50;
+            int radio = 0;
+            int retardo = 3;
+            int costo = 50;
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion,costo, radio,retardo);
             return mina;
         }
 
 		/*Crea y devuelve MinaConRetardo valida*/
-        public static MinaConRetardo CrearMinaDoble(Posicion posicion)
+        public static MinaConRetardo CrearMinaDoble(Tablero tablero, Posicion posicion)
         {
-            MinaConRetardo mina = new MinaConRetardo(1, 3);
-            mina.Posicion = posicion;
-            mina.Costo = 100;
+            int radio = 1;
+            int retardo = 3;
+            int costo = 100;
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion, costo, radio, retardo);
             return mina;
         }
 
 		/*Crea y devuelve MinaConRetardo valida*/
-        public static MinaConRetardo CrearMinaTriple(Posicion posicion)
+        public static MinaConRetardo CrearMinaTriple(Tablero tablero, Posicion posicion)
         {
-            MinaConRetardo mina = new MinaConRetardo(2, 3);
-            mina.Posicion = posicion;
-            mina.Costo = 125;
+            int radio = 2;
+            int retardo = 3;
+            int costo = 125;
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion,costo,radio,retardo);
             return mina;
         }
 
 		/*Crea y devuelve MinaPorContacto valida*/
-        public static MinaPorContacto CrearMinaPorContacto(Posicion posicion)
+        public static MinaPorContacto CrearMinaPorContacto(Tablero tablero, Posicion posicion)
         {
-            MinaPorContacto mina = new MinaPorContacto();
-            mina.Posicion = posicion;
-            mina.Costo = 150;
+            int costo = 150;
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicion, costo);
             return mina;
         }
     }
