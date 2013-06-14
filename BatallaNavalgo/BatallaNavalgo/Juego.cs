@@ -23,7 +23,7 @@ namespace BatallaNavalgo
              * Direccion y Orientacion aleatoria.
              */
             AgregarNavesAlTablero(tablero);
-            this.jugador = new Jugador(tablero);
+            this.jugador = new Jugador();
         }
         //---------------------------------------------------------------------
 
@@ -64,35 +64,40 @@ namespace BatallaNavalgo
         public void EfectuarDisparoComun(Posicion posicion)
         {
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(posicion);
-            jugador.Disparar(disparo);
+            tablero.Impactar(disparo);
+            jugador.DescontarPuntosPorDisparar(disparo);
             AvanzarTurno();
         }
 
         public void ColocarMinaPuntual(Posicion posicion)
         {
             MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(posicion);
-            jugador.Disparar(minaPuntual);
+            tablero.Impactar(minaPuntual);
+            jugador.DescontarPuntosPorDisparar(minaPuntual);
             AvanzarTurno();
         }
 
         public void ColocarMinaDoble(Posicion posicion)
         {
             MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(posicion);
-            jugador.Disparar(minaDoble);
+            tablero.Impactar(minaDoble);
+            jugador.DescontarPuntosPorDisparar(minaDoble);
             AvanzarTurno();
         }
 
         public void ColocarMinaTriple(Posicion posicion)
         {
             MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(posicion);
-            jugador.Disparar(minaTriple);
+            tablero.Impactar(minaTriple);
+            jugador.DescontarPuntosPorDisparar(minaTriple);
             AvanzarTurno();
         }
 
         public void ColocarMinaPorContacto(Posicion posicion)
         {
             MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(posicion);
-            jugador.Disparar(minaContacto);
+            tablero.Impactar(minaContacto);
+            jugador.DescontarPuntosPorDisparar(minaContacto);
             AvanzarTurno();
         }
         //---------------------------------------------------------------------
