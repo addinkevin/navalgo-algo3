@@ -11,16 +11,14 @@ namespace BatallaNavalgo
         public static int PUNTAJE_DESCONTADO_POR_TURNO = 10;
 
         private int puntos;
-        private Tablero tablero;
 
         /* Constructor
          * puntos: seran los puntos con los que cuente el Jugador inicialmente.
          * tablero: sera el tablero asociado que tendra el Jugador.
          */
-        public Jugador(Tablero tablero)
+        public Jugador()
         {
             this.puntos = PUNTAJE_INICIAL_JUGADOR;
-            this.tablero = tablero;
         }
         //---------------------------------------------------------------------
 
@@ -34,9 +32,8 @@ namespace BatallaNavalgo
             puntos -= PUNTAJE_DESCONTADO_POR_TURNO;
         }
 
-        public void Disparar(Armamento armamento)
+        public void DescontarPuntosPorDisparar(Armamento armamento)
         {
-            tablero.Impactar(armamento);
             puntos -= (armamento.Costo);
         }
     }
