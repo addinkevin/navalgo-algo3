@@ -150,7 +150,7 @@ namespace BatallaNavalgo
         {
             if (!SePuedenMoverLasPartes())
             {
-                direccion.Invertir();
+                direccion = direccion.Invertir();
             }
 
             foreach(ParteNave parte in partes)
