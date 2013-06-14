@@ -14,9 +14,9 @@ namespace BatallaNavalgoTests
         public void testNoDeberiaDestruirloSiLoAtacoConMinas()
         {
             Destructor destructor = new Destructor( new Posicion(3,3), Nave.VERTICAL);
-            Mina mina1 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(3, 3));
-            Mina mina2 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(4, 3));
-            Mina mina3 = ArmamentoFactory.CrearMinaPorContacto(new Posicion(5, 3));
+            Mina mina1 = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(3, 3));
+            Mina mina2 = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(4, 3));
+            Mina mina3 = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(5, 3));
             destructor.RecibirAtaque(mina1, mina1.Posicion);
             destructor.RecibirAtaque(mina2, mina2.Posicion);
             destructor.RecibirAtaque(mina3, mina3.Posicion);
@@ -28,9 +28,9 @@ namespace BatallaNavalgoTests
         public void testDeberiaDestruirloSiLoAtacoConDisparosComunes()
         {
             Destructor destructor = new Destructor(new Posicion(3, 3), Nave.VERTICAL);
-            DisparoComun disparo1 = ArmamentoFactory.CrearDisparoComun(new Posicion(3, 3));
-            DisparoComun disparo2 = ArmamentoFactory.CrearDisparoComun(new Posicion(4, 3));
-            DisparoComun disparo3 = ArmamentoFactory.CrearDisparoComun(new Posicion(5, 3));
+            DisparoComun disparo1 = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
+            DisparoComun disparo2 = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(4, 3));
+            DisparoComun disparo3 = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(5, 3));
 
             destructor.RecibirAtaque(disparo1, disparo1.Posicion);
             destructor.RecibirAtaque(disparo2, disparo2.Posicion);

@@ -13,7 +13,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaNoEstarExplotadoAlCrearlo()
         {
-            DisparoComun disparo = new DisparoComun();
+            DisparoComun disparo = new DisparoComun(new Tablero(), new Posicion(1,1),100);
 
             Assert.False(disparo.Explotado);
         }
@@ -21,9 +21,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaEstarExplotadoCuandoLoActualizo()
         {
-            DisparoComun disparo = new DisparoComun();
-            disparo.Posicion = new Posicion(3, 3);
-            disparo.TableroEnElQueEsta = (new Tablero());
+            DisparoComun disparo = new DisparoComun(new Tablero(), new Posicion(3,3), 100);
 
             disparo.Actualizar();
 
@@ -37,9 +35,7 @@ namespace BatallaNavalgoTests
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 2, new Posicion(1, 1), Nave.VERTICAL);
             tablero.AgregarNave(nave);
-            DisparoComun disparo = new DisparoComun();
-            disparo.TableroEnElQueEsta = (tablero);
-            disparo.Posicion = new Posicion(1, 1);
+            DisparoComun disparo = new DisparoComun(tablero, new Posicion(1,1), 100);
 
             disparo.Actualizar();
             disparo.Actualizar();
@@ -57,9 +53,7 @@ namespace BatallaNavalgoTests
             Nave nave2 = new Nave(1, 1, new Posicion(1, 1), Nave.VERTICAL);
             tablero.AgregarNave(nave);
             tablero.AgregarNave(nave2);
-            DisparoComun disparo = new DisparoComun();
-            disparo.TableroEnElQueEsta = tablero;
-            disparo.Posicion = new Posicion(1, 1);
+            DisparoComun disparo = new DisparoComun(tablero, new Posicion(1,1), 100);
 
             disparo.Actualizar();
             disparo.Actualizar();
@@ -75,9 +69,7 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, new Posicion(1, 1), Nave.VERTICAL);
             
             tablero.AgregarNave(nave);            
-            DisparoComun disparo = new DisparoComun();
-            disparo.TableroEnElQueEsta = tablero;
-            disparo.Posicion = new Posicion(1, 2);
+            DisparoComun disparo = new DisparoComun(tablero, new Posicion(1,2), 100);
 
             disparo.Actualizar();
             disparo.Actualizar();

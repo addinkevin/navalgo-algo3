@@ -13,7 +13,13 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaNoEstarExplotadaAlCrearla()
         {
-            MinaConRetardo mina = new MinaConRetardo(1, 1);
+            Tablero tablero = new Tablero();
+            Posicion posicion = new Posicion(1,1);
+            int costoRandom = 100;
+            int radio = 1;
+            int retardo = 1;
+
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion, costoRandom, radio, retardo);
 
             Assert.False(mina.Explotado);
         }
@@ -21,9 +27,12 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaEstarExplotadaSiLaActualizoTantasVecesComoSuRetardo()
         {
-            MinaConRetardo mina = new MinaConRetardo(1, 2);
-            mina.Posicion = new Posicion(3, 3);
-            mina.TableroEnElQueEsta =(new Tablero());
+            Tablero tablero = new Tablero();
+            Posicion posicion = new Posicion(1, 1);
+            int costoRandom = 100;
+            int radio = 1;
+            int retardo = 2;
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion, costoRandom, radio, retardo);
 
             mina.Actualizar();
             mina.Actualizar();
@@ -38,10 +47,11 @@ namespace BatallaNavalgoTests
             Nave nave = new Nave(1, 1, posicionNave, Nave.HORIZONTAL);
             Tablero tablero = new Tablero();
             tablero.AgregarNave(nave);
-            MinaConRetardo mina = new MinaConRetardo(1, 1);
             Posicion posicionMina = new Posicion(3, 3);
-            mina.Posicion = posicionMina;
-            mina.TableroEnElQueEsta = (tablero);
+            int costoRandom = 100;
+            int radio = 1;
+            int retardo = 1;
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicionMina, costoRandom, radio, retardo);
             
             mina.Actualizar();
 

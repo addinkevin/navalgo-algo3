@@ -13,15 +13,22 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaNoEstarExplotadaAlCrearla()
         {
-            MinaPorContacto mina = new MinaPorContacto();
+            Tablero tablero = new Tablero();
+            Posicion posicion = new Posicion(1, 1);
+            int costoRandom = 100;
+            
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicion, costoRandom);
             Assert.False(mina.Explotado);            
         }
 
         [Test]
         public void testNoDeberiaExplotarAlActualizarSiNoHayNavesAlAlrededor()
         {
-            MinaPorContacto mina = new MinaPorContacto();
-            mina.TableroEnElQueEsta = (new Tablero());
+            Tablero tablero = new Tablero();
+            Posicion posicion = new Posicion(1, 1);
+            int costoRandom = 100;
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicion,costoRandom);
+
             mina.Actualizar();
 
             Assert.False(mina.Explotado);
@@ -30,15 +37,15 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaExplotarSiSuPosicionCoincideConLaDeUnaNave()
         {
-            MinaPorContacto mina = new MinaPorContacto();
-            Posicion posicion = new Posicion(5,5);
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, posicion, Nave.VERTICAL);
+            Posicion posicionNave = new Posicion(5, 5);
+            Nave nave = new Nave(1, 1, posicionNave, Nave.VERTICAL);
             tablero.AgregarNave(nave);
-            mina.Posicion = posicion;
-            mina.TableroEnElQueEsta = (tablero);
-
+            int costoRandom = 100;
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicionNave, costoRandom);
+          
             mina.Actualizar();
+
             Assert.True(mina.Explotado);
         }
 
@@ -46,15 +53,14 @@ namespace BatallaNavalgoTests
         public void testSiColisionaConVariasNavesTodasLasColisionadasRecibenImpacto()
         {
             /*En este caso las naves son puntuales para comprobar su destruccion total*/
-            MinaPorContacto mina = new MinaPorContacto();
-            Posicion posicion = new Posicion(5, 5);
             Tablero tablero = new Tablero();
+            Posicion posicion = new Posicion(5, 5);
             Nave nave1 = new Nave(1, 1, posicion, Nave.VERTICAL);
-            Nave nave2 = new Nave(1, 1, posicion, Nave.HORIZONTAL);            
+            Nave nave2 = new Nave(1, 1, posicion, Nave.HORIZONTAL);
             tablero.AgregarNave(nave1);
             tablero.AgregarNave(nave2);
-            mina.Posicion = posicion;
-            mina.TableroEnElQueEsta = tablero;
+            int costoRandom = 100;
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicion, costoRandom);
 
             mina.Actualizar();
             Assert.True(nave1.EstaDestruida() && nave2.EstaDestruida());
@@ -64,15 +70,14 @@ namespace BatallaNavalgoTests
         public void testSiHayNaveEnPosicionVecinaNoExplota()
         {
             /*En este caso las naves son puntuales para comprobar su destruccion total*/
-            MinaPorContacto mina = new MinaPorContacto();
-            Posicion posicionMina = new Posicion(5, 5);
-            Posicion posicionNave = new Posicion(6, 5);
             Tablero tablero = new Tablero();
+            Posicion posicionNave = new Posicion(6, 5);
             Nave nave1 = new Nave(1, 1, posicionNave, Nave.HORIZONTAL);            
             tablero.AgregarNave(nave1);
-            mina.Posicion = posicionMina;
-            mina.TableroEnElQueEsta = tablero;
-
+            Posicion posicionMina = new Posicion(5, 5);
+            int costoRandom = 100;
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicionMina, costoRandom);
+            
             mina.Actualizar();
             Assert.False(mina.Explotado);
         }
@@ -80,16 +85,15 @@ namespace BatallaNavalgoTests
         [Test]
         public void testSiDespuesDeExplotadaLaMinaUnaNaveVuelveAPasarPorEncimaNoExplotaDeNuevo()
         {
-            MinaPorContacto mina = new MinaPorContacto();
-            Posicion posicion = new Posicion(5, 5);
+            Posicion posicionNave = new Posicion(5, 5);
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, posicion, Nave.VERTICAL);
-            Nave nave2 = new Nave(5, 5, posicion, Nave.VERTICAL);
+            Nave nave = new Nave(1, 1, posicionNave, Nave.VERTICAL);
+            Nave nave2 = new Nave(5, 5, posicionNave, Nave.VERTICAL);
             tablero.AgregarNave(nave);
-            mina.Posicion = posicion;
-            mina.TableroEnElQueEsta = tablero;
-            mina.Actualizar();
+            int costoRandom = 100;
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicionNave, costoRandom);
 
+            mina.Actualizar();
             tablero.AgregarNave(nave2);
             mina.Actualizar();
 

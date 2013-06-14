@@ -13,8 +13,11 @@ namespace BatallaNavalgo
          * Radio: Cantidad de casillas adyacentes a la posicion de la mina, en la cual tiene rango de acción.
          * Retardo: Cantidad de Actualizaciones que puede recibir la mina, para luego explotar.
          */
-        public MinaConRetardo(int radio, int retardo) 
+        public MinaConRetardo(Tablero tablero, Posicion posicion, int costo, int radio, int retardo) 
         {
+            base.TableroEnElQueEsta = tablero;
+            base.Posicion = posicion;
+            base.Costo = costo;
             this.estaExplotado = false;
             this.retardo = retardo;
             this.Radio = radio;

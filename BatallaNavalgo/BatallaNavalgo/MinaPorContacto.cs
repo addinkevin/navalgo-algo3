@@ -8,8 +8,11 @@ namespace BatallaNavalgo
     public class MinaPorContacto: Mina
     {
         
-        public MinaPorContacto() 
+        public MinaPorContacto(Tablero tablero, Posicion posicion, int costo) 
         {
+            base.TableroEnElQueEsta = tablero;
+            base.Posicion = posicion;
+            base.Costo = costo;
             this.Radio = 0;            
             estaExplotado = false;        
         }

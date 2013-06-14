@@ -7,10 +7,11 @@ namespace BatallaNavalgo
 {
     public class DisparoComun: Armamento
     {
-       
-
-        public DisparoComun()
+        public DisparoComun(Tablero tablero, Posicion posicion, int costo)
         {
+            base.TableroEnElQueEsta = tablero;
+            base.Posicion = posicion;
+            base.Costo = costo;
             estaExplotado = false;
         }
 
