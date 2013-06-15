@@ -10,11 +10,15 @@ namespace BatallaNavalgoXNA
 {
     class VistaTablero
     {
-        public Vector2 posicionTableroEnPantalla;
-        public int altoTablero;
-        public int anchoTablero;
-        public Tablero tablero;
+        private Vector2 posicionTableroEnPantalla;
+        private int altoTablero;
+        private int anchoTablero;
+        private Tablero tablero;
         public int tamanioBloqueTablero;
+        public int posicionIncialTableroEnX;
+        public int posicionIncialTableroEnY;
+        private int posicionFinalTableroEnX;
+        private int posicionFinalTableroEnY;
 
         public VistaTablero()
         {
@@ -23,6 +27,28 @@ namespace BatallaNavalgoXNA
             anchoTablero = Tablero.Columnas;
             posicionTableroEnPantalla = new Vector2(400, 80);
             tamanioBloqueTablero = 40;
+            posicionIncialTableroEnX = (int)posicionTableroEnPantalla.X;
+            posicionIncialTableroEnY = (int)posicionTableroEnPantalla.Y;
+            posicionFinalTableroEnX = (int)posicionIncialTableroEnX + (tamanioBloqueTablero * anchoTablero);
+            posicionFinalTableroEnY = (int)posicionIncialTableroEnY + (tamanioBloqueTablero * altoTablero);
+        }
+
+        public Boolean EstaDentroDelTablero(int x, int y)
+        {
+            if (y > posicionIncialTableroEnY)
+            {
+                if (y < posicionFinalTableroEnY)
+                {
+                    if (x > posicionIncialTableroEnX)
+                    {
+                        if (x < posicionFinalTableroEnX)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch, Texture2D bloqueTablero)

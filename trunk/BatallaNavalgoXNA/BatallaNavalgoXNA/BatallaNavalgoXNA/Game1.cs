@@ -24,7 +24,9 @@ namespace BatallaNavalgoXNA
         Texture2D bloqueTablero;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
+        ControladorMouse controladorMouse;
         Juego juegoBatallaNavalgo;
+        Posicion posicionDeImpactoEnElTablero;
 
         public Game1()
         {
@@ -45,6 +47,8 @@ namespace BatallaNavalgoXNA
             posicionFondoDePantalla = new Vector2(0, -700);
             vistaTablero = new VistaTablero();
             juegoBatallaNavalgo = new Juego();
+            controladorMouse = new ControladorMouse(vistaTablero);
+            posicionDeImpactoEnElTablero = new Posicion(0, 0);
 
             base.Initialize();
         }
@@ -83,7 +87,13 @@ namespace BatallaNavalgoXNA
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            var mouse = Mouse.GetState();
+            if (mouse.LeftButton == ButtonState.Pressed)
+            {
+                int filaDeImpacto = mouse.Y;
+                int columnaDeImpacto = mouse.X;
+                posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);
+            }
 
             base.Update(gameTime);
         }
@@ -104,6 +114,10 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 25), Color.White);
             vistaTablero.Draw(spriteBatch, bloqueTablero);
             vistaTablero.DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
+            spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en fila: " + posicionDeImpactoEnElTablero.Fila,
+                                    new Vector2(0, 50), Color.White);
+            spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
+                                    new Vector2(0, 75), Color.White);
 
             spriteBatch.End();
 
