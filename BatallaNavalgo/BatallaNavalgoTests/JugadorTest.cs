@@ -16,7 +16,7 @@ namespace BatallaNavalgoTests
         {
             Jugador jugador = new Jugador();
 
-            Assert.True(jugador.Puntos.Equals(10000));
+            Assert.True(jugador.Puntos.Equals(Jugador.PUNTAJE_INICIAL_JUGADOR));
         }
 
         [Test]
@@ -110,6 +110,21 @@ namespace BatallaNavalgoTests
             // Tiene que lanzar excepcion.
             jugador.DescontarPuntosPorDisparar(disparo);
 
+        }
+
+        [Test]
+        public void testVerificarSiElJugadorPuedeRealizarUnDisparoConUnCostoMenorASuPuntaje()
+        {
+            Jugador jugador = new Jugador();
+
+            Assert.True(jugador.TienePuntosParaJugar(100));
+        }
+        [Test]
+        public void testVerificarQueElJugadorNoPuedeRealizarUnDisparoConUnCostoIgualASuPuntajeDebidoAlCostoPorPaseDeTurno()
+        {
+            Jugador jugador = new Jugador();
+
+            Assert.False(jugador.TienePuntosParaJugar(Jugador.PUNTAJE_INICIAL_JUGADOR));
         }
     }
 }
