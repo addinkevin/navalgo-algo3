@@ -21,6 +21,8 @@ namespace BatallaNavalgoXNA
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla;
+        Juego juegoBatallaNavalgo;
+        SpriteFont fuenteBatallaNavalgo;
 
         public Game1()
         {
@@ -52,6 +54,7 @@ namespace BatallaNavalgoXNA
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             fondoDePantalla = Content.Load<Texture2D>("Imagenes\\fondoAgua");
+            fuenteBatallaNavalgo = Content.Load<SpriteFont>("Fuente\\fuente");
 
         }
 
@@ -91,6 +94,8 @@ namespace BatallaNavalgoXNA
             spriteBatch.Begin();
 
             spriteBatch.Draw(fondoDePantalla, posicionFondoDePantalla, Color.White);
+            spriteBatch.DrawString(fuenteBatallaNavalgo, "Batalla Navalgo", new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: ", new Vector2(0, 25), Color.White);
 
             spriteBatch.End();
 
