@@ -19,6 +19,8 @@ namespace BatallaNavalgoXNA
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Vector2 posicionFondoDePantalla;
+        Texture2D fondoDePantalla;
 
         public Game1()
         {
@@ -36,7 +38,7 @@ namespace BatallaNavalgoXNA
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            posicionFondoDePantalla = new Vector2(0, -700);
 
             base.Initialize();
         }
@@ -49,8 +51,8 @@ namespace BatallaNavalgoXNA
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            fondoDePantalla = Content.Load<Texture2D>("Imagenes\\fondoAgua");
 
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -86,7 +88,11 @@ namespace BatallaNavalgoXNA
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(fondoDePantalla, posicionFondoDePantalla, Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
