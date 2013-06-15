@@ -91,7 +91,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaTenerLaNaveConVidaSiNoSeLaAtaco()
         {
             Tablero tablero = new Tablero();
-            tablero.AgregarNave(NaveFactory.CrearLancha(new Posicion(3, 3)));
+            tablero.AgregarNave(NaveFactory.CrearLancha());
 
             Assert.True(tablero.TieneNavesConVida());
         }

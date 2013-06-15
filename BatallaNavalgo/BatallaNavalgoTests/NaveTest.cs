@@ -139,7 +139,7 @@ namespace BatallaNavalgoTests
             int cantidadDePartes = 3;
             Orientacion orientacion = Orientacion.Vertical;
 
-            Assert.True(Nave.SePuedeCrearNave(cantidadDePartes, new Posicion(4,4), orientacion));
+            Assert.True(Nave.SePuedeCrear(cantidadDePartes, new Posicion(4,4), orientacion));
         }
     }
 }

@@ -30,7 +30,12 @@ namespace BatallaNavalgo
         public override Boolean EstaDestruida()
         {
             return estaDestruida;
-        }        
+        }
+        
+        public static bool SePuedeCrear(Posicion posicionInicial, Orientacion orientacion)
+        {
+            return Nave.SePuedeCrear(NUMERO_DE_PARTES_DEL_BUQUE, posicionInicial,orientacion);
+        }
 
     }
 }

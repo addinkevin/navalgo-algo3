@@ -34,30 +34,27 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
+        private void AgregarLanchas(Tablero tablero)
+        {
+            
+        }
+
         private void AgregarNavesAlTablero(Tablero tablero)
         {
-            Posicion posicionAuxiliar = new Posicion(1,1);
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
 
-            tablero.AgregarNave(NaveFactory.CrearLancha(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearLancha());
 
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
-            tablero.AgregarNave(NaveFactory.CrearLancha(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearLancha());
             
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
-            tablero.AgregarNave(NaveFactory.CrearDestructor(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearDestructor());
             
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
-            tablero.AgregarNave(NaveFactory.CrearDestructor(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearDestructor());
             
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
-            tablero.AgregarNave(NaveFactory.CrearRompeHielos(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearRompeHielos());
             
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
-            tablero.AgregarNave(NaveFactory.CrearBuque(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearBuque());
             
-            posicionAuxiliar.HacerAleatoria(Tablero.Filas, Tablero.Columnas);
-            tablero.AgregarNave(NaveFactory.CrearPortaAviones(posicionAuxiliar));
+            tablero.AgregarNave(NaveFactory.CrearPortaAviones());
         }
         //---------------------------------------------------------------------
 
