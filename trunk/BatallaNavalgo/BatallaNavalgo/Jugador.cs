@@ -42,5 +42,12 @@ namespace BatallaNavalgo
 
             puntos -= (armamento.Costo);
         }
+
+        /* Verifica si tiene puntaje necesario para disparar un armamento con costo "costoDeDisparo"
+         * y si tiene el puntaje necesario para el paso de turno */
+        public bool TienePuntosParaJugar(int costoDeDisparo)
+        {
+            return (this.puntos >= costoDeDisparo + Jugador.PUNTAJE_DESCONTADO_POR_TURNO);
+        }
     }
 }
