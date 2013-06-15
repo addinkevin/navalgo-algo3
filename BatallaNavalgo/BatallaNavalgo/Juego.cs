@@ -111,5 +111,19 @@ namespace BatallaNavalgo
         {
             Console.WriteLine("Hello world!");            
         }
+
+        private int CostoMinimoDeDisparo()
+        {
+            int[] costos = new int[] { ArmamentoFactory.COSTO_DISPARO_COMUN, ArmamentoFactory.COSTO_MINA_PUNTUAL,
+                                       ArmamentoFactory.COSTO_MINA_DOBLE, ArmamentoFactory.COSTO_MINA_TRIPLE,
+                                       ArmamentoFactory.COSTO_MINA_POR_CONTACTO };
+            return costos.Min();
+        }
+        public bool EstaTerminado()
+        {
+            bool jugadorTienePuntosParaJugar = jugador.TienePuntosParaJugar(CostoMinimoDeDisparo());
+            bool hayNavesEnElTableroDeJuego = tablero.TieneNavesConVida();
+            return !(jugadorTienePuntosParaJugar && hayNavesEnElTableroDeJuego);
+        }
     }
 }

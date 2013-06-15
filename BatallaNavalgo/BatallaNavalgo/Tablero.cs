@@ -135,16 +135,12 @@ namespace BatallaNavalgo
 
         public Boolean EstaVacio()
         {
-            if ((naves.Count()).Equals(0) && (armamentos.Count()).Equals(0))
-            {
-                return true;
-            }
-            return false;
+            return (naves.Count() == 0 && armamentos.Count() == 0);
         }
 
         public Boolean TieneNavesConVida()
         {
-            foreach (Nave nave in this.naves)
+            foreach (Nave nave in naves)
             {
                 if (!nave.EstaDestruida())
                 {
