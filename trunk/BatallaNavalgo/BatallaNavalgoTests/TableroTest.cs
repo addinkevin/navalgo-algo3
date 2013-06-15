@@ -22,7 +22,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaNoEstarVacioCuandoSeAgregaAlgo()
         {
             Tablero tablero = new Tablero();
-            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Nave.HORIZONTAL));
+            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Orientacion.Horizontal));
 
             Assert.False(tablero.EstaVacio());
         }
@@ -31,7 +31,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaHaberNaveEnUnaPosicionLuegoDeQueSeAgrego()
         {
             Tablero tablero = new Tablero();
-            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Nave.HORIZONTAL));
+            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Orientacion.Horizontal));
 
             Assert.True(tablero.HayNave(new Posicion(1, 1)));
         }
@@ -66,7 +66,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaActualizarseLaPosicionDeLaNave()
         {
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
+            Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical);
             nave.Direccion = (new Direccion(1, 0));
             tablero.AgregarNave(nave);
             
@@ -79,7 +79,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaHaberUnaNaveEnUnaPosicionLuegoDeAgregarla()
         {
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, new Posicion(5, 5), Nave.VERTICAL);
+            Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical);
             tablero.AgregarNave(nave);
             
             List<Nave> naves = tablero.GetNavesEn(new Posicion(5, 5));
@@ -99,7 +99,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaNoTenerNaveConVidaSiLaAtaco()
         {
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, new Posicion(3, 3), Nave.HORIZONTAL);
+            Nave nave = new Nave(1, 1, new Posicion(3, 3), Orientacion.Horizontal);
             nave.Direccion = (new Direccion(1, 0));
             tablero.AgregarNave(nave);
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));

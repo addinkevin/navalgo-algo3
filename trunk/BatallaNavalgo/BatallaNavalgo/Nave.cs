@@ -6,16 +6,14 @@ using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
+    public enum Orientacion
+    {
+        Vertical = 0,
+        Horizontal = 1
+    }
+
     public class Nave: IAtacable
     {
-        enum Orientacion 
-        {
-            Vertical = 0,
-            Horizontal = 1
-        }
-        public static int VERTICAL = 0;
-        public static int HORIZONTAL = 1;
-
         private Direccion direccion;
         private List<ParteNave> partes;
 
@@ -25,7 +23,7 @@ namespace BatallaNavalgo
          * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
          * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
          */
-        public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, int orientacion)
+        public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, Orientacion orientacion)
         {
             this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);            
         }
@@ -47,7 +45,7 @@ namespace BatallaNavalgo
          * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
          * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
          */
-        private void CrearPartes(int numeroDePartes, int resistencia, Posicion posicionInicial, int orientacion)
+        private void CrearPartes(int numeroDePartes, int resistencia, Posicion posicionInicial, Orientacion orientacion)
         {
             partes = new List<ParteNave>();
             Posicion posicion = posicionInicial;
@@ -58,7 +56,7 @@ namespace BatallaNavalgo
                     throw new ImposibleCrearNaveException();
                 }
                 partes.Add(new ParteNave(resistencia, posicion));
-                if (orientacion == VERTICAL)
+                if (orientacion == Orientacion.Vertical)
                 {
                     posicion = new Posicion(posicion.Fila + 1, posicion.Columna);
                 }
@@ -168,6 +166,31 @@ namespace BatallaNavalgo
                     return parte.EstaDestruida();
             }
             return false;
+        }
+
+
+        private List<Posicion> GetPosicionesParaCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
+        {
+            List<Posicion> posiciones = new List<Posicion>();
+            posiciones.Add(posicionInicial);
+            Posicion posicion = posicionInicial;
+            for (int i = 0; i < numeroDePartes-1; i++)
+            {
+                if (orientacion == Orientacion.Vertical)
+                {
+                    posicion = new Posicion(posicion.Fila + 1, posicion.Columna);
+                }
+                else
+                {
+                    posicion = new Posicion(posicion.Fila, posicion.Columna + 1);
+                }
+            }
+            return posiciones;
+        }
+        public static bool SePuedeCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
+        {
+            return true;
+            
         }
     }
 }
