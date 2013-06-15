@@ -15,11 +15,12 @@ namespace BatallaNavalgo
             this.columna = columna;
         }
 
-        public void HacerAleatoria(int filas, int columnas) 
+        public static Posicion HacerAleatoria(int filaMin, int filaMax, int columnaMin, int columnaMax) 
         {
-            Random numeroAleatorio =new Random();
-            this.fila = numeroAleatorio.Next(1, filas);
-            this.columna = numeroAleatorio.Next(1,columnas);
+            Random numeroAleatorio = new Random();
+            int fila = numeroAleatorio.Next(filaMin, filaMax);
+            int columna = numeroAleatorio.Next(columnaMin, columnaMax);
+            return new Posicion(fila, columna);
         }
         //-----------------------------------------------------------
         public int Fila 

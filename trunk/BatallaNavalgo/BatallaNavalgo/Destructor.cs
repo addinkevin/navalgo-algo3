@@ -23,6 +23,11 @@ namespace BatallaNavalgo
         public override void RecibirAtaque(Mina mina, Posicion posicion)
         {
             //No hace nada. No le afecta las minas.
-        }       
+        }
+
+        public static bool SePuedeCrear(Posicion posicionInicial, Orientacion orientacion)
+        {
+            return Nave.SePuedeCrear(NUMERO_DE_PARTES_DEL_DESTRUCTOR, posicionInicial, orientacion);
+        }
     }
 }

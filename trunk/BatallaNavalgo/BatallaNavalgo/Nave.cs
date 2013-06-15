@@ -32,30 +32,14 @@ namespace BatallaNavalgo
         {
             set { direccion = value; }
         }
-        
-        
-        /* Permite verificar si la posicion es valida. Es valida cuando esta dentro del rango especificado por el Tablero */
-        private Boolean EsPosicionValida(Posicion posicion)
+               
+        private List<Posicion> GetPosicionesParaCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
         {
-            Boolean valida = posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
-            return valida;
-        }
-
-        /* Permite crear todas las partes de las naves.
-         * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
-         * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
-         */
-        private void CrearPartes(int numeroDePartes, int resistencia, Posicion posicionInicial, Orientacion orientacion)
-        {
-            partes = new List<ParteNave>();
+            List<Posicion> posiciones = new List<Posicion>();
+            posiciones.Add(posicionInicial);
             Posicion posicion = posicionInicial;
-            for (int i = 0; i < numeroDePartes; i++)
+            for (int i = 0; i < numeroDePartes - 1; i++)
             {
-                if (!this.EsPosicionValida(posicion))
-                {
-                    throw new ImposibleCrearNaveException();
-                }
-                partes.Add(new ParteNave(resistencia, posicion));
                 if (orientacion == Orientacion.Vertical)
                 {
                     posicion = new Posicion(posicion.Fila + 1, posicion.Columna);
@@ -64,6 +48,27 @@ namespace BatallaNavalgo
                 {
                     posicion = new Posicion(posicion.Fila, posicion.Columna + 1);
                 }
+                posiciones.Add(posicion);
+            }
+            return posiciones;
+        }
+
+        /* Permite crear todas las partes de las naves.
+         * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
+         * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
+         */
+        private void CrearPartes(int numeroDePartes, int resistencia, Posicion posicionInicial, Orientacion orientacion)
+        {
+            this.partes = new List<ParteNave>();
+            List<Posicion> posiciones = GetPosicionesParaCrearNave(numeroDePartes, posicionInicial, orientacion);
+            foreach (Posicion posicion in posiciones)
+            {
+                if (!posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO))
+                {
+                    throw new ImposibleCrearNaveException();
+                }
+
+                this.partes.Add(new ParteNave(resistencia, posicion));
             }
         }
 
@@ -137,7 +142,8 @@ namespace BatallaNavalgo
         {
             foreach (ParteNave parte in partes)
             {
-                if (!EsPosicionValida(direccion.GetNuevaPosicion(parte.Posicion)))
+                if (!direccion.GetNuevaPosicion(parte.Posicion).EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA,
+                                                                             Tablero.ESQUINA_DERECHA_ABAJO))
                     return false;
             }
             return true;
@@ -168,29 +174,18 @@ namespace BatallaNavalgo
             return false;
         }
 
+        public static bool SePuedeCrear(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
+        {
+            Posicion posicionExtrema;
+            if (orientacion == Orientacion.Vertical)
+                posicionExtrema = new Posicion(posicionInicial.Fila + numeroDePartes - 1, posicionInicial.Columna);
+            else 
+                posicionExtrema = new Posicion(posicionInicial.Fila, posicionInicial.Columna + numeroDePartes - 1);
 
-        private List<Posicion> GetPosicionesParaCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
-        {
-            List<Posicion> posiciones = new List<Posicion>();
-            posiciones.Add(posicionInicial);
-            Posicion posicion = posicionInicial;
-            for (int i = 0; i < numeroDePartes-1; i++)
-            {
-                if (orientacion == Orientacion.Vertical)
-                {
-                    posicion = new Posicion(posicion.Fila + 1, posicion.Columna);
-                }
-                else
-                {
-                    posicion = new Posicion(posicion.Fila, posicion.Columna + 1);
-                }
-            }
-            return posiciones;
-        }
-        public static bool SePuedeCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
-        {
-            return true;
-            
+            bool posicionInicialValida = posicionInicial.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
+            bool posicionExtremaValida = posicionExtrema.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO);
+
+            return posicionInicialValida && posicionExtremaValida;
         }
     }
 }
