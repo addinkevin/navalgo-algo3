@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{323ED52E-1944-447A-9A49-400F375BE112}</ProjectGuid>
+    <ProjectGuid>{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}</ProjectGuid>
     <ProjectTypeGuids>{96E2B04D-8817-42c6-938A-82C39BA4D311};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -40,16 +40,6 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.VideoImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\BatallaNavalgoExcepciones\BatallaNavalgoExcepciones.csproj">
-      <Project>{69DD752B-5C79-46B2-A9DF-CAB69D347D52}</Project>
-      <Name>BatallaNavalgoExcepciones</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BatallaNavalgo\BatallaNavalgo.csproj">
-      <Project>{DF0DD775-43DC-49D9-84BD-62EA9168CA38}</Project>
-      <Name>BatallaNavalgo</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}</ProjectGuid>
+    <ProjectGuid>{B98AEABC-801A-4BE2-A098-FC16C7222A11}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -14,7 +14,7 @@
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows</XnaPlatform>
     <XnaProfile>HiDef</XnaProfile>
-    <XnaCrossPlatformGroupID>fdd47c68-0840-468e-bd01-0b72fd95e38f</XnaCrossPlatformGroupID>
+    <XnaCrossPlatformGroupID>3fc5c147-8197-43af-b127-5e56ceee0e92</XnaCrossPlatformGroupID>
     <XnaOutputType>Game</XnaOutputType>
     <ApplicationIcon>Game.ico</ApplicationIcon>
     <Thumbnail>GameThumbnail.png</Thumbnail>
@@ -60,6 +60,9 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BatallaNavalgo">
+      <HintPath>..\..\..\BatallaNavalgo\BatallaNavalgo\bin\Debug\BatallaNavalgo.exe</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -116,14 +119,6 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BatallaNavalgoExcepciones\BatallaNavalgoExcepciones.csproj">
-      <Project>{69DD752B-5C79-46B2-A9DF-CAB69D347D52}</Project>
-      <Name>BatallaNavalgoExcepciones</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BatallaNavalgo\BatallaNavalgo.csproj">
-      <Project>{DF0DD775-43DC-49D9-84BD-62EA9168CA38}</Project>
-      <Name>BatallaNavalgo</Name>
-    </ProjectReference>
     <ProjectReference Include="..\BatallaNavalgoXNAContent\BatallaNavalgoXNAContent.contentproj">
       <Name>BatallaNavalgoXNAContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>

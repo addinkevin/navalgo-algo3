@@ -10,10 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoTests", "Bata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoExcepciones", "BatallaNavalgoExcepciones\BatallaNavalgoExcepciones.csproj", "{69DD752B-5C79-46B2-A9DF-CAB69D347D52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoXNA", "BatallaNavalgoXNA\BatallaNavalgoXNA\BatallaNavalgoXNA.csproj", "{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}"
-EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "BatallaNavalgoXNAContent", "BatallaNavalgoXNA\BatallaNavalgoXNAContent\BatallaNavalgoXNAContent.contentproj", "{323ED52E-1944-447A-9A49-400F375BE112}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,22 +50,6 @@ Global
 		{69DD752B-5C79-46B2-A9DF-CAB69D347D52}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69DD752B-5C79-46B2-A9DF-CAB69D347D52}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{69DD752B-5C79-46B2-A9DF-CAB69D347D52}.Release|x86.ActiveCfg = Release|Any CPU
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Debug|x86.ActiveCfg = Debug|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Debug|x86.Build.0 = Debug|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Release|Any CPU.ActiveCfg = Release|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Release|Mixed Platforms.Build.0 = Release|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Release|x86.ActiveCfg = Release|x86
-		{DCB1B5EE-E35F-4237-BC5B-DA300D1EB2FF}.Release|x86.Build.0 = Release|x86
-		{323ED52E-1944-447A-9A49-400F375BE112}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{323ED52E-1944-447A-9A49-400F375BE112}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{323ED52E-1944-447A-9A49-400F375BE112}.Debug|x86.ActiveCfg = Debug|x86
-		{323ED52E-1944-447A-9A49-400F375BE112}.Release|Any CPU.ActiveCfg = Release|x86
-		{323ED52E-1944-447A-9A49-400F375BE112}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{323ED52E-1944-447A-9A49-400F375BE112}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
