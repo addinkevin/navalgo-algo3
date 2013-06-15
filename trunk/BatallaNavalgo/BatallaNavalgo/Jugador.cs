@@ -29,11 +29,17 @@ namespace BatallaNavalgo
 
         public void DescontarPuntosPorPasoDeTurno()
         {
+            if (puntos < PUNTAJE_DESCONTADO_POR_TURNO)
+                throw new BatallaNavalgoExcepciones.JugadorPuntajeInsuficienteException();
+
             puntos -= PUNTAJE_DESCONTADO_POR_TURNO;
         }
 
         public void DescontarPuntosPorDisparar(Armamento armamento)
         {
+            if (this.puntos < armamento.Costo)
+                throw new BatallaNavalgoExcepciones.JugadorPuntajeInsuficienteException();
+
             puntos -= (armamento.Costo);
         }
     }
