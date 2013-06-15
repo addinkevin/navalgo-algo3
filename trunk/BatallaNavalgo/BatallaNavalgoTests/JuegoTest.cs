@@ -10,6 +10,13 @@ namespace BatallaNavalgoTests
     [TestFixture]
     class JuegoTest
     {
+        [Test]
+        public void testElJuegoNoDebeEstarTerminadoAlCrearse()
+        {
+            Juego juego = new Juego();
+
+            Assert.False(juego.EstaTerminado());
+        }
 
     }
 }
