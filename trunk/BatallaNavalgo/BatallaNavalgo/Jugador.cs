@@ -14,13 +14,13 @@ namespace BatallaNavalgo
 
         /* Constructor
          * puntos: seran los puntos con los que cuente el Jugador inicialmente.
-         * tablero: sera el tablero asociado que tendra el Jugador.
          */
         public Jugador()
         {
             this.puntos = PUNTAJE_INICIAL_JUGADOR;
         }
-        //---------------------------------------------------------------------
+		
+        //Metodos de la clase Jugador
 
         public int Puntos
         {
