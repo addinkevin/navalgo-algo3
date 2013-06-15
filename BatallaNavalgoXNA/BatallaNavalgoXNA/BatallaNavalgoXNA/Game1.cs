@@ -99,10 +99,11 @@ namespace BatallaNavalgoXNA
             spriteBatch.Begin();
 
             spriteBatch.Draw(fondoDePantalla, posicionFondoDePantalla, Color.White);
-            spriteBatch.DrawString(fuenteBatallaNavalgo, "Batalla Navalgo", new Vector2(0, 0), Color.White);
+            spriteBatch.DrawString(fuenteBatallaNavalgo, "Batalla Navalgo", new Vector2(300, 0), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: " + juegoBatallaNavalgo.ObtenerPuntosDelJugador(),
                                     new Vector2(0, 25), Color.White);
             vistaTablero.Draw(spriteBatch, bloqueTablero);
+            vistaTablero.DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
 
             spriteBatch.End();
 

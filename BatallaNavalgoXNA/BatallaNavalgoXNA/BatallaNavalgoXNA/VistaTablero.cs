@@ -21,7 +21,7 @@ namespace BatallaNavalgoXNA
             tablero = new Tablero();
             altoTablero = Tablero.Filas;
             anchoTablero = Tablero.Columnas;
-            posicionTableroEnPantalla = new Vector2(200, 75);
+            posicionTableroEnPantalla = new Vector2(400, 80);
             tamanioBloqueTablero = 40;
         }
 
@@ -35,6 +35,17 @@ namespace BatallaNavalgoXNA
                     int ancho = (int)(posicionTableroEnPantalla.Y + (j * tamanioBloqueTablero));
                     spriteBatch.Draw(bloqueTablero, new Rectangle(alto, ancho, tamanioBloqueTablero, tamanioBloqueTablero), null, Color.White);
                 }
+            }
+        }
+
+        public void DibujarPosicionesDelTablero(SpriteBatch spriteBatch, SpriteFont fuenteBatallaNavalgo)
+        {
+            int posicionInicialEnX = 70;
+            for (int i = 1; i < 11; i++)
+            {
+                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(375, posicionInicialEnX + 15), Color.White);
+                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(posicionInicialEnX + 340, 55), Color.White);
+                posicionInicialEnX = posicionInicialEnX + 40;
             }
         }
     }
