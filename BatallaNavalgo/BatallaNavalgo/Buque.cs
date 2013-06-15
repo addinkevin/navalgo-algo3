@@ -11,7 +11,7 @@ namespace BatallaNavalgo
         private static int RESISTENCIA_DE_PARTES_DEL_BUQUE = 1;
         private Boolean estaDestruida;
 
-        public Buque(Posicion posicionInicial, int orientacion)
+        public Buque(Posicion posicionInicial, Orientacion orientacion)
             :base(NUMERO_DE_PARTES_DEL_BUQUE , RESISTENCIA_DE_PARTES_DEL_BUQUE,
                   posicionInicial,orientacion)
         {

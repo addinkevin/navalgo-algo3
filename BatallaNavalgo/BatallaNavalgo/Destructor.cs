@@ -9,7 +9,7 @@ namespace BatallaNavalgo
     {
         private static int NUMERO_DE_PARTES_DEL_DESTRUCTOR = 3;
         private static int RESISTENCIA_DE_PARTES_DEL_DESTRUCTOR = 1;
-        public Destructor(Posicion posicionInicial, int orientacion)
+        public Destructor(Posicion posicionInicial, Orientacion orientacion)
             : base(NUMERO_DE_PARTES_DEL_DESTRUCTOR, RESISTENCIA_DE_PARTES_DEL_DESTRUCTOR,
                     posicionInicial, orientacion)
         {
