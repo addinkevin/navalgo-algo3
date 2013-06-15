@@ -159,6 +159,7 @@ namespace BatallaNavalgo
             }
         }
 
+        /* Permite saber si la parte ubicada en posicion está destruida o no */
         public bool EstaDestruidaEnLaPosicion(Posicion posicion)
         {
             foreach (ParteNave parte in partes)

@@ -10,5 +10,6 @@ namespace BatallaNavalgoTests
     [TestFixture]
     class JuegoTest
     {
+
     }
 }
