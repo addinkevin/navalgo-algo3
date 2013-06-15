@@ -21,8 +21,10 @@ namespace BatallaNavalgoXNA
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla;
-        Juego juegoBatallaNavalgo;
+        Texture2D bloqueTablero;
         SpriteFont fuenteBatallaNavalgo;
+        VistaTablero vistaTablero;
+        Juego juegoBatallaNavalgo;
 
         public Game1()
         {
@@ -41,6 +43,8 @@ namespace BatallaNavalgoXNA
         protected override void Initialize()
         {
             posicionFondoDePantalla = new Vector2(0, -700);
+            vistaTablero = new VistaTablero();
+            juegoBatallaNavalgo = new Juego();
 
             base.Initialize();
         }
@@ -55,6 +59,7 @@ namespace BatallaNavalgoXNA
             spriteBatch = new SpriteBatch(GraphicsDevice);
             fondoDePantalla = Content.Load<Texture2D>("Imagenes\\fondoAgua");
             fuenteBatallaNavalgo = Content.Load<SpriteFont>("Fuente\\fuente");
+            bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
 
         }
 
@@ -95,7 +100,9 @@ namespace BatallaNavalgoXNA
 
             spriteBatch.Draw(fondoDePantalla, posicionFondoDePantalla, Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Batalla Navalgo", new Vector2(0, 0), Color.White);
-            spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: ", new Vector2(0, 25), Color.White);
+            spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: " + juegoBatallaNavalgo.ObtenerPuntosDelJugador(),
+                                    new Vector2(0, 25), Color.White);
+            vistaTablero.Draw(spriteBatch, bloqueTablero);
 
             spriteBatch.End();
 
