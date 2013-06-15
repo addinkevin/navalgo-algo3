@@ -7,10 +7,16 @@ namespace BatallaNavalgo
 {
     public class ArmamentoFactory
     {
+        public static int COSTO_DISPARO_COMUN = 200;
+        public static int COSTO_MINA_PUNTUAL = 50;
+        public static int COSTO_MINA_DOBLE = 100;
+        public static int COSTO_MINA_TRIPLE = 125;
+        public static int COSTO_MINA_POR_CONTACTO = 150;
+
 		/*Crea y devuelve DisparoComun valido*/
         public static DisparoComun CrearDisparoComun(Tablero tablero, Posicion posicion)
         {
-            DisparoComun disparo = new DisparoComun(tablero, posicion, 200);
+            DisparoComun disparo = new DisparoComun(tablero, posicion, COSTO_DISPARO_COMUN);
             return disparo;
         }
 
@@ -19,8 +25,7 @@ namespace BatallaNavalgo
         {
             int radio = 0;
             int retardo = 3;
-            int costo = 50;
-            MinaConRetardo mina = new MinaConRetardo(tablero, posicion,costo, radio,retardo);
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion,COSTO_MINA_PUNTUAL, radio,retardo);
             return mina;
         }
 
@@ -29,8 +34,7 @@ namespace BatallaNavalgo
         {
             int radio = 1;
             int retardo = 3;
-            int costo = 100;
-            MinaConRetardo mina = new MinaConRetardo(tablero, posicion, costo, radio, retardo);
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion, COSTO_MINA_DOBLE, radio, retardo);
             return mina;
         }
 
@@ -39,16 +43,14 @@ namespace BatallaNavalgo
         {
             int radio = 2;
             int retardo = 3;
-            int costo = 125;
-            MinaConRetardo mina = new MinaConRetardo(tablero, posicion,costo,radio,retardo);
+            MinaConRetardo mina = new MinaConRetardo(tablero, posicion,COSTO_MINA_TRIPLE,radio,retardo);
             return mina;
         }
 
 		/*Crea y devuelve MinaPorContacto valida*/
         public static MinaPorContacto CrearMinaPorContacto(Tablero tablero, Posicion posicion)
         {
-            int costo = 150;
-            MinaPorContacto mina = new MinaPorContacto(tablero, posicion, costo);
+            MinaPorContacto mina = new MinaPorContacto(tablero, posicion, COSTO_MINA_POR_CONTACTO);
             return mina;
         }
     }
