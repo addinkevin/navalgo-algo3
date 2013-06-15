@@ -159,6 +159,14 @@ namespace BatallaNavalgo
             }
         }
 
-
+        public bool EstaDestruidaEnLaPosicion(Posicion posicion)
+        {
+            foreach (ParteNave parte in partes)
+            {
+                if (parte.Posicion.EsIgualA(posicion))
+                    return parte.EstaDestruida();
+            }
+            return false;
+        }
     }
 }
