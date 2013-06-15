@@ -121,5 +121,16 @@ namespace BatallaNavalgoTests
             Assert.True(posiciones[1].EsIgualA(new Posicion(9, 9)));
             
         }
+
+        [Test]
+        public void testAtacarALaNaveConUnDisparoEnUnaDeSusPartesYVerificarQueEsteDestruida()
+        {
+            Nave nave = new Nave(3, 1, new Posicion(1,1), Nave.VERTICAL);
+            DisparoComun disparo = new DisparoComun(new Tablero(), new Posicion(2,1), 100);
+
+            nave.RecibirAtaque(disparo, disparo.Posicion);
+
+            Assert.True(nave.EstaDestruidaEnLaPosicion(new Posicion(2,1)));
+        }
     }
 }
