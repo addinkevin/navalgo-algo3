@@ -61,6 +61,11 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
+        public int ObtenerPuntosDelJugador()
+        {
+            return jugador.Puntos;
+        }
+
         public void EfectuarDisparoComun(Posicion posicion)
         {
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(this.tablero, posicion);
