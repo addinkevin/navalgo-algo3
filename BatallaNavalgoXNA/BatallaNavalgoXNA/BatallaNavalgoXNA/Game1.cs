@@ -16,7 +16,7 @@ namespace BatallaNavalgoXNA
     /// This is the main type for your game
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
-    {
+    {        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
@@ -48,7 +48,7 @@ namespace BatallaNavalgoXNA
         {
             posicionFondoDePantalla = new Vector2(0, -700);
             vistaTablero = new VistaTablero();
-            menuArmamentos = new MenuArmamentos(new Vector2(0, 120), botonDeRadioSeleccionado, botonDeRadioVacio);
+            menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
@@ -69,6 +69,8 @@ namespace BatallaNavalgoXNA
             bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
+            menuArmamentos.ImagenDebotonVacio = botonDeRadioVacio;
+            menuArmamentos.ImagenDebotonSeleccionado = botonDeRadioSeleccionado;                
         }
 
         /// <summary>
@@ -96,7 +98,9 @@ namespace BatallaNavalgoXNA
             {
                 int filaDeImpacto = mouse.Y;
                 int columnaDeImpacto = mouse.X;
+                menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);                    
                 posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);
+
             }
 
             base.Update(gameTime);
@@ -109,7 +113,7 @@ namespace BatallaNavalgoXNA
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            
             spriteBatch.Begin();
 
             spriteBatch.Draw(fondoDePantalla, posicionFondoDePantalla, Color.White);
