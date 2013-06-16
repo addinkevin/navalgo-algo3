@@ -23,7 +23,8 @@ namespace BatallaNavalgoXNA
         Texture2D fondoDePantalla;
         Texture2D bloqueTablero;
         Texture2D botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D botonAvanzarTurno;
+        Texture2D ImagenBotonAvanzarTurno;
+        Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
         MenuArmamentos menuArmamentos;
@@ -53,6 +54,7 @@ namespace BatallaNavalgoXNA
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
+            AvanzarTurnoButton = new Boton(new Vector2(50,375));            
 
             base.Initialize();
         }
@@ -70,8 +72,10 @@ namespace BatallaNavalgoXNA
             bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
-            botonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
-            menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);    
+            ImagenBotonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
+            menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
+            AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);
+            
         }
 
         /// <summary>
@@ -101,7 +105,10 @@ namespace BatallaNavalgoXNA
                 int columnaDeImpacto = mouse.X;
                 menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);                    
                 posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);
-
+                if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto)) 
+                {                    
+                    //Actualizar;
+                }
             }
 
             base.Update(gameTime);
@@ -122,7 +129,8 @@ namespace BatallaNavalgoXNA
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: " + juegoBatallaNavalgo.ObtenerPuntosDelJugador(),
                                     new Vector2(0, 25), Color.White);
             vistaTablero.Draw(spriteBatch, bloqueTablero, fuenteBatallaNavalgo);
-            menuArmamentos.Draw(spriteBatch, fuenteBatallaNavalgo);
+            menuArmamentos.Draw(spriteBatch, fuenteBatallaNavalgo);            
+            AvanzarTurnoButton.Draw(spriteBatch);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en fila: " + posicionDeImpactoEnElTablero.Fila,
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
