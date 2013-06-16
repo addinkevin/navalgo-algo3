@@ -32,12 +32,14 @@ namespace BatallaNavalgoXNA
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
 
+        MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             this.Window.Title = "Batalla Navalgo";
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = true;            
         }
 
         /// <summary>
@@ -96,21 +98,28 @@ namespace BatallaNavalgoXNA
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();            
+                this.Exit();
+            
+            // Get the mouse state relevant for this frame
+            estadoActualDelMouse = Mouse.GetState();
+            int filaDeImpacto = estadoActualDelMouse.Y;
+            int columnaDeImpacto = estadoActualDelMouse.X;
 
-            var mouse = Mouse.GetState();
-            if (mouse.LeftButton == ButtonState.Pressed)
+            /*Puedo elegir posicion manteniendo apretado el boton izquierdo*/
+            if (estadoActualDelMouse.LeftButton == ButtonState.Pressed) 
+            {posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);}
+
+            
+            if ((estadoActualDelMouse.LeftButton == ButtonState.Pressed) && (estadoAnteriorDelMouse.LeftButton == ButtonState.Released))
             {
-                int filaDeImpacto = mouse.Y;
-                int columnaDeImpacto = mouse.X;
-                menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);                    
-                posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);
-                if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto)) 
-                {                    
+                menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);                
+                if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto))
+                {
+                    juegoBatallaNavalgo.AvanzarTurno();
                     //Actualizar;
-                }
+                } 
             }
-
+            estadoAnteriorDelMouse = estadoActualDelMouse;
             base.Update(gameTime);
         }
 

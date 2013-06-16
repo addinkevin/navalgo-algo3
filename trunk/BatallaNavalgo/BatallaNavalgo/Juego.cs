@@ -27,7 +27,7 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
-        private void AvanzarTurno()
+        public void AvanzarTurno()
         {
             jugador.DescontarPuntosPorPasoDeTurno();
             tablero.Actualizar();
