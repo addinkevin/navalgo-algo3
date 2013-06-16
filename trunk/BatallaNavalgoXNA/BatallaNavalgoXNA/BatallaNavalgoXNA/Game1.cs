@@ -21,7 +21,8 @@ namespace BatallaNavalgoXNA
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D ImagenBotonAvanzarTurno, parteNave;
+        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
+        //Boton parteNaveGris, parteNaveRoja, parteNaveVerde, parteNaveMarron, parteNaveRota;
         Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
@@ -73,10 +74,22 @@ namespace BatallaNavalgoXNA
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
             ImagenBotonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
+            CargarPartesDeNaves();            
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
             AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);
             
         }
+
+        /*Carga partes de naves de distintos colores.*/
+        private void CargarPartesDeNaves() 
+        {
+            imagenParteNaveGris = Content.Load<Texture2D>("Imagenes\\parteNaveGris");
+            imagenParteNaveRoja = Content.Load<Texture2D>("Imagenes\\parteNaveRoja");
+            imagenParteNaveVerde = Content.Load<Texture2D>("Imagenes\\parteNaveVerde");
+            imagenParteNaveMarron = Content.Load<Texture2D>("Imagenes\\parteNaveMarron");
+            imagenParteNaveRota = Content.Load<Texture2D>("Imagenes\\parteNaveRota");
+        }
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -97,6 +110,7 @@ namespace BatallaNavalgoXNA
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
+            
             
             // Get the mouse state relevant for this frame
             estadoActualDelMouse = Mouse.GetState();
