@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControladorMouse.cs" />
+    <Compile Include="CuadroDeSeleccion.cs" />
     <Compile Include="MenuArmamentos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
