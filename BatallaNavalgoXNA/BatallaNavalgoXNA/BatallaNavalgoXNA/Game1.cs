@@ -22,8 +22,10 @@ namespace BatallaNavalgoXNA
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla;
         Texture2D bloqueTablero;
+        Texture2D botonDeRadioVacio, botonDeRadioSeleccionado;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
+        MenuArmamentos menuArmamentos;
         ControladorMouse controladorMouse;
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
@@ -46,6 +48,7 @@ namespace BatallaNavalgoXNA
         {
             posicionFondoDePantalla = new Vector2(0, -700);
             vistaTablero = new VistaTablero();
+            menuArmamentos = new MenuArmamentos(new Vector2(0, 120), botonDeRadioSeleccionado, botonDeRadioVacio);
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
@@ -64,7 +67,8 @@ namespace BatallaNavalgoXNA
             fondoDePantalla = Content.Load<Texture2D>("Imagenes\\fondoAgua");
             fuenteBatallaNavalgo = Content.Load<SpriteFont>("Fuente\\fuente");
             bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
-
+            botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
+            botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
         }
 
         /// <summary>
@@ -85,7 +89,7 @@ namespace BatallaNavalgoXNA
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+                this.Exit();            
 
             var mouse = Mouse.GetState();
             if (mouse.LeftButton == ButtonState.Pressed)
@@ -113,6 +117,7 @@ namespace BatallaNavalgoXNA
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: " + juegoBatallaNavalgo.ObtenerPuntosDelJugador(),
                                     new Vector2(0, 25), Color.White);
             vistaTablero.Draw(spriteBatch, bloqueTablero, fuenteBatallaNavalgo);
+            menuArmamentos.Draw(spriteBatch, fuenteBatallaNavalgo);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en fila: " + posicionDeImpactoEnElTablero.Fila,
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,

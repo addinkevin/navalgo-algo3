@@ -25,7 +25,7 @@ namespace BatallaNavalgoXNA
             tablero = new Tablero();
             altoTablero = Tablero.Filas;
             anchoTablero = Tablero.Columnas;
-            posicionTableroEnPantalla = new Vector2(400, 80);
+            posicionTableroEnPantalla = new Vector2(400, 80);            
             tamanioBloqueTablero = 40;
             posicionIncialTableroEnX = (int)posicionTableroEnPantalla.X;
             posicionIncialTableroEnY = (int)posicionTableroEnPantalla.Y;
@@ -63,6 +63,7 @@ namespace BatallaNavalgoXNA
                 }
             }
             DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
+
         }
 
         public void DibujarPosicionesDelTablero(SpriteBatch spriteBatch, SpriteFont fuenteBatallaNavalgo)
