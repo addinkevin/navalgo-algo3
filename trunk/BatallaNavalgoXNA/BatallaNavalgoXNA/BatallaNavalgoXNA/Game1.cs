@@ -109,8 +109,7 @@ namespace BatallaNavalgoXNA
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-            
+                this.Exit();            
             
             // Get the mouse state relevant for this frame
             estadoActualDelMouse = Mouse.GetState();
@@ -156,10 +155,73 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
+            DibujarNaves(spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
+
+        public void DibujarNaves(SpriteBatch spriteBatch)
+        {
+            IEnumerator<Nave> recorredorDeNaves = juegoBatallaNavalgo.IteradorNaves();
+            while (recorredorDeNaves.MoveNext())
+            {
+
+                DibujarUnaNave(spriteBatch, recorredorDeNaves.Current);
+            }
+        }
+
+
+        public void DibujarUnaNave(SpriteBatch spriteBatch, Nave nave) 
+        {
+            if (nave.ObtenerResistenciaGeneral() == 2) 
+            {
+                DibujarUnRompeHielos(spriteBatch, nave);
+                return;
+            }
+            List<Posicion> posiciones = nave.GetPosiciones();
+            foreach (Posicion posicion in posiciones) 
+            {
+                int fila = posicion.Fila;
+                int columna = posicion.Columna;
+                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveGris, fila, columna);
+            }
+        }
+
+        public void DibujarUnaNave(SpriteBatch spriteBatch, Destructor nave) 
+        {
+            List<Posicion> posiciones = nave.GetPosiciones();
+            foreach (Posicion posicion in posiciones)
+            {
+                int fila = posicion.Fila;
+                int columna = posicion.Columna;
+                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveRoja, fila, columna);
+            }
+        }
+        public void DibujarUnaNave(SpriteBatch spriteBatch, Buque nave) 
+        {
+            List<Posicion> posiciones = nave.GetPosiciones();
+            foreach (Posicion posicion in posiciones)
+            {
+                int fila = posicion.Fila;
+                int columna = posicion.Columna;
+                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveVerde, fila, columna);
+            }            
+        }
+
+        public void DibujarUnRompeHielos(SpriteBatch spriteBatch, Nave nave)
+        {
+            List<Posicion> posiciones = nave.GetPosiciones();
+            foreach (Posicion posicion in posiciones)
+            {
+                int fila = posicion.Fila;
+                int columna = posicion.Columna;
+                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveMarron, fila, columna);
+            }  
+            
+        }
+        
+
     }
 }
