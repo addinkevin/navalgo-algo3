@@ -67,12 +67,14 @@ namespace BatallaNavalgoXNA
 
         public void DibujarPosicionesDelTablero(SpriteBatch spriteBatch, SpriteFont fuenteBatallaNavalgo)
         {
-            int posicionInicialEnX = 70;
+            int posicionInicialEnX = posicionIncialTableroEnX + 10; //Se suma el 10 en ambas posiciones
+            int posicionInicialEnY = posicionIncialTableroEnY + 10; //solo por un tema de vista.
             for (int i = 1; i < 11; i++)
             {
-                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(375, posicionInicialEnX + 15), Color.White);
-                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(posicionInicialEnX + 340, 55), Color.White);
-                posicionInicialEnX = posicionInicialEnX + 40;
+                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(375, posicionInicialEnY), Color.White);
+                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(posicionInicialEnX, 55), Color.White);
+                posicionInicialEnX += 40;
+                posicionInicialEnY += 40;
             }
         }
     }
