@@ -23,6 +23,7 @@ namespace BatallaNavalgoXNA
         Texture2D fondoDePantalla;
         Texture2D bloqueTablero;
         Texture2D botonDeRadioVacio, botonDeRadioSeleccionado;
+        Texture2D botonAvanzarTurno;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
         MenuArmamentos menuArmamentos;
@@ -69,7 +70,7 @@ namespace BatallaNavalgoXNA
             bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
-            
+            botonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);    
         }
 
