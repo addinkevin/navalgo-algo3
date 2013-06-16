@@ -10,6 +10,11 @@ namespace BatallaNavalgo
         private int resistencia;
         private Posicion posicionActual;
 
+        public int GetResistencia() 
+        {
+            return resistencia;
+        }
+
         public ParteNave(int resistenciaInicial, Posicion posicionInicial) 
         {
             this.resistencia = resistenciaInicial;

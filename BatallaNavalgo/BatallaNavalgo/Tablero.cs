@@ -25,9 +25,9 @@ namespace BatallaNavalgo
             naves = new List<Nave>();
         }
 
-        public List<Nave> DevolverNaves() 
+        public List<Nave>.Enumerator DevolverIteradorNaves() 
         {
-            return this.naves;
+            return naves.GetEnumerator();            
         }
 
         //---------------------------------------------------------------------
