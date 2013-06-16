@@ -35,17 +35,11 @@ namespace BatallaNavalgoXNA
 
         public Boolean EstaDentroDelTablero(int x, int y)
         {
-            if (y > posicionIncialTableroEnY)
+            if ((y > posicionIncialTableroEnY) && (y < posicionFinalTableroEnY))
             {
-                if (y < posicionFinalTableroEnY)
+                if ((x > posicionIncialTableroEnX) && (x < posicionFinalTableroEnX))
                 {
-                    if (x > posicionIncialTableroEnX)
-                    {
-                        if (x < posicionFinalTableroEnX)
-                        {
-                            return true;
-                        }
-                    }
+                    return true;
                 }
             }
             return false;
@@ -63,7 +57,6 @@ namespace BatallaNavalgoXNA
                 }
             }
             DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
-
         }
 
         public void DibujarPosicionesDelTablero(SpriteBatch spriteBatch, SpriteFont fuenteBatallaNavalgo)
