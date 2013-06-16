@@ -13,8 +13,7 @@ namespace BatallaNavalgoXNA
         public enum MenuDisparos {NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO};
 
         private Vector2 posicionInicialEnPantalla;
-        private int cantidadDeLineas;
-        private Texture2D botonSeleccionado, botonVacio;
+        private int cantidadDeLineas;        
         private SpriteFont fuente;
         private const int SALTO_DE_LINEA = 40;
         private const int LADO_DE_BOTON = 24;
@@ -27,18 +26,13 @@ namespace BatallaNavalgoXNA
             posicionInicialEnPantalla = posicionMenuEnPantalla;  
             DisparoSeleccionado = MenuDisparos.NINGUNO;
             botones = new Queue<CuadroDeSeleccion>();
-            
         }
 
-        public Texture2D ImagenDebotonVacio 
+        /*Se cargan las imagenes para los botones para dibujarlos despues.*/
+        public void CargarImagenes(Texture2D botonVacio, Texture2D botonSeleccionado) 
         {
-            set { botonVacio = value; }
-        }
-
-        public Texture2D ImagenDebotonSeleccionado
-        {
-            set { botonSeleccionado = value; }
-        }
+            CrearBotonesDeMenu(botonVacio, botonSeleccionado);
+        }        
 
         /*Dibuja el menu con los botones correspondientes*/
         public void Draw(SpriteBatch spriteBatch, SpriteFont fuente) 
@@ -53,7 +47,7 @@ namespace BatallaNavalgoXNA
             DibujarLinea("Mina doble: 100 ptos.", spriteBatch);
             DibujarLinea("Mina triple: 125 ptos.", spriteBatch);
             DibujarLinea("Mina contacto: 150 ptos.", spriteBatch);
-            CrearBotonesDeMenu(botonVacio, botonSeleccionado);
+            
             DibujarBloquesDeSeleccion(spriteBatch);
         }
 
@@ -77,6 +71,7 @@ namespace BatallaNavalgoXNA
             }
         }
 
+        /*Llena la cola de botones correspondientes a las distintas opciones */
         public void CrearBotonesDeMenu(Texture2D vacio, Texture2D seleccionado)
         {
             int tiposDeArmamento =1;
@@ -89,12 +84,43 @@ namespace BatallaNavalgoXNA
             }
         }
 
-
+        /*Actualiza permitiendo una sola seleccion (como un boton de radio)*/
         public void ActualizarSeleccion(int fila, int columna)
         {
-            
+            IEnumerator<CuadroDeSeleccion> c = botones.GetEnumerator();
+            while (c.MoveNext())
+            {                
+                if (EstaDentroDeBoton(c.Current, fila, columna))
+                {
+                    QuitarSelecciones();
+                    c.Current.Seleccionado=true;
+                    return;
+                }               
+            }            
 
+        }
 
+        /*Des-Selecciona todos los botones*/
+        public void QuitarSelecciones() 
+        {
+            IEnumerator<CuadroDeSeleccion> c = botones.GetEnumerator();
+            while (c.MoveNext())
+            {
+                c.Current.Seleccionado = false;
+            }
+        }
+
+        /*Se fija si los parametros de x e y corresponden a un cuadrado.*/
+        public Boolean EstaDentroDeBoton(CuadroDeSeleccion cuadro,int y, int x)
+        {            
+            if ((y >= cuadro.Y) && (y <= (cuadro.Y + LADO_DE_BOTON))) 
+            {
+                if ((x >= cuadro.X) && (x <= (cuadro.X + LADO_DE_BOTON))) 
+                {                    
+                    return true;
+                } 
+            }
+            return false;
         }
                 
     }

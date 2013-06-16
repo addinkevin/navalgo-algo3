@@ -33,6 +33,12 @@ namespace BatallaNavalgoXNA
             get { return posicion.Y; }
         }
 
+        public Boolean Seleccionado 
+        {
+            get { return seleccionado;}
+            set { seleccionado = value; }
+        }
+
         public Texture2D Imagen 
         {
             get 
