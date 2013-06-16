@@ -21,8 +21,7 @@ namespace BatallaNavalgoXNA
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
-        //Boton parteNaveGris, parteNaveRoja, parteNaveVerde, parteNaveMarron, parteNaveRota;
+        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;        
         Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
@@ -173,6 +172,7 @@ namespace BatallaNavalgoXNA
         }
 
 
+        /*Dibuja Nave generica*/
         public void DibujarUnaNave(SpriteBatch spriteBatch, Nave nave) 
         {
             if (nave.ObtenerResistenciaGeneral() == 2) 
@@ -185,10 +185,12 @@ namespace BatallaNavalgoXNA
             {
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
-                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveGris, fila, columna);
+                //Vector2 posicionDeImagen = Tablero.GetPosicionDe(fila, columna);
+                //spriteBatch.Draw(imagenParteNaveGris, posicionDeImagen, Color.White);               
             }
         }
 
+        /*Dibuja Destructor*/
         public void DibujarUnaNave(SpriteBatch spriteBatch, Destructor nave) 
         {
             List<Posicion> posiciones = nave.GetPosiciones();
@@ -196,9 +198,12 @@ namespace BatallaNavalgoXNA
             {
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
-                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveRoja, fila, columna);
+                //Vector2 posicionDeImagen = Tablero.GetPosicionDe(fila, columna);
+                //spriteBatch.Draw(imagenParteNaveRoja, posicionDeImagen, Color.White);                
             }
         }
+
+        /*Dibuja Buque*/
         public void DibujarUnaNave(SpriteBatch spriteBatch, Buque nave) 
         {
             List<Posicion> posiciones = nave.GetPosiciones();
@@ -206,10 +211,12 @@ namespace BatallaNavalgoXNA
             {
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
-                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveVerde, fila, columna);
+                //Vector2 posicionDeImagen = Tablero.GetPosicionDe(fila, columna);
+                //spriteBatch.Draw(imagenParteNaveVerde, posicionDeImagen, Color.White);                
             }            
         }
 
+        /*Dibuja Rompehielos*/
         public void DibujarUnRompeHielos(SpriteBatch spriteBatch, Nave nave)
         {
             List<Posicion> posiciones = nave.GetPosiciones();
@@ -217,9 +224,9 @@ namespace BatallaNavalgoXNA
             {
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
-                //Tablero.AgregarAlTablero(spriteBatch, imagenParteNaveMarron, fila, columna);
-            }  
-            
+                //Vector2 posicionDeImagen = Tablero.GetPosicionDe(fila, columna);
+                //spriteBatch.Draw(imagenParteNaveMarron, posicionDeImagen, Color.White);                
+            }              
         }
         
 
