@@ -50,5 +50,10 @@ namespace BatallaNavalgoXNA
             }
         }
 
+    public void Dibujar(SpriteBatch spriteBatch, int lado)
+    {
+        spriteBatch.Draw(Imagen, posicion, Color.White);
+    }
+
     }
 }
