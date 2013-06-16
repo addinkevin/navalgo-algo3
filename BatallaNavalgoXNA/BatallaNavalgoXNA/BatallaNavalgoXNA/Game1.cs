@@ -20,10 +20,8 @@ namespace BatallaNavalgoXNA
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
-        Texture2D fondoDePantalla;
-        Texture2D bloqueTablero;
-        Texture2D botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D ImagenBotonAvanzarTurno;
+        Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
+        Texture2D ImagenBotonAvanzarTurno, parteNave;
         Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
