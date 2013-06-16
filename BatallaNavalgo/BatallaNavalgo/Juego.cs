@@ -27,6 +27,12 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
+        public List<Nave> DevolverNaves() 
+        {
+            return this.tablero.DevolverNaves();
+        }
+
+
         public void AvanzarTurno()
         {
             jugador.DescontarPuntosPorPasoDeTurno();
@@ -34,11 +40,7 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
-        private void AgregarLanchas(Tablero tablero)
-        {
-            
-        }
-
+       
         private void AgregarNavesAlTablero(Tablero tablero)
         {
 

@@ -25,6 +25,11 @@ namespace BatallaNavalgo
             naves = new List<Nave>();
         }
 
+        public List<Nave> DevolverNaves() 
+        {
+            return this.naves;
+        }
+
         //---------------------------------------------------------------------
         public static int Filas 
         {
