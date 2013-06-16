@@ -112,8 +112,7 @@ namespace BatallaNavalgoXNA
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Batalla Navalgo", new Vector2(300, 0), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: " + juegoBatallaNavalgo.ObtenerPuntosDelJugador(),
                                     new Vector2(0, 25), Color.White);
-            vistaTablero.Draw(spriteBatch, bloqueTablero);
-            vistaTablero.DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
+            vistaTablero.Draw(spriteBatch, bloqueTablero, fuenteBatallaNavalgo);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en fila: " + posicionDeImpactoEnElTablero.Fila,
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,

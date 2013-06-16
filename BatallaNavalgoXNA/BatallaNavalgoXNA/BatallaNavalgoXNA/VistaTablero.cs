@@ -51,7 +51,7 @@ namespace BatallaNavalgoXNA
             return false;
         }
 
-        public void Draw(SpriteBatch spriteBatch, Texture2D bloqueTablero)
+        public void Draw(SpriteBatch spriteBatch, Texture2D bloqueTablero, SpriteFont fuenteBatallaNavalgo)
         {
             for (int i = 0; i < altoTablero; i++)
             {
@@ -62,6 +62,7 @@ namespace BatallaNavalgoXNA
                     spriteBatch.Draw(bloqueTablero, new Rectangle(alto, ancho, tamanioBloqueTablero, tamanioBloqueTablero), null, Color.White);
                 }
             }
+            DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
         }
 
         public void DibujarPosicionesDelTablero(SpriteBatch spriteBatch, SpriteFont fuenteBatallaNavalgo)
