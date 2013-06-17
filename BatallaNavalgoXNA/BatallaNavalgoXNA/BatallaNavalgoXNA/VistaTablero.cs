@@ -51,9 +51,9 @@ namespace BatallaNavalgoXNA
             {
                 for (int j = 0; j < anchoTablero; j++)
                 {
-                    int alto = (int)(posicionTableroEnPantalla.X + (i * tamanioBloqueTablero));
-                    int ancho = (int)(posicionTableroEnPantalla.Y + (j * tamanioBloqueTablero));
-                    spriteBatch.Draw(bloqueTablero, new Rectangle(alto, ancho, tamanioBloqueTablero, tamanioBloqueTablero), null, Color.White);
+                    int ancho = posicionIncialTableroEnX + (i * tamanioBloqueTablero);
+                    int alto = posicionIncialTableroEnY + (j * tamanioBloqueTablero);
+                    spriteBatch.Draw(bloqueTablero, new Rectangle(ancho, alto, tamanioBloqueTablero, tamanioBloqueTablero), null, Color.White);
                 }
             }
             DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
@@ -70,6 +70,16 @@ namespace BatallaNavalgoXNA
                 posicionInicialEnX += 40;
                 posicionInicialEnY += 40;
             }
+        }
+
+        public Vector2 GetPosicionDe(int fila, int columna)
+        {
+            Vector2 posicionEnPantalla = new Vector2(0,0);
+            posicionEnPantalla.X = (posicionIncialTableroEnX + 10) + ((columna - 1) * tamanioBloqueTablero); //Se suma el 10 en ambas posiciones
+            posicionEnPantalla.Y = (posicionIncialTableroEnY + 10) + ((fila - 1) * tamanioBloqueTablero); //solo por un tema de vista.
+
+            return posicionEnPantalla;
+            
         }
     }
 }
