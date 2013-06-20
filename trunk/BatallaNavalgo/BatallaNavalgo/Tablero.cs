@@ -7,18 +7,13 @@ namespace BatallaNavalgo
 {
     public class Tablero
     {
-        private const int CANTIDAD_DE_FILAS = 10;
-        private const int CANTIDAD_DE_COLUMNAS = 10;
+        private static int CANTIDAD_DE_FILAS = 10;
+        private static int CANTIDAD_DE_COLUMNAS = 10;
         public static Posicion ESQUINA_IZQUIERDA_ARRIBA = new Posicion(1, 1);
         public static Posicion ESQUINA_DERECHA_ABAJO = new Posicion(10, 10);
         private List<Armamento> armamentos;
         private List<Nave> naves;
         
-
-        /* Constructor
-         * armamentos: seran los armamentos que se encuentren en el tablero.
-         * posicionInicial: seran las naves que se encuentren en el talero.
-         */
         public Tablero()
         {            
             armamentos = new List<Armamento>();
@@ -71,6 +66,9 @@ namespace BatallaNavalgo
 
         //---------------------------------------------------------------------
 
+        /* Actualización del tablero.
+         * Primero actualiza los armamentos, de forma de hacer que exploten si tienen que explotar,
+         * Y luego mueve las naves */
         public void Actualizar() 
         {
             this.ActualizarArmamentos();
@@ -78,7 +76,8 @@ namespace BatallaNavalgo
             this.ActualizarPosicionDeNaves();
         }
 
-        public void ActualizarPosicionDeNaves()
+        /* Método auxiliar para mover las naves */
+        private void ActualizarPosicionDeNaves()
         {
             foreach (Nave nave in naves)
             {
@@ -86,7 +85,8 @@ namespace BatallaNavalgo
             }
         }
 
-        public void ActualizarArmamentos()
+        /* Método auxiliar para actualizar los armamentos */
+        private void ActualizarArmamentos()
         {
             foreach (Armamento armamento in armamentos)
             {
@@ -94,7 +94,8 @@ namespace BatallaNavalgo
             }
         }
 
-        public void BorrarArmamentosExplotados()
+        /* Método auxiliar para borrar los armamentos que ya están explotados y no sirven */
+        private void BorrarArmamentosExplotados()
         {
             List<Armamento> armamentosActualizados = new List<Armamento>();
             foreach (Armamento armamento in armamentos)
@@ -108,7 +109,7 @@ namespace BatallaNavalgo
         }
 
         //---------------------------------------------------------------------
-
+        
         public Boolean HayNave(Posicion posicion) 
         {
             foreach (Nave nave in naves)
@@ -136,11 +137,6 @@ namespace BatallaNavalgo
                 }
             }
             return false;
-        }
-
-        public Boolean EstaVacio()
-        {
-            return (naves.Count() == 0 && armamentos.Count() == 0);
         }
 
         public Boolean TieneNavesConVida()

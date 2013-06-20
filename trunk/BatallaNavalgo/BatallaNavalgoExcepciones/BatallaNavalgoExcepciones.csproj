@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ImposibleCrearNaveException.cs" />
+    <Compile Include="JuegoJugadorSinPuntajeParaDisparoException.cs" />
+    <Compile Include="JuegoTerminadoException.cs" />
     <Compile Include="JugadorPuntajeInsuficienteException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
