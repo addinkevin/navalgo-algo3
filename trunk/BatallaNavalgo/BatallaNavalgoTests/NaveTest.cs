@@ -97,7 +97,7 @@ namespace BatallaNavalgoTests
         public void testMoverUnaNaveDadaUnaDireccion()
         {
             Nave nave = new Nave(2, 1, new Posicion(5, 5), Orientacion.Vertical);
-            nave.Direccion = (new Direccion(1, 0));
+            nave.Direccion = (Direccion.Sur);
 
             nave.Mover();
             List<Posicion> posiciones = nave.GetPosiciones();
@@ -111,7 +111,7 @@ namespace BatallaNavalgoTests
         {
             // Posicion de la nave: (9,9) y (10,9)
             Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Vertical);
-            nave.Direccion = (new Direccion(1, 0));
+            nave.Direccion = (Direccion.Sur);
 
             // Deberia Moverse invirtiendo sentido, ya que se va del tablero.
             nave.Mover();
