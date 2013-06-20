@@ -50,7 +50,7 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical);
-            nave.Direccion = (new Direccion(1, 0));
+            nave.Direccion = (Direccion.Sur);
             tablero.AgregarNave(nave);
             
             tablero.Actualizar();
@@ -83,7 +83,7 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             Nave nave = new Nave(1, 1, new Posicion(3, 3), Orientacion.Horizontal);
-            nave.Direccion = (new Direccion(1, 0));
+            nave.Direccion = (Direccion.Sur);
             tablero.AgregarNave(nave);
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
             disparo.TableroEnElQueEsta = (tablero);
