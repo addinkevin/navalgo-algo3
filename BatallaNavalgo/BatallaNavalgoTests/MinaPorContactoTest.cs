@@ -63,13 +63,14 @@ namespace BatallaNavalgoTests
             MinaPorContacto mina = new MinaPorContacto(tablero, posicion, costoRandom);
 
             mina.Actualizar();
+
             Assert.True(nave1.EstaDestruida() && nave2.EstaDestruida());
         }
 
         [Test]
         public void testSiHayNaveEnPosicionVecinaNoExplota()
         {
-            /*En este caso las naves son puntuales para comprobar su destruccion total*/
+            /*En este caso las naves son puntuales para comprobar que no se destruye*/
             Tablero tablero = new Tablero();
             Posicion posicionNave = new Posicion(6, 5);
             Nave nave1 = new Nave(1, 1, posicionNave, Orientacion.Horizontal);            
@@ -79,6 +80,7 @@ namespace BatallaNavalgoTests
             MinaPorContacto mina = new MinaPorContacto(tablero, posicionMina, costoRandom);
             
             mina.Actualizar();
+
             Assert.False(mina.Explotado);
         }
 

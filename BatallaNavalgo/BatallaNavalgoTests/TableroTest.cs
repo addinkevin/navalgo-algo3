@@ -11,23 +11,6 @@ namespace BatallaNavalgoTests
     class TableroTest
     {
         [Test]
-        public void testDeberiaEstarVacioEnElMomentoDeLaCreacion()
-        {
-            Tablero tablero = new Tablero();
-
-            Assert.True(tablero.EstaVacio());
-        }
-
-        [Test]
-        public void testDeberiaNoEstarVacioCuandoSeAgregaAlgo()
-        {
-            Tablero tablero = new Tablero();
-            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Orientacion.Horizontal));
-
-            Assert.False(tablero.EstaVacio());
-        }
-
-        [Test]
         public void testDeberiaHaberNaveEnUnaPosicionLuegoDeQueSeAgrego()
         {
             Tablero tablero = new Tablero();
@@ -110,31 +93,5 @@ namespace BatallaNavalgoTests
 
             Assert.False(tablero.TieneNavesConVida());
         }
-
-        [Test]
-        public void testDeberiaEstarVacioDespuesDeIngresarUnArmamentoYExplotarlo()
-        {
-            Tablero tablero = new Tablero();
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
-            disparo.TableroEnElQueEsta = (tablero);
-
-            tablero.Impactar(disparo);
-            tablero.Actualizar();
-
-            Assert.True(tablero.EstaVacio());
-        }
-
-        public void testNoDeberiaEstarVacioSiIngresoUnarmamentoPeroNoLoExploto()
-        {
-            Tablero tablero = new Tablero();
-            DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
-            disparo.TableroEnElQueEsta = tablero;
-
-            tablero.Actualizar();
-
-            Assert.False(tablero.EstaVacio());
-        }
-
-
     }
 }

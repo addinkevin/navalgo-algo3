@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
@@ -68,6 +69,7 @@ namespace BatallaNavalgo
         public void EfectuarDisparoComun(Posicion posicion)
         {
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(this.tablero, posicion);
+            VerificarPosibilidadDeDisparo(disparo);
             tablero.Impactar(disparo);
             jugador.DescontarPuntosPorDisparar(disparo);
             AvanzarTurno();
@@ -76,6 +78,7 @@ namespace BatallaNavalgo
         public void ColocarMinaPuntual(Posicion posicion)
         {
             MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(this.tablero, posicion);
+            VerificarPosibilidadDeDisparo(minaPuntual);
             tablero.Impactar(minaPuntual);
             jugador.DescontarPuntosPorDisparar(minaPuntual);
             AvanzarTurno();
@@ -84,6 +87,7 @@ namespace BatallaNavalgo
         public void ColocarMinaDoble(Posicion posicion)
         {
             MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(this.tablero, posicion);
+            VerificarPosibilidadDeDisparo(minaDoble);
             tablero.Impactar(minaDoble);
             jugador.DescontarPuntosPorDisparar(minaDoble);
             AvanzarTurno();
@@ -92,6 +96,7 @@ namespace BatallaNavalgo
         public void ColocarMinaTriple(Posicion posicion)
         {
             MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(this.tablero, posicion);
+            VerificarPosibilidadDeDisparo(minaTriple);
             tablero.Impactar(minaTriple);
             jugador.DescontarPuntosPorDisparar(minaTriple);
             AvanzarTurno();
@@ -100,15 +105,19 @@ namespace BatallaNavalgo
         public void ColocarMinaPorContacto(Posicion posicion)
         {
             MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(this.tablero, posicion);
+            VerificarPosibilidadDeDisparo(minaContacto);
             tablero.Impactar(minaContacto);
             jugador.DescontarPuntosPorDisparar(minaContacto);
             AvanzarTurno();
         }
-        //---------------------------------------------------------------------
 
-        public static void Main(string[] args)
+        private void VerificarPosibilidadDeDisparo(Armamento armamento)
         {
-            Console.WriteLine("Hello world!");            
+            if (EstaTerminado())
+                throw new JuegoTerminadoException();
+
+            if (!jugador.TienePuntosParaJugar(armamento.Costo))
+                throw new JuegoJugadorSinPuntajeParaDisparoException();
         }
 
         private int CostoMinimoDeDisparo()
@@ -123,6 +132,11 @@ namespace BatallaNavalgo
             bool jugadorTienePuntosParaJugar = jugador.TienePuntosParaJugar(CostoMinimoDeDisparo());
             bool hayNavesEnElTableroDeJuego = tablero.TieneNavesConVida();
             return !(jugadorTienePuntosParaJugar && hayNavesEnElTableroDeJuego);
+        }
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello world!");
         }
     }
 }

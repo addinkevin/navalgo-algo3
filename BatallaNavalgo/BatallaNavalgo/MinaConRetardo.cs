@@ -26,7 +26,7 @@ namespace BatallaNavalgo
         /* Actualizacion del retardo de la mina */
         public override void Actualizar()
         {
-            if (retardo <= 0) return;
+            if (this.estaExplotado) return;
 
             retardo -= 1;   // Actualizacion del retardo
 
@@ -35,10 +35,8 @@ namespace BatallaNavalgo
                 Explotar();
                 estaExplotado = true;
             }
-
         }
 
-       
         private void Explotar() 
         {
             List<Posicion> posicionesAImpactar = this.Posicion.GetPosicionesEnUnRadioDe(this.Radio);

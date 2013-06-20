@@ -123,7 +123,8 @@ namespace BatallaNavalgoTests
         public void testVerificarQueElJugadorNoPuedeRealizarUnDisparoConUnCostoIgualASuPuntajeDebidoAlCostoPorPaseDeTurno()
         {
             Jugador jugador = new Jugador();
-
+            
+            /* Necesita puntos para efectuar el disparo y para el paso del turno */
             Assert.False(jugador.TienePuntosParaJugar(Jugador.PUNTAJE_INICIAL_JUGADOR));
         }
     }

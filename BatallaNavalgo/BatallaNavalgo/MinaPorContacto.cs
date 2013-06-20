@@ -33,8 +33,6 @@ namespace BatallaNavalgo
 
         //-----------------------------------------------------------
         
-
-
         /* Dispara a cada una de las naves en la lista */
         private void DispararA(List<Nave> naves)
         {
