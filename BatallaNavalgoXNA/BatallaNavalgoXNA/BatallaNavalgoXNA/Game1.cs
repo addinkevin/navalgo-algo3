@@ -286,6 +286,7 @@ namespace BatallaNavalgoXNA
             }
         }       
 
+        /*Dibuja mina con retardo, distinto color segun su radio.*/
         public void DibujarMinaRetardo(SpriteBatch spriteBatch, MinaConRetardo mina)
         {     
             Posicion posicion = mina.Posicion;
@@ -298,6 +299,7 @@ namespace BatallaNavalgoXNA
 
         }
 
+        /*Dibuja mina por contacto*/
         public void DibujarMinaContacto(SpriteBatch spriteBatch, MinaPorContacto mina)
         {
             Posicion posicion = mina.Posicion;
@@ -307,8 +309,8 @@ namespace BatallaNavalgoXNA
             Texture2D imagenMina = imagenMinaContacto;
             spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
         }
-
-
+        
+        /*Obtiene textura de mina segun su radio.*/
         private Texture2D ObtenerImagenDeMinaConretardo(MinaConRetardo mina) 
         {
             int radio = mina.Radio;
