@@ -313,45 +313,67 @@ namespace BatallaNavalgoXNA
             IEnumerator<Armamento> recorredorDeArmamentos = juegoBatallaNavalgo.IteradorArmamentos();
             while (recorredorDeArmamentos.MoveNext())
             {
-                /*if (recorredorDeArmamentos.Current.GetType() != Type.GetType("DisparoComun"))                 
+                if (recorredorDeArmamentos.Current.GetType().ToString() == "BatallaNavalgo.MinaPorContacto") 
                 {
-                    Mina minaAuxiliar = (Mina) recorredorDeArmamentos.Current;
-                    DibujarUnaMina(spriteBatch, minaAuxiliar);
-                } */
-                   
+                    DibujarMinaContacto(spriteBatch, (MinaPorContacto)recorredorDeArmamentos.Current);                    
+                }
+                if (recorredorDeArmamentos.Current.GetType().ToString() == "BatallaNavalgo.MinaConRetardo") 
+                {
+                    DibujarMinaRetardo(spriteBatch, (MinaConRetardo)recorredorDeArmamentos.Current);
+                }               
             }
         }
 
-       
-        private void DibujarUnaMina(SpriteBatch spriteBatch, MinaConRetardo minaContacto) 
+        public void DibujarUnArmamento(SpriteBatch spriteBatch, Armamento armamento)
         {
-            //Posicion posicion = minaContacto.Posicion;
             Posicion posicion = new Posicion(8, 2);
             int fila = posicion.Fila;
             int columna = posicion.Columna;
-            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-            spriteBatch.Draw(imagenesMinaDoble.ElementAt<Texture2D>(1), posicionDeImagen, Color.White);
-        }
-        private void DibujarUnaMina(SpriteBatch spriteBatch, MinaPorContacto minaContacto) 
-        {
-            //Posicion posicion = minaContacto.Posicion;
-            Posicion posicion = new Posicion(8, 2);
-            int fila = posicion.Fila;
-            int columna = posicion.Columna;
-            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
+            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);            
             spriteBatch.Draw(imagenMinaContacto, posicionDeImagen, Color.White);
-            
         }
 
-        /* private void DibujarUnaMina(SpriteBatch spriteBatch, Mina minaContacto) {
-            //Posicion posicion = minaContacto.Posicion;
-            Posicion posicion = new Posicion(8, 2);
+        public void DibujarMinaRetardo(SpriteBatch spriteBatch, MinaConRetardo mina)
+        {     
+            Posicion posicion = mina.Posicion;
             int fila = posicion.Fila;
             int columna = posicion.Columna;
             Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-            spriteBatch.Draw(imagenMinaContacto, posicionDeImagen, Color.White);
-        }*/
-        
+            Texture2D imagenMina = ObtenerImagenDeMinaConretardo(mina);
 
+            spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
+
+        }
+
+        public void DibujarMinaContacto(SpriteBatch spriteBatch, MinaPorContacto mina)
+        {
+            Posicion posicion = mina.Posicion;
+            int fila = posicion.Fila;
+            int columna = posicion.Columna;
+            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
+            Texture2D imagenMina = imagenMinaContacto;
+            spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
+        }
+
+
+        private Texture2D ObtenerImagenDeMinaConretardo(MinaConRetardo mina) 
+        {
+            int radio = mina.Radio;
+            switch (radio) 
+            {
+                case 1:
+                    return imagenesMinaPuntual.ElementAt<Texture2D>(1);
+                    break;
+                case 2:
+                    return imagenesMinaDoble.ElementAt<Texture2D>(1);
+                    break;
+                case 3:
+                    return imagenesMinaTriple.ElementAt<Texture2D>(1);
+                    break;
+                default:
+                    return imagenesMinaPuntual.ElementAt<Texture2D>(1);
+                    break;
+            }
+        }
     }
 }
