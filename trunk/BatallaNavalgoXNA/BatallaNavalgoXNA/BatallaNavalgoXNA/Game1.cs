@@ -96,7 +96,6 @@ namespace BatallaNavalgoXNA
             imagenParteNaveRota = Content.Load<Texture2D>("Imagenes\\parteNaveRota");
         }
 
-
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
@@ -285,16 +284,7 @@ namespace BatallaNavalgoXNA
                     DibujarMinaRetardo(spriteBatch, (MinaConRetardo)recorredorDeArmamentos.Current);
                 }               
             }
-        }
-
-        public void DibujarUnArmamento(SpriteBatch spriteBatch, Armamento armamento)
-        {
-            Posicion posicion = new Posicion(8, 2);
-            int fila = posicion.Fila;
-            int columna = posicion.Columna;
-            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);            
-            spriteBatch.Draw(imagenMinaContacto, posicionDeImagen, Color.White);
-        }
+        }       
 
         public void DibujarMinaRetardo(SpriteBatch spriteBatch, MinaConRetardo mina)
         {     
