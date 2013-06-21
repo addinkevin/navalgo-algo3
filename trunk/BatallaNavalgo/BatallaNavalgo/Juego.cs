@@ -33,6 +33,11 @@ namespace BatallaNavalgo
             return tablero.DevolverIteradorNaves();
         }
 
+        public List<Armamento>.Enumerator IteradorArmamentos()
+        {
+            return tablero.DevolverIteradorArmamentos();
+        }
+
 
         public void AvanzarTurno()
         {

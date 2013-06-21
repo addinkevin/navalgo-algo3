@@ -12,7 +12,7 @@ namespace BatallaNavalgo
         private Tablero tablero;
         protected Boolean estaExplotado;
 
-        public abstract void Actualizar();
+        public abstract void Actualizar();       
 
         public Boolean Explotado         
         {

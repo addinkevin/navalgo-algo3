@@ -10,21 +10,21 @@ namespace BatallaNavalgoXNA
 {
     class MenuArmamentos
     {
-        public enum MenuDisparos {NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO};
+       public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO };
 
         private Vector2 posicionInicialEnPantalla;
         private int cantidadDeLineas;        
         private SpriteFont fuente;
         private const int SALTO_DE_LINEA = 40;
         private const int LADO_DE_BOTON = 24;
-        private MenuDisparos DisparoSeleccionado;
+        private ResultadoMenuDisparos DisparoSeleccionado;
         private Queue<CuadroDeSeleccion> botones;
 
 
         public MenuArmamentos(Vector2 posicionMenuEnPantalla)
         {   
-            posicionInicialEnPantalla = posicionMenuEnPantalla;  
-            DisparoSeleccionado = MenuDisparos.NINGUNO;
+            posicionInicialEnPantalla = posicionMenuEnPantalla;
+            DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
             botones = new Queue<CuadroDeSeleccion>();
         }
 
@@ -83,19 +83,26 @@ namespace BatallaNavalgoXNA
         }
 
         /*Actualiza permitiendo una sola seleccion (como un boton de radio)*/
-        public void ActualizarSeleccion(int fila, int columna)
+        public ResultadoMenuDisparos ActualizarSeleccion(int fila, int columna)
         {
             IEnumerator<CuadroDeSeleccion> c = botones.GetEnumerator();
+            ResultadoMenuDisparos disparoAnterior = DisparoSeleccionado;
+            DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
             while (c.MoveNext())
-            {                
+            {
+                DisparoSeleccionado++;
                 if (EstaDentroDeBoton(c.Current, fila, columna))
-                {
+                {                                                          
                     QuitarSelecciones();
-                    c.Current.Seleccionado=true;
-                    return;
+                    c.Current.Seleccionado=true;                    
+                    return DisparoSeleccionado;
                 }               
-            }            
-
+            }
+            //Si no corresponde a ninguno, es porque no se selecciono ningun boton, entonces vuelvo
+            //a la anterior, que era valida, pues no cambio.
+            DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;            
+            DisparoSeleccionado = disparoAnterior;
+            return disparoAnterior;            
         }
 
         /*Des-Selecciona todos los botones*/
@@ -119,6 +126,12 @@ namespace BatallaNavalgoXNA
                 } 
             }
             return false;
+        }
+
+
+         public ResultadoMenuDisparos DevolverSeleccion()         
+        {
+            return DisparoSeleccionado;
         }
                 
     }

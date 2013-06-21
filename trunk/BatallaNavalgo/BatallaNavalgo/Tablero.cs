@@ -25,6 +25,11 @@ namespace BatallaNavalgo
             return naves.GetEnumerator();            
         }
 
+        public List<Armamento>.Enumerator DevolverIteradorArmamentos()
+        {
+            return armamentos.GetEnumerator();
+        }
+
         //---------------------------------------------------------------------
         public static int Filas 
         {
