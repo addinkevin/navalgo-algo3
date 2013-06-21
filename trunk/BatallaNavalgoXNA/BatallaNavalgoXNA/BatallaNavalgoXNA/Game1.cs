@@ -23,9 +23,8 @@ namespace BatallaNavalgoXNA
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
-        List<Texture2D> imagenesMinaPuntual, imagenesMinaDoble, imagenesMinaTriple;
-        Texture2D imagenMinaContacto;
+        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;        
+        Texture2D imagenMinaPuntual, imagenMinaDoble, imagenMinaTriple, imagenMinaContacto;
         Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
@@ -78,50 +77,14 @@ namespace BatallaNavalgoXNA
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
             ImagenBotonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
             imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
-            imagenesMinaPuntual = new List<Texture2D>();
-            imagenesMinaDoble = new List<Texture2D>();
-            imagenesMinaTriple = new List<Texture2D>();
-            CargarImagenesMinaPuntual(imagenesMinaPuntual);
-            CargarImagenesMinaDoble(imagenesMinaDoble);
-            CargarImagenesMinaTriple(imagenesMinaTriple);
+            imagenMinaPuntual = Content.Load<Texture2D>("Imagenes\\minaPuntual");
+            imagenMinaDoble = Content.Load<Texture2D>("Imagenes\\minaDoble");
+            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");
             CargarPartesDeNaves();            
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
             AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);
             
-        }
-
-        /*Carga sprites mina puntual en la lista*/
-        private void CargarImagenesMinaPuntual(List<Texture2D> imagenesMinaPuntual) 
-        {
-            for (int i = 1; i <= 3; i++) 
-            {
-                Texture2D imagenAuxiliar;
-                imagenAuxiliar = Content.Load<Texture2D>("Imagenes\\minaPuntual" + i.ToString());
-                imagenesMinaPuntual.Add(imagenAuxiliar);            
-            }
-        }
-
-        /*Carga sprites mina doble en la lista*/
-        private void CargarImagenesMinaDoble(List<Texture2D> imagenesMinaDoble)
-        {
-            for (int i = 1; i <= 3; i++)
-            {
-                Texture2D imagenAuxiliar;
-                imagenAuxiliar = Content.Load<Texture2D>("Imagenes\\minaDoble" + i.ToString());
-                imagenesMinaDoble.Add(imagenAuxiliar);
-            }
-        }
-
-        /*Carga sprites mina triple en la lista*/
-        private void CargarImagenesMinaTriple(List<Texture2D> imagenesMinaTriple)
-        {
-            for (int i = 1; i <= 3; i++)
-            {
-                Texture2D imagenAuxiliar;
-                imagenAuxiliar = Content.Load<Texture2D>("Imagenes\\minaTriple" + i.ToString());
-                imagenesMinaTriple.Add(imagenAuxiliar);
-            }
-        }
+        }        
 
         /*Carga partes de naves de distintos colores.*/
         private void CargarPartesDeNaves() 
@@ -361,17 +324,17 @@ namespace BatallaNavalgoXNA
             int radio = mina.Radio;
             switch (radio) 
             {
+                case 0:
+                    return imagenMinaPuntual;
+                    break;
                 case 1:
-                    return imagenesMinaPuntual.ElementAt<Texture2D>(1);
+                    return imagenMinaDoble;
                     break;
                 case 2:
-                    return imagenesMinaDoble.ElementAt<Texture2D>(1);
-                    break;
-                case 3:
-                    return imagenesMinaTriple.ElementAt<Texture2D>(1);
+                    return imagenMinaTriple;
                     break;
                 default:
-                    return imagenesMinaPuntual.ElementAt<Texture2D>(1);
+                    return imagenMinaPuntual;
                     break;
             }
         }
