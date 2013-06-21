@@ -80,6 +80,6 @@ namespace BatallaNavalgoXNA
 
             return posicionEnPantalla;
             
-        }
+        }       
     }
 }

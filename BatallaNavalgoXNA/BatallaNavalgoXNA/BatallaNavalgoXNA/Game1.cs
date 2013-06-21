@@ -12,16 +12,20 @@ using BatallaNavalgo;
 
 namespace BatallaNavalgoXNA
 {
+
     /// <summary>
     /// This is the main type for your game
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
-    {        
+    {
+        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO };
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;        
+        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
+        List<Texture2D> imagenesMinaPuntual, imagenesMinaDoble, imagenesMinaTriple;
+        Texture2D imagenMinaContacto;
         Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
@@ -73,10 +77,50 @@ namespace BatallaNavalgoXNA
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
             ImagenBotonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
+            imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
+            imagenesMinaPuntual = new List<Texture2D>();
+            imagenesMinaDoble = new List<Texture2D>();
+            imagenesMinaTriple = new List<Texture2D>();
+            CargarImagenesMinaPuntual(imagenesMinaPuntual);
+            CargarImagenesMinaDoble(imagenesMinaDoble);
+            CargarImagenesMinaTriple(imagenesMinaTriple);
             CargarPartesDeNaves();            
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
             AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);
             
+        }
+
+        /*Carga sprites mina puntual en la lista*/
+        private void CargarImagenesMinaPuntual(List<Texture2D> imagenesMinaPuntual) 
+        {
+            for (int i = 1; i <= 3; i++) 
+            {
+                Texture2D imagenAuxiliar;
+                imagenAuxiliar = Content.Load<Texture2D>("Imagenes\\minaPuntual" + i.ToString());
+                imagenesMinaPuntual.Add(imagenAuxiliar);            
+            }
+        }
+
+        /*Carga sprites mina doble en la lista*/
+        private void CargarImagenesMinaDoble(List<Texture2D> imagenesMinaDoble)
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                Texture2D imagenAuxiliar;
+                imagenAuxiliar = Content.Load<Texture2D>("Imagenes\\minaDoble" + i.ToString());
+                imagenesMinaDoble.Add(imagenAuxiliar);
+            }
+        }
+
+        /*Carga sprites mina triple en la lista*/
+        private void CargarImagenesMinaTriple(List<Texture2D> imagenesMinaTriple)
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                Texture2D imagenAuxiliar;
+                imagenAuxiliar = Content.Load<Texture2D>("Imagenes\\minaTriple" + i.ToString());
+                imagenesMinaTriple.Add(imagenAuxiliar);
+            }
         }
 
         /*Carga partes de naves de distintos colores.*/
@@ -115,20 +159,27 @@ namespace BatallaNavalgoXNA
             int filaDeImpacto = estadoActualDelMouse.Y;
             int columnaDeImpacto = estadoActualDelMouse.X;
 
-            /*Puedo elegir posicion manteniendo apretado el boton izquierdo*/
-            if (estadoActualDelMouse.LeftButton == ButtonState.Pressed) 
-            {posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);}
-
-            
+            /*Si se clickea.*/            
             if ((estadoActualDelMouse.LeftButton == ButtonState.Pressed) && (estadoAnteriorDelMouse.LeftButton == ButtonState.Released))
             {
-                menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);                
+
+                ResultadoMenuDisparos seleccionActual =(ResultadoMenuDisparos) menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);
                 if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto))
                 {
+                    IngresarArmamentoDesdeMenu(posicionDeImpactoEnElTablero, seleccionActual);
                     juegoBatallaNavalgo.AvanzarTurno();
-                    //Actualizar;
+                    //Actualizar;                    
                 } 
             }
+
+            /*Puedo elegir posicion manteniendo apretado el boton izquierdo
+            Va despues del metodo anterior para no romper la seleccion de casillero en el tablero */
+            if (estadoActualDelMouse.LeftButton == ButtonState.Pressed)
+            {
+                posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
+            }
+            
+
             estadoAnteriorDelMouse = estadoActualDelMouse;
             base.Update(gameTime);
         }
@@ -155,18 +206,19 @@ namespace BatallaNavalgoXNA
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
             DibujarNaves(spriteBatch);
+            DibujarMinas(spriteBatch);
 
             spriteBatch.End();
 
             base.Draw(gameTime);
         }
 
+
         public void DibujarNaves(SpriteBatch spriteBatch)
         {
             IEnumerator<Nave> recorredorDeNaves = juegoBatallaNavalgo.IteradorNaves();
             while (recorredorDeNaves.MoveNext())
             {
-
                 DibujarUnaNave(spriteBatch, recorredorDeNaves.Current);
             }
         }
@@ -226,8 +278,79 @@ namespace BatallaNavalgoXNA
                 int columna = posicion.Columna;
                 Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
                 spriteBatch.Draw(imagenParteNaveMarron, posicionDeImagen, Color.White);                
-            }              
+            } 
         }
+
+        public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
+        {
+            //String caca = seleccion.ToString() + "estoyreduro";
+            //throw new DivideByZeroException(caca);
+            switch (seleccion)             
+            {
+                case ResultadoMenuDisparos.NINGUNO:
+                    break;
+                case ResultadoMenuDisparos.DISPARO_COMUN:
+                    juegoBatallaNavalgo.EfectuarDisparoComun(posicion);
+                    break;
+                case ResultadoMenuDisparos.MINA_PUNTUAL:
+                    juegoBatallaNavalgo.ColocarMinaPuntual(posicion);
+                    break;
+                case ResultadoMenuDisparos.MINA_DOBLE:
+                    juegoBatallaNavalgo.ColocarMinaDoble(posicion);
+                    break;
+                case ResultadoMenuDisparos.MINA_TRIPLE:
+                    juegoBatallaNavalgo.ColocarMinaTriple(posicion);
+                    break;
+                case ResultadoMenuDisparos.MINA_POR_CONTACTO:
+                    juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
+                    break;            
+            }
+        }
+
+        /*Dibuja las minas en el tablero*/
+        public void DibujarMinas(SpriteBatch spriteBatch)
+        {
+            IEnumerator<Armamento> recorredorDeArmamentos = juegoBatallaNavalgo.IteradorArmamentos();
+            while (recorredorDeArmamentos.MoveNext())
+            {
+                /*if (recorredorDeArmamentos.Current.GetType() != Type.GetType("DisparoComun"))                 
+                {
+                    Mina minaAuxiliar = (Mina) recorredorDeArmamentos.Current;
+                    DibujarUnaMina(spriteBatch, minaAuxiliar);
+                } */
+                   
+            }
+        }
+
+       
+        private void DibujarUnaMina(SpriteBatch spriteBatch, MinaConRetardo minaContacto) 
+        {
+            //Posicion posicion = minaContacto.Posicion;
+            Posicion posicion = new Posicion(8, 2);
+            int fila = posicion.Fila;
+            int columna = posicion.Columna;
+            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
+            spriteBatch.Draw(imagenesMinaDoble.ElementAt<Texture2D>(1), posicionDeImagen, Color.White);
+        }
+        private void DibujarUnaMina(SpriteBatch spriteBatch, MinaPorContacto minaContacto) 
+        {
+            //Posicion posicion = minaContacto.Posicion;
+            Posicion posicion = new Posicion(8, 2);
+            int fila = posicion.Fila;
+            int columna = posicion.Columna;
+            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
+            spriteBatch.Draw(imagenMinaContacto, posicionDeImagen, Color.White);
+            
+        }
+
+        /* private void DibujarUnaMina(SpriteBatch spriteBatch, Mina minaContacto) {
+            //Posicion posicion = minaContacto.Posicion;
+            Posicion posicion = new Posicion(8, 2);
+            int fila = posicion.Fila;
+            int columna = posicion.Columna;
+            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
+            spriteBatch.Draw(imagenMinaContacto, posicionDeImagen, Color.White);
+        }*/
         
 
     }
