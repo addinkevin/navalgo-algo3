@@ -116,48 +116,20 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Imagenes\minaDoble1.png">
-      <Name>minaDoble1</Name>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Imagenes\minaDoble.png">
+      <Name>minaDoble</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Imagenes\minaDoble2.png">
-      <Name>minaDoble2</Name>
+    <Compile Include="Imagenes\minaPuntual.png">
+      <Name>minaPuntual</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Imagenes\minaDoble3.png">
-      <Name>minaDoble3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Imagenes\minaPuntual1.png">
-      <Name>minaPuntual1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Imagenes\minaPuntual2.png">
-      <Name>minaPuntual2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Imagenes\minaPuntual3.png">
-      <Name>minaPuntual3</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Imagenes\minaTriple1.png">
-      <Name>minaTriple1</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Imagenes\minaTriple2.png">
-      <Name>minaTriple2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-    <Compile Include="Imagenes\minaTriple3.png">
-      <Name>minaTriple3</Name>
+    <Compile Include="Imagenes\minaTriple.png">
+      <Name>minaTriple</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
