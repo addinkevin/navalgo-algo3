@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
@@ -49,6 +50,9 @@ namespace BatallaNavalgo
 
         public void Impactar(Armamento arma) 
         {
+            if (!arma.Posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO))
+                throw new ArmamentoFueraDelTableroException();
+
             armamentos.Add(arma);
         }
 
