@@ -59,7 +59,9 @@ namespace BatallaNavalgoXNA
 
             while (recorredorDeNaves.MoveNext())
             {
-                DibujarUnaNave(spriteBatch, recorredorDeNaves.Current);
+                /*Se dibuja si no esta destruida*/
+                if (!recorredorDeNaves.Current.EstaDestruida())
+                    DibujarUnaNave(spriteBatch, recorredorDeNaves.Current);
             }
         }
 
