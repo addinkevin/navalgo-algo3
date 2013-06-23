@@ -8,7 +8,9 @@ namespace BatallaNavalgo
     public class Jugador
     {
         public static int PUNTAJE_INICIAL_JUGADOR = 10000;
-        public static int PUNTAJE_DESCONTADO_POR_TURNO = 10;
+//        public static int PUNTAJE_DESCONTADO_POR_TURNO = 10;
+        public static int PUNTAJE_DESCONTADO_POR_TURNO = 1000;
+        private Boolean jugando;
 
         private int puntos;
 
@@ -18,6 +20,7 @@ namespace BatallaNavalgo
         public Jugador()
         {
             this.puntos = PUNTAJE_INICIAL_JUGADOR;
+            jugando = true;
         }
 		
         //Metodos de la clase Jugador
@@ -30,16 +33,20 @@ namespace BatallaNavalgo
         public void DescontarPuntosPorPasoDeTurno()
         {
             if (puntos < PUNTAJE_DESCONTADO_POR_TURNO)
+            {
+                jugando = false;
                 throw new BatallaNavalgoExcepciones.JugadorPuntajeInsuficienteException();
+            }                
 
             puntos -= PUNTAJE_DESCONTADO_POR_TURNO;
         }
 
         public void DescontarPuntosPorDisparar(Armamento armamento)
         {
-            if (this.puntos < armamento.Costo)
+            if (this.puntos < armamento.Costo) {
+                jugando = false;
                 throw new BatallaNavalgoExcepciones.JugadorPuntajeInsuficienteException();
-
+            }
             puntos -= (armamento.Costo);
         }
 
@@ -48,6 +55,12 @@ namespace BatallaNavalgo
         public bool TienePuntosParaJugar(int costoDeDisparo)
         {
             return (this.puntos >= costoDeDisparo + Jugador.PUNTAJE_DESCONTADO_POR_TURNO);
+        }
+
+        public Boolean Jugando 
+        {
+            get { return this.jugando;}
+            set { jugando = value; }
         }
     }
 }
