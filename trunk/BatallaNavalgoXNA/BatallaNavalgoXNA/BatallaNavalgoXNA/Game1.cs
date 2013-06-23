@@ -12,7 +12,6 @@ using BatallaNavalgo;
 
 namespace BatallaNavalgoXNA
 {
-
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -23,9 +22,9 @@ namespace BatallaNavalgoXNA
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
-        Texture2D pantallaGameOver;
+        Texture2D ImagenBotonAvanzarTurno, pantallaGameOver;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
-        Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;        
+        Texture2D imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
         Texture2D imagenMinaPuntual, imagenMinaDoble, imagenMinaTriple, imagenMinaContacto;
         Boton AvanzarTurnoButton;
         SpriteFont fuenteBatallaNavalgo;
@@ -34,6 +33,7 @@ namespace BatallaNavalgoXNA
         ControladorMouse controladorMouse;
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
+        DibujadorDeNaves dibujadorDeNaves;
 
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
 
@@ -59,7 +59,7 @@ namespace BatallaNavalgoXNA
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
-            AvanzarTurnoButton = new Boton(new Vector2(50,375));
+            AvanzarTurnoButton = new Boton(new Vector2(50,375));            
             gameOver = false;
 
             base.Initialize();
@@ -83,22 +83,29 @@ namespace BatallaNavalgoXNA
             imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
             imagenMinaPuntual = Content.Load<Texture2D>("Imagenes\\minaPuntual");
             imagenMinaDoble = Content.Load<Texture2D>("Imagenes\\minaDoble");
-            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");
-            CargarPartesDeNaves();            
+            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");            
+            
+            CargarPartesDeNaves();
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
             AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);
             
-        }        
-
-        /*Carga partes de naves de distintos colores.*/
-        private void CargarPartesDeNaves() 
-        {
-            imagenParteNaveGris = Content.Load<Texture2D>("Imagenes\\parteNaveGris");
-            imagenParteNaveRoja = Content.Load<Texture2D>("Imagenes\\parteNaveRoja");
-            imagenParteNaveVerde = Content.Load<Texture2D>("Imagenes\\parteNaveVerde");
-            imagenParteNaveMarron = Content.Load<Texture2D>("Imagenes\\parteNaveMarron");
-            imagenParteNaveRota = Content.Load<Texture2D>("Imagenes\\parteNaveRota");
         }
+
+        /*Carga partes de naves de distintos colores, dejndo al Dibujador en un estado valido.*/
+        private void CargarPartesDeNaves()
+        {
+            dibujadorDeNaves = new DibujadorDeNaves(spriteBatch, vistaTablero);
+            imagenParteNaveGris = Content.Load<Texture2D>("Imagenes\\parteNaveGris");
+            dibujadorDeNaves.ParteGris = imagenParteNaveGris;
+            imagenParteNaveRoja = Content.Load<Texture2D>("Imagenes\\parteNaveRoja");
+            dibujadorDeNaves.ParteRoja = imagenParteNaveRoja;
+            imagenParteNaveVerde = Content.Load<Texture2D>("Imagenes\\parteNaveVerde");
+            dibujadorDeNaves.ParteVerde = imagenParteNaveVerde;
+            imagenParteNaveMarron = Content.Load<Texture2D>("Imagenes\\parteNaveMarron");
+            dibujadorDeNaves.ParteMarron = imagenParteNaveMarron;
+            imagenParteNaveRota = Content.Load<Texture2D>("Imagenes\\parteNaveRota");
+            dibujadorDeNaves.ParteRota = imagenParteNaveRota;
+        }               
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -180,7 +187,7 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
-            DibujarNaves(spriteBatch);
+            dibujadorDeNaves.DibujarNaves(spriteBatch, juegoBatallaNavalgo.IteradorNaves());                        
             DibujarMinas(spriteBatch);
 
             //Si termina el juego, dibuja una pantalla que lo indique.
@@ -192,71 +199,7 @@ namespace BatallaNavalgoXNA
             base.Draw(gameTime);
         }
 
-        public void DibujarNaves(SpriteBatch spriteBatch)
-        {
-            IEnumerator<Nave> recorredorDeNaves = juegoBatallaNavalgo.IteradorNaves();
-            while (recorredorDeNaves.MoveNext())
-            {
-                DibujarUnaNave(spriteBatch, recorredorDeNaves.Current);
-            }
-        }
-
-        /*Dibuja Nave generica*/
-        public void DibujarUnaNave(SpriteBatch spriteBatch, Nave nave) 
-        {
-            if (nave.ObtenerResistenciaGeneral() == 2) 
-            {
-                DibujarUnRompeHielos(spriteBatch, nave);
-                return;
-            }
-            List<Posicion> posiciones = nave.GetPosiciones();
-            foreach (Posicion posicion in posiciones) 
-            {
-                int fila = posicion.Fila;
-                int columna = posicion.Columna;
-                Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveGris, posicionDeImagen, Color.White);               
-            }
-        }
-
-        /*Dibuja Destructor*/
-        public void DibujarUnaNave(SpriteBatch spriteBatch, Destructor nave) 
-        {
-            List<Posicion> posiciones = nave.GetPosiciones();
-            foreach (Posicion posicion in posiciones)
-            {
-                int fila = posicion.Fila;
-                int columna = posicion.Columna;
-                Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveRoja, posicionDeImagen, Color.White);                
-            }
-        }
-
-        /*Dibuja Buque*/
-        public void DibujarUnaNave(SpriteBatch spriteBatch, Buque nave) 
-        {
-            List<Posicion> posiciones = nave.GetPosiciones();
-            foreach (Posicion posicion in posiciones)
-            {
-                int fila = posicion.Fila;
-                int columna = posicion.Columna;
-                Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveVerde, posicionDeImagen, Color.White);                
-            }            
-        }
-
-        /*Dibuja Rompehielos*/
-        public void DibujarUnRompeHielos(SpriteBatch spriteBatch, Nave nave)
-        {
-            List<Posicion> posiciones = nave.GetPosiciones();
-            foreach (Posicion posicion in posiciones)
-            {
-                int fila = posicion.Fila;
-                int columna = posicion.Columna;
-                Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveMarron, posicionDeImagen, Color.White);                
-            } 
-        }
+        
 
         /*Intenta ingresar el armamento seleccionado en el menu visual.*/
         public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
