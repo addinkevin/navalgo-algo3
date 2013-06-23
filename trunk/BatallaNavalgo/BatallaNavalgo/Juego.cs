@@ -6,10 +6,11 @@ using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
-    public class Juego
+    public class Juego : Observable
     {
         private Jugador jugador;
         private Tablero tablero;
+        private List<Observador> observadores;
 
         /* Constructor
          * jugador: sera el jugador que este jugando BatallaNavalgo.
@@ -17,6 +18,7 @@ namespace BatallaNavalgo
          */
         public Juego()
         {
+            this.observadores = new List<Observador>();
             this.tablero = new Tablero();
 
             /*Agregado de Naves al Tablero con: 
@@ -26,6 +28,54 @@ namespace BatallaNavalgo
             AgregarNavesAlTablero(tablero);
             this.jugador = new Jugador();
         }
+
+        public void AddObservador(Observador observador)
+        {
+            observadores.Add(observador);
+        }
+        public void NotificarObservadores()
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.Update();
+            }
+        }
+        public void NotificarObservadoresDeCreacionDeLancha(Nave nave)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDeLancha(nave);
+            }
+        }
+        public void NotificarObservadoresDeCreacionDeDestructor(Nave nave)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDeDestructor(nave);
+            }
+        }
+        public void NotificarObservadoresDeCreacionDePortaAviones(Nave nave)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDePortaAviones(nave);
+            }
+        }
+        public void NotificarObservadoresDeCreacionDeRompeHielo(Nave nave)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDeRompeHielo(nave);
+            }
+        }
+        public void NotificarObservadoresDeCreacionDeBuque(Nave nave)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDeBuque(nave);
+            }
+        }
+
         //---------------------------------------------------------------------
 
         public List<Nave>.Enumerator IteradorNaves() 
@@ -43,26 +93,40 @@ namespace BatallaNavalgo
         {
             jugador.DescontarPuntosPorPasoDeTurno();
             tablero.Actualizar();
+            NotificarObservadores();
         }
         //---------------------------------------------------------------------
 
        
         private void AgregarNavesAlTablero(Tablero tablero)
         {
+            Nave lancha = NaveFactory.CrearLancha();
+            NotificarObservadoresDeCreacionDeLancha(lancha);
+            tablero.AgregarNave(lancha);
 
-            tablero.AgregarNave(NaveFactory.CrearLancha());
+            Nave lancha2 = NaveFactory.CrearLancha();
+            NotificarObservadoresDeCreacionDeLancha(lancha);
+            tablero.AgregarNave(lancha2);
 
-            tablero.AgregarNave(NaveFactory.CrearLancha());
+            Nave destructor = NaveFactory.CrearDestructor();
+            NotificarObservadoresDeCreacionDeDestructor(destructor);
+            tablero.AgregarNave(destructor);
             
-            tablero.AgregarNave(NaveFactory.CrearDestructor());
-            
-            tablero.AgregarNave(NaveFactory.CrearDestructor());
-            
-            tablero.AgregarNave(NaveFactory.CrearRompeHielos());
-            
-            tablero.AgregarNave(NaveFactory.CrearBuque());
-            
-            tablero.AgregarNave(NaveFactory.CrearPortaAviones());
+            Nave destructor2 = NaveFactory.CrearDestructor();
+            NotificarObservadoresDeCreacionDeDestructor(destructor2);
+            tablero.AgregarNave(destructor2);
+
+            Nave rompeHielos = NaveFactory.CrearRompeHielos();
+            NotificarObservadoresDeCreacionDeRompeHielo(rompeHielos);
+            tablero.AgregarNave(rompeHielos);
+
+            Nave buque = NaveFactory.CrearBuque();
+            NotificarObservadoresDeCreacionDeBuque(buque);
+            tablero.AgregarNave(buque);
+
+            Nave portaAviones = NaveFactory.CrearPortaAviones();
+            NotificarObservadoresDeCreacionDePortaAviones(portaAviones);
+            tablero.AgregarNave(portaAviones);
         }
         //---------------------------------------------------------------------
 

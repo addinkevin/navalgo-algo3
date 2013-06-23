@@ -16,6 +16,7 @@ namespace BatallaNavalgo
         public static Direccion Suroeste = new Direccion(1, -1);
         public static Direccion Sureste = new Direccion(1, 1);
 
+
         public static Direccion[] DireccionesDisponibles =
         {
             Norte, Sur, Este, Oeste, Noroeste, Noreste, Suroeste, Sureste
