@@ -12,9 +12,7 @@ using BatallaNavalgo;
 
 namespace BatallaNavalgoXNA
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
+    /*Clase pricipal del juego.*/
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO };
@@ -34,7 +32,6 @@ namespace BatallaNavalgoXNA
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
         DibujadorDeNaves dibujadorDeNaves;
-
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
 
         public Game1()
@@ -45,12 +42,7 @@ namespace BatallaNavalgoXNA
             this.IsMouseVisible = true;            
         }
 
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
+        /*Inicializa lo necesario para poder correr el juego.*/
         protected override void Initialize()
         {
             posicionFondoDePantalla = new Vector2(0, -700);
@@ -61,14 +53,10 @@ namespace BatallaNavalgoXNA
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
             AvanzarTurnoButton = new Boton(new Vector2(50,375));            
             gameOver = false;
-
             base.Initialize();
         }
 
-        /// <summary>
-        /// LoadContent will be called once per game and is the place to load
-        /// all of your content.
-        /// </summary>
+        /*Carga contenido desde archivos, se llama una unica vez.*/
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -83,12 +71,10 @@ namespace BatallaNavalgoXNA
             imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
             imagenMinaPuntual = Content.Load<Texture2D>("Imagenes\\minaPuntual");
             imagenMinaDoble = Content.Load<Texture2D>("Imagenes\\minaDoble");
-            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");            
-            
+            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");                        
             CargarPartesDeNaves();
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
-            AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);
-            
+            AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);            
         }
 
         /*Carga partes de naves de distintos colores, dejndo al Dibujador en un estado valido.*/
@@ -107,27 +93,20 @@ namespace BatallaNavalgoXNA
             dibujadorDeNaves.ParteRota = imagenParteNaveRota;
         }               
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// all content.
-        /// </summary>
+        /*Elimina contenido cargado*/
         protected override void UnloadContent()
-        {
-            // TODO: Unload any non ContentManager content here
+        {  
+            Content.Unload();
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /*Actualiza Comportamiento.*/
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
+            /*Permite salir del juego.*/
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();            
             
-            // Get the mouse state relevant for this frame
+            /*Obtiene estado del mouse.*/
             estadoActualDelMouse = Mouse.GetState();
             int filaDeImpacto = estadoActualDelMouse.Y;
             int columnaDeImpacto = estadoActualDelMouse.X;
@@ -135,7 +114,6 @@ namespace BatallaNavalgoXNA
             /*Si se clickea.*/            
             if ((estadoActualDelMouse.LeftButton == ButtonState.Pressed) && (estadoAnteriorDelMouse.LeftButton == ButtonState.Released))
             {
-
                 ResultadoMenuDisparos seleccionActual =(ResultadoMenuDisparos) menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);
                 if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto))
                 {
@@ -167,10 +145,7 @@ namespace BatallaNavalgoXNA
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+       /*Se dibuja la Vista en pantalla.*/
         protected override void Draw(GameTime gameTime)
         {            
             GraphicsDevice.Clear(Color.CornflowerBlue);            
@@ -198,9 +173,7 @@ namespace BatallaNavalgoXNA
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
         
-
         /*Intenta ingresar el armamento seleccionado en el menu visual.*/
         public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
         {
@@ -264,7 +237,6 @@ namespace BatallaNavalgoXNA
             int columna = posicion.Columna;
             Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
             Texture2D imagenMina = ObtenerImagenDeMinaConretardo(mina);
-
             spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
         }
 
