@@ -226,12 +226,16 @@ namespace BatallaNavalgoXNA
             }
             catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
             {
-                gameOver = true;                
+                gameOver = true;
             }
-            catch (Exception e) 
+            catch (BatallaNavalgoExcepciones.ArmamentoFueraDelTableroException e)
             {
-            /*ver tratamiento error general, posible grabado de error en
-              archivo, etc.*/
+                //TRATAR MINA FUERA DEL TABLERO
+            }
+            catch (Exception e)
+            {
+                /*ver tratamiento error general, posible grabado de error en
+                  archivo, etc.*/
                 gameOver = true;
             }
         }
