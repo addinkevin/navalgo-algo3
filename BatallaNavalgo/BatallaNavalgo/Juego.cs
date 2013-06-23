@@ -207,5 +207,13 @@ namespace BatallaNavalgo
         {
             Console.WriteLine("Hello world!");
         }
+
+        public Boolean Ganado()
+        {
+            if (tablero.TieneNavesConVida())
+                return false;
+            else
+                return true;
+        }
     }
 }
