@@ -19,9 +19,11 @@ namespace BatallaNavalgoXNA
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO };
+        private Boolean gameOver;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
+        Texture2D pantallaGameOver;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
         Texture2D ImagenBotonAvanzarTurno, imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;        
         Texture2D imagenMinaPuntual, imagenMinaDoble, imagenMinaTriple, imagenMinaContacto;
@@ -57,7 +59,8 @@ namespace BatallaNavalgoXNA
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
-            AvanzarTurnoButton = new Boton(new Vector2(50,375));            
+            AvanzarTurnoButton = new Boton(new Vector2(50,375));
+            gameOver = false;
 
             base.Initialize();
         }
@@ -70,6 +73,7 @@ namespace BatallaNavalgoXNA
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            pantallaGameOver = Content.Load<Texture2D>("Imagenes\\GameOver"); 
             fondoDePantalla = Content.Load<Texture2D>("Imagenes\\fondoAgua");
             fuenteBatallaNavalgo = Content.Load<SpriteFont>("Fuente\\fuente");
             bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
@@ -129,8 +133,19 @@ namespace BatallaNavalgoXNA
                 if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto))
                 {
                     IngresarArmamentoDesdeMenu(posicionDeImpactoEnElTablero, seleccionActual);
-                    juegoBatallaNavalgo.AvanzarTurno();
-                    //Actualizar;                    
+                    /*Si hay un error al avanzar el turno, ignora la 
+                     actualizacion y congela las naves pero no la seleccion
+                     de minas, posicion de talbero, etc. para no dar una 
+                     sensacion de "congelamiento" */
+                    try
+                    {
+                        //Actualizar.
+                        juegoBatallaNavalgo.AvanzarTurno();
+                    }
+                    catch (Exception e) 
+                    {
+                        gameOver = true;
+                    }                                        
                 } 
             }
 
@@ -139,8 +154,7 @@ namespace BatallaNavalgoXNA
             if (estadoActualDelMouse.LeftButton == ButtonState.Pressed)
             {
                 posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
-            }
-            
+            }            
 
             estadoAnteriorDelMouse = estadoActualDelMouse;
             base.Update(gameTime);
@@ -151,10 +165,9 @@ namespace BatallaNavalgoXNA
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-        {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            
-            spriteBatch.Begin();
+        {            
+            GraphicsDevice.Clear(Color.CornflowerBlue);            
+            spriteBatch.Begin();            
 
             spriteBatch.Draw(fondoDePantalla, posicionFondoDePantalla, Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Batalla Navalgo", new Vector2(300, 0), Color.White);
@@ -170,11 +183,14 @@ namespace BatallaNavalgoXNA
             DibujarNaves(spriteBatch);
             DibujarMinas(spriteBatch);
 
+            //Si termina el juego, dibuja una pantalla que lo indique.
+            if (gameOver)
+            {                
+                DibujarPantallaGameOver(spriteBatch);
+            }
             spriteBatch.End();
-
             base.Draw(gameTime);
         }
-
 
         public void DibujarNaves(SpriteBatch spriteBatch)
         {
@@ -184,7 +200,6 @@ namespace BatallaNavalgoXNA
                 DibujarUnaNave(spriteBatch, recorredorDeNaves.Current);
             }
         }
-
 
         /*Dibuja Nave generica*/
         public void DibujarUnaNave(SpriteBatch spriteBatch, Nave nave) 
@@ -243,28 +258,41 @@ namespace BatallaNavalgoXNA
             } 
         }
 
+        /*Intenta ingresar el armamento seleccionado en el menu visual.*/
         public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
         {
-                        
-            switch (seleccion)             
+            try
             {
-                case ResultadoMenuDisparos.NINGUNO:
-                    break;
-                case ResultadoMenuDisparos.DISPARO_COMUN:
-                    juegoBatallaNavalgo.EfectuarDisparoComun(posicion);
-                    break;
-                case ResultadoMenuDisparos.MINA_PUNTUAL:
-                    juegoBatallaNavalgo.ColocarMinaPuntual(posicion);
-                    break;
-                case ResultadoMenuDisparos.MINA_DOBLE:
-                    juegoBatallaNavalgo.ColocarMinaDoble(posicion);
-                    break;
-                case ResultadoMenuDisparos.MINA_TRIPLE:
-                    juegoBatallaNavalgo.ColocarMinaTriple(posicion);
-                    break;
-                case ResultadoMenuDisparos.MINA_POR_CONTACTO:
-                    juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
-                    break;            
+                switch (seleccion)
+                {
+                    case ResultadoMenuDisparos.NINGUNO:
+                        break;
+                    case ResultadoMenuDisparos.DISPARO_COMUN:
+                        juegoBatallaNavalgo.EfectuarDisparoComun(posicion);
+                        break;
+                    case ResultadoMenuDisparos.MINA_PUNTUAL:
+                        juegoBatallaNavalgo.ColocarMinaPuntual(posicion);
+                        break;
+                    case ResultadoMenuDisparos.MINA_DOBLE:
+                        juegoBatallaNavalgo.ColocarMinaDoble(posicion);
+                        break;
+                    case ResultadoMenuDisparos.MINA_TRIPLE:
+                        juegoBatallaNavalgo.ColocarMinaTriple(posicion);
+                        break;
+                    case ResultadoMenuDisparos.MINA_POR_CONTACTO:
+                        juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
+                        break;
+                }
+            }
+            catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
+            {
+                gameOver = true;                
+            }
+            catch (Exception e) 
+            {
+            /*ver tratamiento error general, posible grabado de error en
+              archivo, etc.*/
+                gameOver = true;
             }
         }
 
@@ -295,7 +323,6 @@ namespace BatallaNavalgoXNA
             Texture2D imagenMina = ObtenerImagenDeMinaConretardo(mina);
 
             spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
-
         }
 
         /*Dibuja mina por contacto*/
@@ -328,6 +355,13 @@ namespace BatallaNavalgoXNA
                     return imagenMinaPuntual;
                     break;
             }
+        }
+        
+        /*Pantalla de fin de juego.*/
+        private void DibujarPantallaGameOver(SpriteBatch spriteBatch)
+        {
+            Vector2 posicionGameOver = new Vector2(200, 200);
+            spriteBatch.Draw(pantallaGameOver, posicionGameOver, Color.White);
         }
     }
 }
