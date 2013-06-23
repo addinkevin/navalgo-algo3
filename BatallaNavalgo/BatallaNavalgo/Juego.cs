@@ -9,14 +9,14 @@ namespace BatallaNavalgo
     public class Juego
     {
         private Jugador jugador;
-        private Tablero tablero;        
+        private Tablero tablero;
 
         /* Constructor
          * jugador: sera el jugador que este jugando BatallaNavalgo.
          * tablero: sera el tablero asociado al juego.
          */
         public Juego()
-        {            
+        {
             this.tablero = new Tablero();
 
             /*Agregado de Naves al Tablero con: 
@@ -119,14 +119,10 @@ namespace BatallaNavalgo
         private void VerificarPosibilidadDeDisparo(Armamento armamento)
         {
             if (EstaTerminado())
-                jugador.Jugando = false;
-           /* if (EstaTerminado())
-
                 throw new JuegoTerminadoException();
 
             if (!jugador.TienePuntosParaJugar(armamento.Costo))
                 throw new JuegoJugadorSinPuntajeParaDisparoException();
-            * */
         }
 
         private int CostoMinimoDeDisparo()
@@ -145,13 +141,7 @@ namespace BatallaNavalgo
 
         public static void Main(string[] args)
         {
-            //Console.WriteLine("Hello world!");
+            Console.WriteLine("Hello world!");
         }
-
-        public Boolean Jugando 
-        {
-            get { return jugador.Jugando; }
-        }
-
     }
 }
