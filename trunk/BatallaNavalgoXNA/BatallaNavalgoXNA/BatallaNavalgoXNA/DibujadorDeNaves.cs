@@ -77,7 +77,16 @@ namespace BatallaNavalgoXNA
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
                 Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveGris, posicionDeImagen, Color.White);
+                
+                if (nave.EstaDestruidaEnLaPosicion(posicion))
+                {
+                    spriteBatch.Draw(imagenParteNaveRota, posicionDeImagen, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(imagenParteNaveGris, posicionDeImagen, Color.White);
+                }
+
             }
         }
 
@@ -90,7 +99,15 @@ namespace BatallaNavalgoXNA
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
                 Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveRoja, posicionDeImagen, Color.White);
+                if (nave.EstaDestruidaEnLaPosicion(posicion))
+                {
+                    spriteBatch.Draw(imagenParteNaveRota, posicionDeImagen, Color.White);
+                }
+                else
+                {                    
+                    spriteBatch.Draw(imagenParteNaveRoja, posicionDeImagen, Color.White);
+                }
+                
             }
         }
 
@@ -103,7 +120,15 @@ namespace BatallaNavalgoXNA
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
                 Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveVerde, posicionDeImagen, Color.White);
+                if (nave.EstaDestruidaEnLaPosicion(posicion))
+                {
+                    spriteBatch.Draw(imagenParteNaveRota, posicionDeImagen, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(imagenParteNaveVerde, posicionDeImagen, Color.White);
+                }
+                
             }
         }
 
@@ -112,11 +137,18 @@ namespace BatallaNavalgoXNA
         {
             List<Posicion> posiciones = nave.GetPosiciones();
             foreach (Posicion posicion in posiciones)
-            {
+            {                
                 int fila = posicion.Fila;
                 int columna = posicion.Columna;
                 Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-                spriteBatch.Draw(imagenParteNaveMarron, posicionDeImagen, Color.White);
+                if (nave.EstaDestruidaEnLaPosicion(posicion))
+                {
+                    spriteBatch.Draw(imagenParteNaveRota, posicionDeImagen, Color.White);
+                }
+                else
+                {                
+                    spriteBatch.Draw(imagenParteNaveMarron, posicionDeImagen, Color.White);
+                }
             }
         }
     }
