@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using BatallaNavalgo;
+using BatallaNavalgoExcepciones;
 using NUnit.Framework;
 
 namespace BatallaNavalgoTests
@@ -92,6 +93,16 @@ namespace BatallaNavalgoTests
             tablero.Actualizar();
 
             Assert.False(tablero.TieneNavesConVida());
+        }
+        [Test,ExpectedException(typeof(ArmamentoFueraDelTableroException))]
+        public void testDeberiaLanzarExcepcionSiPongoUnArmamentoQueNoEstaDentroDelTablero()
+        {
+            Tablero tablero = new Tablero();
+
+            Armamento armamento = new MinaConRetardo(tablero, new Posicion(0, 0), 100, 1, 1);
+
+            // Debe lanzar excepcion.
+            tablero.Impactar(armamento);
         }
     }
 }
