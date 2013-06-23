@@ -32,6 +32,7 @@ namespace BatallaNavalgoXNA
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
         DibujadorDeNaves dibujadorDeNaves;
+        DibujadorDeMinas dibujadorDeMinas;
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
 
         public Game1()
@@ -68,13 +69,24 @@ namespace BatallaNavalgoXNA
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
             ImagenBotonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
-            imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
-            imagenMinaPuntual = Content.Load<Texture2D>("Imagenes\\minaPuntual");
-            imagenMinaDoble = Content.Load<Texture2D>("Imagenes\\minaDoble");
-            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");                        
+                                    
             CargarPartesDeNaves();
+            CargarImagenesDeMinas();
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
             AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);            
+        }
+
+        private void CargarImagenesDeMinas() 
+        {
+            dibujadorDeMinas = new DibujadorDeMinas(spriteBatch, vistaTablero);
+            imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
+            dibujadorDeMinas.MinaContacto = imagenMinaContacto;
+            imagenMinaPuntual = Content.Load<Texture2D>("Imagenes\\minaPuntual");
+            dibujadorDeMinas.MinaPuntual = imagenMinaPuntual;
+            imagenMinaDoble = Content.Load<Texture2D>("Imagenes\\minaDoble");
+            dibujadorDeMinas.MinaDoble = imagenMinaDoble;
+            imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");
+            dibujadorDeMinas.MinaTriple = imagenMinaTriple;
         }
 
         /*Carga partes de naves de distintos colores, dejndo al Dibujador en un estado valido.*/
@@ -162,8 +174,8 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
-            dibujadorDeNaves.DibujarNaves(spriteBatch, juegoBatallaNavalgo.IteradorNaves());                        
-            DibujarMinas(spriteBatch);
+            dibujadorDeNaves.DibujarNaves(spriteBatch, juegoBatallaNavalgo.IteradorNaves());                                    
+            dibujadorDeMinas.DibujarMinas(spriteBatch, juegoBatallaNavalgo.IteradorArmamentos());
 
             //Si termina el juego, dibuja una pantalla que lo indique.
             if (gameOver)
@@ -212,65 +224,7 @@ namespace BatallaNavalgoXNA
             }
         }
 
-        /*Dibuja las minas en el tablero*/
-        public void DibujarMinas(SpriteBatch spriteBatch)
-        {
-            IEnumerator<Armamento> recorredorDeArmamentos = juegoBatallaNavalgo.IteradorArmamentos();
-            while (recorredorDeArmamentos.MoveNext())
-            {
-                if (recorredorDeArmamentos.Current.GetType().ToString() == "BatallaNavalgo.MinaPorContacto") 
-                {
-                    DibujarMinaContacto(spriteBatch, (MinaPorContacto)recorredorDeArmamentos.Current);                    
-                }
-                if (recorredorDeArmamentos.Current.GetType().ToString() == "BatallaNavalgo.MinaConRetardo") 
-                {
-                    DibujarMinaRetardo(spriteBatch, (MinaConRetardo)recorredorDeArmamentos.Current);
-                }               
-            }
-        }       
-
-        /*Dibuja mina con retardo, distinto color segun su radio.*/
-        public void DibujarMinaRetardo(SpriteBatch spriteBatch, MinaConRetardo mina)
-        {     
-            Posicion posicion = mina.Posicion;
-            int fila = posicion.Fila;
-            int columna = posicion.Columna;
-            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-            Texture2D imagenMina = ObtenerImagenDeMinaConretardo(mina);
-            spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
-        }
-
-        /*Dibuja mina por contacto*/
-        public void DibujarMinaContacto(SpriteBatch spriteBatch, MinaPorContacto mina)
-        {
-            Posicion posicion = mina.Posicion;
-            int fila = posicion.Fila;
-            int columna = posicion.Columna;
-            Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-            Texture2D imagenMina = imagenMinaContacto;
-            spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
-        }
         
-        /*Obtiene textura de mina segun su radio.*/
-        private Texture2D ObtenerImagenDeMinaConretardo(MinaConRetardo mina) 
-        {
-            int radio = mina.Radio;
-            switch (radio) 
-            {
-                case 0:
-                    return imagenMinaPuntual;
-                    break;
-                case 1:
-                    return imagenMinaDoble;
-                    break;
-                case 2:
-                    return imagenMinaTriple;
-                    break;
-                default:
-                    return imagenMinaPuntual;
-                    break;
-            }
-        }
         
         /*Pantalla de fin de juego.*/
         private void DibujarPantallaGameOver(SpriteBatch spriteBatch)
