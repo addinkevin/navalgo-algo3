@@ -245,8 +245,7 @@ namespace BatallaNavalgoXNA
 
         public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
         {
-            //String caca = seleccion.ToString() + "estoyreduro";
-            //throw new DivideByZeroException(caca);
+                        
             switch (seleccion)             
             {
                 case ResultadoMenuDisparos.NINGUNO:
