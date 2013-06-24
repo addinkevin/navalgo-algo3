@@ -77,13 +77,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Imagenes\BotonAvanzarTurno.png">
-      <Name>BotonAvanzarTurno</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Imagenes\parteNaveGris.png">
       <Name>parteNaveGris</Name>
       <Importer>TextureImporter</Importer>
