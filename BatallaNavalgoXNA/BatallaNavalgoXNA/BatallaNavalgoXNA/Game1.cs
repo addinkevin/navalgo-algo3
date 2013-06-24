@@ -15,7 +15,7 @@ namespace BatallaNavalgoXNA
     /*Clase pricipal del juego.*/
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, PASO_DE_TURNO };
+        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, NO_HACER_NADA };
         private Boolean gameOver, ganado;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -23,8 +23,7 @@ namespace BatallaNavalgoXNA
         Texture2D ImagenBotonAvanzarTurno, pantallaGameOver, pantallaGanadora;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
         Texture2D imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
-        Texture2D imagenMinaPuntual, imagenMinaDoble, imagenMinaTriple, imagenMinaContacto;
-        Boton AvanzarTurnoButton;
+        Texture2D imagenMinaPuntual, imagenMinaDoble, imagenMinaTriple, imagenMinaContacto;        
         SpriteFont fuenteBatallaNavalgo;
         VistaTablero vistaTablero;
         MenuArmamentos menuArmamentos;
@@ -51,8 +50,7 @@ namespace BatallaNavalgoXNA
             menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
-            posicionDeImpactoEnElTablero = new Posicion(0, 0);
-            AvanzarTurnoButton = new Boton(new Vector2(50,400));            
+            posicionDeImpactoEnElTablero = new Posicion(0, 0);            
             gameOver = false;
             ganado = false;
             base.Initialize();
@@ -74,8 +72,7 @@ namespace BatallaNavalgoXNA
                                     
             CargarPartesDeNaves();
             CargarImagenesDeMinas();
-            menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
-            AvanzarTurnoButton.CargarImagen(ImagenBotonAvanzarTurno);            
+            menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);            
         }
 
         private void CargarImagenesDeMinas() 
@@ -129,8 +126,9 @@ namespace BatallaNavalgoXNA
             if ((estadoActualDelMouse.LeftButton == ButtonState.Pressed) && (estadoAnteriorDelMouse.LeftButton == ButtonState.Released))
             {
                 ResultadoMenuDisparos seleccionActual =(ResultadoMenuDisparos) menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);
-                if (AvanzarTurnoButton.EsClickeado(columnaDeImpacto, filaDeImpacto))
-                {
+                if (vistaTablero.EstaDentroDelTablero(columnaDeImpacto,filaDeImpacto))
+                {                
+                //{
                     
                     /*Si hay un error al avanzar el turno, ignora la 
                      actualizacion y congela las naves pero no la seleccion
@@ -139,6 +137,7 @@ namespace BatallaNavalgoXNA
                     try
                     {
                         //Actualizar.
+                        juegoBatallaNavalgo.AvanzarTurno();
                         if (juegoBatallaNavalgo.Ganado()) 
                         {
                             ganado = true;
@@ -149,17 +148,19 @@ namespace BatallaNavalgoXNA
                     {                        
                         gameOver = true;
                     }
+                    posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
                     /*SE INGRESA EL ARMAMENTO DESPUES DE AVANZAR EL TURNO.*/
                     IngresarArmamentoDesdeMenu(posicionDeImpactoEnElTablero, seleccionActual);
-                } 
+               // } 
+                    }
             }
 
             /*Puedo elegir posicion manteniendo apretado el boton izquierdo
             Va despues del metodo anterior para no romper la seleccion de casillero en el tablero */
-            if (estadoActualDelMouse.LeftButton == ButtonState.Pressed)
+            /*if (estadoActualDelMouse.LeftButton == ButtonState.Pressed)
             {
                 posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
-            }            
+            }   */         
 
             estadoAnteriorDelMouse = estadoActualDelMouse;
             base.Update(gameTime);
@@ -176,8 +177,7 @@ namespace BatallaNavalgoXNA
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Puntos: " + juegoBatallaNavalgo.ObtenerPuntosDelJugador(),
                                     new Vector2(0, 25), Color.White);
             vistaTablero.Draw(spriteBatch, bloqueTablero, fuenteBatallaNavalgo);
-            menuArmamentos.Draw(spriteBatch, fuenteBatallaNavalgo);            
-            AvanzarTurnoButton.Draw(spriteBatch);
+            menuArmamentos.Draw(spriteBatch, fuenteBatallaNavalgo);                        
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en fila: " + posicionDeImpactoEnElTablero.Fila,
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
@@ -221,8 +221,7 @@ namespace BatallaNavalgoXNA
                     case ResultadoMenuDisparos.MINA_POR_CONTACTO:
                         juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
                         break;
-                    case ResultadoMenuDisparos.PASO_DE_TURNO:
-                        juegoBatallaNavalgo.AvanzarTurno();
+                    case ResultadoMenuDisparos.NO_HACER_NADA:                        
                         break;
                 }
             }

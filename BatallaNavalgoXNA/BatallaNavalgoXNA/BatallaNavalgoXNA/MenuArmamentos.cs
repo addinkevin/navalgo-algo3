@@ -10,8 +10,7 @@ namespace BatallaNavalgoXNA
 {
     class MenuArmamentos
     {
-        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, PASO_DE_TURNO };
-
+        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, NO_HACER_NADA };
         private Vector2 posicionInicialEnPantalla;
         private int cantidadDeLineas;        
         private SpriteFont fuente;
@@ -25,7 +24,7 @@ namespace BatallaNavalgoXNA
         {   
             posicionInicialEnPantalla = posicionMenuEnPantalla;
             DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
-            botones = new Queue<CuadroDeSeleccion>();
+            botones = new Queue<CuadroDeSeleccion>();           
         }
 
         /*Se cargan las imagenes para los botones para dibujarlos despues.*/
@@ -47,7 +46,7 @@ namespace BatallaNavalgoXNA
             DibujarLinea("Mina doble: 100 ptos.", spriteBatch);
             DibujarLinea("Mina triple: 125 ptos.", spriteBatch);
             DibujarLinea("Mina contacto: 150 ptos.", spriteBatch);
-            DibujarLinea("Paso de turno", spriteBatch);
+            DibujarLinea("Avanzar de tuno: 10 ptos.", spriteBatch);
             
             DibujarBloquesDeSeleccion(spriteBatch);
         }
