@@ -127,17 +127,10 @@ namespace BatallaNavalgoXNA
             {
                 ResultadoMenuDisparos seleccionActual =(ResultadoMenuDisparos) menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);
                 if (vistaTablero.EstaDentroDelTablero(columnaDeImpacto,filaDeImpacto))
-                {                
-                //{
-                    
-                    /*Si hay un error al avanzar el turno, ignora la 
-                     actualizacion y congela las naves pero no la seleccion
-                     de minas, posicion de talbero, etc. para no dar una 
-                     sensacion de "congelamiento" */
+                {   
                     try
                     {
-                        //Actualizar.
-                        
+                        //Actualizar.                        
                         if (juegoBatallaNavalgo.Ganado()) 
                         {
                             ganado = true;
@@ -150,18 +143,9 @@ namespace BatallaNavalgoXNA
                     }
                     posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
                     /*SE INGRESA EL ARMAMENTO DESPUES DE AVANZAR EL TURNO.*/
-                    IngresarArmamentoDesdeMenu(posicionDeImpactoEnElTablero, seleccionActual);
-               // } 
-                    }
+                    IngresarArmamentoDesdeMenu(posicionDeImpactoEnElTablero, seleccionActual);               
+                }
             }
-
-            /*Puedo elegir posicion manteniendo apretado el boton izquierdo
-            Va despues del metodo anterior para no romper la seleccion de casillero en el tablero */
-            /*if (estadoActualDelMouse.LeftButton == ButtonState.Pressed)
-            {
-                posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
-            }   */         
-
             estadoAnteriorDelMouse = estadoActualDelMouse;
             base.Update(gameTime);
         }
