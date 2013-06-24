@@ -114,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Boton.cs" />
     <Compile Include="ControladorMouse.cs" />
     <Compile Include="CuadroDeSeleccion.cs" />
     <Compile Include="DibujadorDeMinas.cs" />
