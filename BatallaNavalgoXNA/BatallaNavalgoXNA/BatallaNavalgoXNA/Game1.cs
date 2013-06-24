@@ -68,7 +68,6 @@ namespace BatallaNavalgoXNA
             bloqueTablero = Content.Load<Texture2D>("Imagenes\\bloqueTablero");
             botonDeRadioVacio = Content.Load<Texture2D>("Imagenes\\seleccionVacio");
             botonDeRadioSeleccionado = Content.Load<Texture2D>("Imagenes\\seleccionElegido");
-            ImagenBotonAvanzarTurno = Content.Load<Texture2D>("Imagenes\\BotonAvanzarTurno");
                                     
             CargarPartesDeNaves();
             CargarImagenesDeMinas();
