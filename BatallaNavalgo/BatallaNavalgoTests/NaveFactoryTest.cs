@@ -16,7 +16,7 @@ namespace BatallaNavalgoTests
             Posicion posicion = new Posicion(5,5);   
             int cantidadDePartes;
 
-            Nave lancha = NaveFactory.CrearLancha(5);
+            Nave lancha = NaveFactory.CrearLancha();
             cantidadDePartes = lancha.GetPosiciones().Count;
             
             Assert.True(cantidadDePartes==2);          
@@ -28,7 +28,7 @@ namespace BatallaNavalgoTests
             Posicion posicion = new Posicion(5, 5);
             int cantidadDePartes;
 
-            Destructor destructor = NaveFactory.CrearDestructor(8);
+            Destructor destructor = NaveFactory.CrearDestructor();
             cantidadDePartes = destructor.GetPosiciones().Count;
 
             Assert.True(cantidadDePartes == 3);
@@ -40,7 +40,7 @@ namespace BatallaNavalgoTests
             Posicion posicion = new Posicion(5, 5);
             int cantidadDePartes;
 
-            Buque buque = NaveFactory.CrearBuque(4);
+            Buque buque = NaveFactory.CrearBuque();
             cantidadDePartes = buque.GetPosiciones().Count;
 
             Assert.True(cantidadDePartes == 4);
@@ -52,7 +52,7 @@ namespace BatallaNavalgoTests
             Posicion posicion = new Posicion(5, 5);
             int cantidadDePartes;
 
-            Nave portaAviones = NaveFactory.CrearPortaAviones(1);
+            Nave portaAviones = NaveFactory.CrearPortaAviones();
             cantidadDePartes = portaAviones.GetPosiciones().Count;
 
             Assert.True(cantidadDePartes == 5);
@@ -64,7 +64,7 @@ namespace BatallaNavalgoTests
             Posicion posicion = new Posicion(5, 5);
             int cantidadDePartes;
 
-            Nave rompehielos = NaveFactory.CrearRompeHielos(8);
+            Nave rompehielos = NaveFactory.CrearRompeHielos();
             cantidadDePartes = rompehielos.GetPosiciones().Count;
 
             Assert.True(cantidadDePartes == 3);

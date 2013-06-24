@@ -14,14 +14,11 @@ namespace BatallaNavalgo
             return Direccion.DireccionesDisponibles[numeroDeDireccionAleatoria];
         }
 
-        public static Orientacion ObtenerOrientacionAleatoria(int semilla)
+        public static Orientacion ObtenerOrientacionAleatoria()
         {
-            Random numeroAleatorio = new Random(semilla);
-            int resultado = numeroAleatorio.Next(1,101);
-            if (resultado <=50)
-                return Orientacion.Horizontal;
-            else
+            if ((new Random()).Next(0, 2) == 0)
                 return Orientacion.Vertical;
+            return Orientacion.Horizontal;
         }
 
         public static Posicion ObtenerPosicionAleatoria()
@@ -29,7 +26,7 @@ namespace BatallaNavalgo
             return Posicion.HacerAleatoria(1, Tablero.Filas, 1, Tablero.Columnas);
         }
 
-        public static Nave CrearLancha(int semilla)
+        public static Nave CrearLancha()
         {
             int numeroDePartesLancha = 2;
             int resistenciaDeLancha = 1;
@@ -38,7 +35,7 @@ namespace BatallaNavalgo
             do
             {
                 posicionAleatoria = ObtenerPosicionAleatoria();
-                orientacionNave = ObtenerOrientacionAleatoria(semilla);               
+                orientacionNave = ObtenerOrientacionAleatoria();               
             } while (!Nave.SePuedeCrear(numeroDePartesLancha, posicionAleatoria, orientacionNave));
 
             Nave lancha = new Nave(numeroDePartesLancha, resistenciaDeLancha, posicionAleatoria, orientacionNave);
@@ -47,14 +44,14 @@ namespace BatallaNavalgo
             return lancha;
         }
 
-        public static Destructor CrearDestructor(int semilla)
+        public static Destructor CrearDestructor()
         {
             Posicion posicionAleatoria;
             Orientacion orientacionNave;
             do
             {
                 posicionAleatoria = ObtenerPosicionAleatoria();
-                orientacionNave = ObtenerOrientacionAleatoria(semilla);
+                orientacionNave = ObtenerOrientacionAleatoria();
             } while (!Destructor.SePuedeCrear(posicionAleatoria, orientacionNave));
 
             Destructor destructor = new Destructor(posicionAleatoria, orientacionNave);
@@ -63,7 +60,7 @@ namespace BatallaNavalgo
             return destructor;
         }
 
-        public static Nave CrearPortaAviones(int semilla)
+        public static Nave CrearPortaAviones()
         {
             int numeroDePartesPortaAviones = 5;
             int resistenciaDePartesPortaAviones = 1;
@@ -72,7 +69,7 @@ namespace BatallaNavalgo
             Posicion posicionAleatoria;
             do
             {
-                orientacionNave = ObtenerOrientacionAleatoria(semilla);
+                orientacionNave = ObtenerOrientacionAleatoria();
                 posicionAleatoria = ObtenerPosicionAleatoria();
             } while (!Nave.SePuedeCrear(numeroDePartesPortaAviones, posicionAleatoria, orientacionNave));
             
@@ -82,7 +79,7 @@ namespace BatallaNavalgo
             return portaAviones;
         }
 
-        public static Nave CrearRompeHielos(int semilla)
+        public static Nave CrearRompeHielos()
         {
             int numeroDePartesRompeHielo = 3;
             int resistenciaDePartesRompeHielo = 2;
@@ -90,7 +87,7 @@ namespace BatallaNavalgo
             Posicion posicionAleatoria;
             do
             {
-                orientacionNave = ObtenerOrientacionAleatoria(semilla);
+                orientacionNave = ObtenerOrientacionAleatoria();
                 posicionAleatoria = ObtenerPosicionAleatoria();
             } while (!Nave.SePuedeCrear(numeroDePartesRompeHielo, posicionAleatoria, orientacionNave));
 
@@ -100,14 +97,14 @@ namespace BatallaNavalgo
             return rompeHielos;
         }
 
-        public static Buque CrearBuque(int semilla)
+        public static Buque CrearBuque()
         {
             Posicion posicionAleatoria;
             Orientacion orientacionNave;
             do
             {
                 posicionAleatoria = ObtenerPosicionAleatoria();
-                orientacionNave = ObtenerOrientacionAleatoria(semilla);
+                orientacionNave = ObtenerOrientacionAleatoria();
             } while (!Buque.SePuedeCrear(posicionAleatoria, orientacionNave));
 
             Buque buque = new Buque(posicionAleatoria, orientacionNave);
