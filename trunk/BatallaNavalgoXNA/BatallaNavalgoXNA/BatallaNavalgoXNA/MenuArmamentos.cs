@@ -106,7 +106,7 @@ namespace BatallaNavalgoXNA
         }
 
         /*Des-Selecciona todos los botones*/
-        public void QuitarSelecciones() 
+        private void QuitarSelecciones() 
         {
             IEnumerator<CuadroDeSeleccion> c = botones.GetEnumerator();
             while (c.MoveNext())
@@ -116,7 +116,7 @@ namespace BatallaNavalgoXNA
         }
 
         /*Se fija si los parametros de x e y corresponden a un cuadrado.*/
-        public Boolean EstaDentroDeBoton(CuadroDeSeleccion cuadro,int y, int x)
+        private Boolean EstaDentroDeBoton(CuadroDeSeleccion cuadro,int y, int x)
         {            
             if ((y >= cuadro.Y) && (y <= (cuadro.Y + LADO_DE_BOTON))) 
             {
