@@ -239,9 +239,6 @@ namespace BatallaNavalgoXNA
                     case ResultadoMenuDisparos.MINA_POR_CONTACTO:
                         juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
                         break;
-                    case ResultadoMenuDisparos.NO_HACER_NADA:
-                        juegoBatallaNavalgo.AvanzarTurno();
-                        break;
                 }
             }
              catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
