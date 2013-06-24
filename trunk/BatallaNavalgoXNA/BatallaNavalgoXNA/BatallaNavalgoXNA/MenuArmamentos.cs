@@ -10,7 +10,7 @@ namespace BatallaNavalgoXNA
 {
     class MenuArmamentos
     {
-       public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO };
+        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, PASO_DE_TURNO };
 
         private Vector2 posicionInicialEnPantalla;
         private int cantidadDeLineas;        
@@ -47,6 +47,7 @@ namespace BatallaNavalgoXNA
             DibujarLinea("Mina doble: 100 ptos.", spriteBatch);
             DibujarLinea("Mina triple: 125 ptos.", spriteBatch);
             DibujarLinea("Mina contacto: 150 ptos.", spriteBatch);
+            DibujarLinea("Paso de turno", spriteBatch);
             
             DibujarBloquesDeSeleccion(spriteBatch);
         }
@@ -73,7 +74,7 @@ namespace BatallaNavalgoXNA
         public void CrearBotonesDeMenu(Texture2D vacio, Texture2D seleccionado)
         {
             int tiposDeArmamento =1;
-            while (tiposDeArmamento <= 5)
+            while (tiposDeArmamento <= 6)
             {                
                 Vector2 posicionCorrespondienteDeBoton = new Vector2(posicionInicialEnPantalla.X, posicionInicialEnPantalla.Y + (SALTO_DE_LINEA * tiposDeArmamento));
                 CuadroDeSeleccion cuadroAuxiliar = new CuadroDeSeleccion(posicionCorrespondienteDeBoton, seleccionado, vacio);
