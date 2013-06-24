@@ -159,7 +159,7 @@ namespace BatallaNavalgoXNA
                 }
 
                 if (botonAvanzarTurno.EsClickeado(columnaDeImpacto, filaDeImpacto)) 
-                {
+                {                    
                     try
                     {
                         //Actualizar.                        
