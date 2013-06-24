@@ -8,7 +8,7 @@ namespace BatallaNavalgo
     public class Posicion : IEquatable<Posicion>
     {
         private int fila, columna;
-        private static Random numeroAleatorio = new Random();
+
         public Posicion(int fila, int columna)
         {
             this.fila = fila;
@@ -17,10 +17,10 @@ namespace BatallaNavalgo
 
         public static Posicion HacerAleatoria(int filaMin, int filaMax, int columnaMin, int columnaMax) 
         {
-            int fila = numeroAleatorio.Next(filaMin, filaMax + 1);
-            int columna = numeroAleatorio.Next(columnaMin, columnaMax + 1);
-            Posicion posicion = new Posicion(fila, columna);
-            return posicion;
+            Random numeroAleatorio = new Random();            
+            int fila = numeroAleatorio.Next(filaMin, filaMax);
+            int columna = numeroAleatorio.Next(columnaMin, columnaMax);
+            return new Posicion(fila, columna);
         }
         //-----------------------------------------------------------
         public int Fila 

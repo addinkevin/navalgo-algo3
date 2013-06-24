@@ -19,10 +19,6 @@ namespace BatallaNavalgo
         public Juego()
         {
             this.observadores = new List<Observador>();
-        }
-
-        public void Inicializar()
-        {
             this.tablero = new Tablero();
 
             /*Agregado de Naves al Tablero con: 
@@ -31,7 +27,6 @@ namespace BatallaNavalgo
              */
             AgregarNavesAlTablero(tablero);
             this.jugador = new Jugador();
-
         }
 
         public void AddObservador(Observador observador)
@@ -102,67 +97,35 @@ namespace BatallaNavalgo
         }
         //---------------------------------------------------------------------
 
-        /* Auxiliar por el momento para probar la vista */
-        private void AAgregarNavesAlTablero(Tablero tablero)
-        {
-            Nave lancha = new Nave(3, 1, new Posicion(1, 1), Orientacion.Horizontal);
-            lancha.Direccion = Direccion.Oeste;
-            NotificarObservadoresDeCreacionDeLancha(lancha);
-            tablero.AgregarNave(lancha);
-
-            Nave lancha2 = new Nave(3, 1, new Posicion(8, 10), Orientacion.Vertical);
-            lancha2.Direccion = Direccion.Norte;
-            NotificarObservadoresDeCreacionDeLancha(lancha2);
-            tablero.AgregarNave(lancha2);
-            
-            Nave destructor = new Destructor(new Posicion(5, 5), Orientacion.Horizontal);
-            destructor.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor);
-            tablero.AgregarNave(destructor);
-
-            Nave destructor2 = new Destructor(new Posicion(3, 5), Orientacion.Horizontal);
-            destructor2.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor2);
-            tablero.AgregarNave(destructor2);
-
-            Nave destructor3 = new Destructor(new Posicion(7, 5), Orientacion.Horizontal);
-            destructor3.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor3);
-            tablero.AgregarNave(destructor3);
-
-            Nave destructor4 = new Destructor(new Posicion(9, 5), Orientacion.Horizontal);
-            destructor4.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor4);
-            tablero.AgregarNave(destructor4);
-
-        }
+       
         private void AgregarNavesAlTablero(Tablero tablero)
         {
-            Nave lancha = NaveFactory.CrearLancha();
+            int semilla = new Random().Next(90000);
+            Nave lancha = NaveFactory.CrearLancha(semilla+5);
             NotificarObservadoresDeCreacionDeLancha(lancha);
             tablero.AgregarNave(lancha);
 
-            Nave lancha2 = NaveFactory.CrearLancha();
-            NotificarObservadoresDeCreacionDeLancha(lancha2);
+            Nave lancha2 = NaveFactory.CrearLancha(semilla-8);
+            NotificarObservadoresDeCreacionDeLancha(lancha);
             tablero.AgregarNave(lancha2);
 
-            Nave destructor = NaveFactory.CrearDestructor();
+            Nave destructor = NaveFactory.CrearDestructor(semilla+2);
             NotificarObservadoresDeCreacionDeDestructor(destructor);
             tablero.AgregarNave(destructor);
-            
-            Nave destructor2 = NaveFactory.CrearDestructor();
+
+            Nave destructor2 = NaveFactory.CrearDestructor(semilla-7);
             NotificarObservadoresDeCreacionDeDestructor(destructor2);
             tablero.AgregarNave(destructor2);
 
-            Nave rompeHielos = NaveFactory.CrearRompeHielos();
+            Nave rompeHielos = NaveFactory.CrearRompeHielos(semilla+69);
             NotificarObservadoresDeCreacionDeRompeHielo(rompeHielos);
             tablero.AgregarNave(rompeHielos);
 
-            Nave buque = NaveFactory.CrearBuque();
+            Nave buque = NaveFactory.CrearBuque(semilla+30);
             NotificarObservadoresDeCreacionDeBuque(buque);
             tablero.AgregarNave(buque);
 
-            Nave portaAviones = NaveFactory.CrearPortaAviones();
+            Nave portaAviones = NaveFactory.CrearPortaAviones(semilla+875);
             NotificarObservadoresDeCreacionDePortaAviones(portaAviones);
             tablero.AgregarNave(portaAviones);
         }
@@ -244,7 +207,6 @@ namespace BatallaNavalgo
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello world!");
-            Console.ReadKey();
         }
 
         public Boolean Ganado()
