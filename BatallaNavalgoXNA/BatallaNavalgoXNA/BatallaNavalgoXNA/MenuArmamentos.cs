@@ -66,7 +66,7 @@ namespace BatallaNavalgoXNA
             IEnumerator<CuadroDeSeleccion> c = botones.GetEnumerator();
             while (c.MoveNext()) 
             {                
-                c.Current.Dibujar(spriteBatch,LADO_DE_BOTON);                
+                c.Current.Dibujar(spriteBatch);                
             }
         }
 
