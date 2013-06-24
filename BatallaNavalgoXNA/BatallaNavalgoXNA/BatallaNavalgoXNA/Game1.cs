@@ -137,7 +137,7 @@ namespace BatallaNavalgoXNA
                     try
                     {
                         //Actualizar.
-                        juegoBatallaNavalgo.AvanzarTurno();
+                        
                         if (juegoBatallaNavalgo.Ganado()) 
                         {
                             ganado = true;
@@ -221,7 +221,8 @@ namespace BatallaNavalgoXNA
                     case ResultadoMenuDisparos.MINA_POR_CONTACTO:
                         juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
                         break;
-                    case ResultadoMenuDisparos.NO_HACER_NADA:                        
+                    case ResultadoMenuDisparos.NO_HACER_NADA:
+                        juegoBatallaNavalgo.AvanzarTurno();
                         break;
                 }
             }
