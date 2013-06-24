@@ -141,7 +141,7 @@ namespace BatallaNavalgo
             VerificarPosibilidadDeDisparo(disparo);
             tablero.Impactar(disparo);
             jugador.DescontarPuntosPorDisparar(disparo);
-            //AvanzarTurno();
+            AvanzarTurno();
         }
 
         public void ColocarMinaPuntual(Posicion posicion)
@@ -150,7 +150,7 @@ namespace BatallaNavalgo
             VerificarPosibilidadDeDisparo(minaPuntual);
             tablero.Impactar(minaPuntual);
             jugador.DescontarPuntosPorDisparar(minaPuntual);
-            //AvanzarTurno();
+            AvanzarTurno();
         }
 
         public void ColocarMinaDoble(Posicion posicion)
@@ -159,7 +159,7 @@ namespace BatallaNavalgo
             VerificarPosibilidadDeDisparo(minaDoble);
             tablero.Impactar(minaDoble);
             jugador.DescontarPuntosPorDisparar(minaDoble);
-           // AvanzarTurno();
+            AvanzarTurno();
         }
 
         public void ColocarMinaTriple(Posicion posicion)
@@ -168,7 +168,7 @@ namespace BatallaNavalgo
             VerificarPosibilidadDeDisparo(minaTriple);
             tablero.Impactar(minaTriple);
             jugador.DescontarPuntosPorDisparar(minaTriple);
-           // AvanzarTurno();
+            AvanzarTurno();
         }
 
         public void ColocarMinaPorContacto(Posicion posicion)
@@ -177,7 +177,7 @@ namespace BatallaNavalgo
             VerificarPosibilidadDeDisparo(minaContacto);
             tablero.Impactar(minaContacto);
             jugador.DescontarPuntosPorDisparar(minaContacto);
-           // AvanzarTurno();
+            AvanzarTurno();
         }
 
         private void VerificarPosibilidadDeDisparo(Armamento armamento)

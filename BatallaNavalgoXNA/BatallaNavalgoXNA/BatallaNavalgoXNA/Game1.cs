@@ -15,7 +15,7 @@ namespace BatallaNavalgoXNA
     /*Clase pricipal del juego.*/
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO };
+        public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, PASO_DE_TURNO };
         private Boolean gameOver, ganado;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -52,7 +52,7 @@ namespace BatallaNavalgoXNA
             juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
-            AvanzarTurnoButton = new Boton(new Vector2(50,375));            
+            AvanzarTurnoButton = new Boton(new Vector2(50,400));            
             gameOver = false;
             ganado = false;
             base.Initialize();
@@ -139,7 +139,6 @@ namespace BatallaNavalgoXNA
                     try
                     {
                         //Actualizar.
-                        juegoBatallaNavalgo.AvanzarTurno();
                         if (juegoBatallaNavalgo.Ganado()) 
                         {
                             ganado = true;
@@ -221,6 +220,9 @@ namespace BatallaNavalgoXNA
                         break;
                     case ResultadoMenuDisparos.MINA_POR_CONTACTO:
                         juegoBatallaNavalgo.ColocarMinaPorContacto(posicion);
+                        break;
+                    case ResultadoMenuDisparos.PASO_DE_TURNO:
+                        juegoBatallaNavalgo.AvanzarTurno();
                         break;
                 }
             }
