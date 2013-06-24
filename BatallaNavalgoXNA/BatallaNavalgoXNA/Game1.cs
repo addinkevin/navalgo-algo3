@@ -34,7 +34,6 @@ namespace BatallaNavalgoXNA
         DibujadorDeMinas dibujadorDeMinas;
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
         List<NaveVista> coleccionNaveVista;
-
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -50,17 +49,13 @@ namespace BatallaNavalgoXNA
             posicionFondoDePantalla = new Vector2(0, -700);
             vistaTablero = new VistaTablero();
             menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
+            juegoBatallaNavalgo = new Juego();
+            juegoBatallaNavalgo.AddObservador(this);
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);            
             gameOver = false;
             ganado = false;
-
-            
             base.Initialize();
-
-            juegoBatallaNavalgo = new Juego();
-            juegoBatallaNavalgo.AddObservador(this);
-            juegoBatallaNavalgo.Inicializar();
         }
 
         /*Carga contenido desde archivos, se llama una unica vez.*/
@@ -172,7 +167,7 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
-            DibujarNaves(coleccionNaveVista);                                    
+            DibujarNaves(this.coleccionNaveVista);                                   
             dibujadorDeMinas.DibujarMinas(spriteBatch, juegoBatallaNavalgo.IteradorArmamentos());
 
             //Si termina el juego, dibuja una pantalla indicando el motivo.
@@ -190,7 +185,7 @@ namespace BatallaNavalgoXNA
         /*Intenta ingresar el armamento seleccionado en el menu visual.*/
         public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
         {
-            try 
+            try
             {
                 switch (seleccion)
                 {
@@ -216,7 +211,7 @@ namespace BatallaNavalgoXNA
                         break;
                 }
             }
-             catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
+            catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
             {
                 gameOver = true;
             }
@@ -230,12 +225,12 @@ namespace BatallaNavalgoXNA
                   archivo, etc.*/
                 gameOver = true;
             }
- 
         }
 
-        public void DibujarNaves(List<NaveVista> coleccionNavesVista)
+        /* Dibuja las naves */
+        private void DibujarNaves(List<NaveVista> coleccionNaveVista)
         {
-            foreach (NaveVista naveVista in coleccionNavesVista)
+            foreach (NaveVista naveVista in coleccionNaveVista)
             {
                 naveVista.Dibujar();
             }
@@ -270,7 +265,7 @@ namespace BatallaNavalgoXNA
         }
         public void NotificarCreacionDeBuque(Nave nave)
         {
-            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Verde, this.dibujadorDeNaves);
+            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Gris, this.dibujadorDeNaves);
             coleccionNaveVista.Add(navevista);
         }
         public void Update()

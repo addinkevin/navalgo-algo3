@@ -7,16 +7,17 @@ namespace BatallaNavalgo
 {
     public class NaveFactory
     {
+        public static Random numeroAleatorio = new Random();
         private static Direccion ObtenerDireccionAleatoria()
         {
-            int numeroDeDireccionAleatoria = (new Random()).Next(0, Direccion.DireccionesDisponibles.Length);
+            int numeroDeDireccionAleatoria = (numeroAleatorio).Next(0, Direccion.DireccionesDisponibles.Length);
 
             return Direccion.DireccionesDisponibles[numeroDeDireccionAleatoria];
         }
 
         public static Orientacion ObtenerOrientacionAleatoria()
         {
-            if ((new Random()).Next(0, 2) == 0)
+            if ((numeroAleatorio).Next(0, 2) == 0)
                 return Orientacion.Vertical;
             return Orientacion.Horizontal;
         }
