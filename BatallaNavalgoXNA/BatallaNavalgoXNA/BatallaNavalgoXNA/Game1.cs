@@ -13,7 +13,7 @@ using BatallaNavalgo;
 namespace BatallaNavalgoXNA
 {
     /*Clase pricipal del juego.*/
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class Game1 : Microsoft.Xna.Framework.Game, Observador
     {
         public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, NO_HACER_NADA };
         private Boolean gameOver, ganado;
@@ -33,6 +33,7 @@ namespace BatallaNavalgoXNA
         DibujadorDeNaves dibujadorDeNaves;
         DibujadorDeMinas dibujadorDeMinas;
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
+        List<NaveVista> coleccionNaveVista;
 
         public Game1()
         {
@@ -45,15 +46,21 @@ namespace BatallaNavalgoXNA
         /*Inicializa lo necesario para poder correr el juego.*/
         protected override void Initialize()
         {
+            coleccionNaveVista = new List<NaveVista>();
             posicionFondoDePantalla = new Vector2(0, -700);
             vistaTablero = new VistaTablero();
             menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
-            juegoBatallaNavalgo = new Juego();
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);            
             gameOver = false;
             ganado = false;
+
+            
             base.Initialize();
+
+            juegoBatallaNavalgo = new Juego();
+            juegoBatallaNavalgo.AddObservador(this);
+            juegoBatallaNavalgo.Inicializar();
         }
 
         /*Carga contenido desde archivos, se llama una unica vez.*/
@@ -165,7 +172,7 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
-            dibujadorDeNaves.DibujarNaves(spriteBatch, juegoBatallaNavalgo.IteradorNaves());                                    
+            DibujarNaves(coleccionNaveVista);                                    
             dibujadorDeMinas.DibujarMinas(spriteBatch, juegoBatallaNavalgo.IteradorArmamentos());
 
             //Si termina el juego, dibuja una pantalla indicando el motivo.
@@ -183,7 +190,7 @@ namespace BatallaNavalgoXNA
         /*Intenta ingresar el armamento seleccionado en el menu visual.*/
         public void IngresarArmamentoDesdeMenu(Posicion posicion, ResultadoMenuDisparos seleccion) 
         {
-            try
+            try 
             {
                 switch (seleccion)
                 {
@@ -209,7 +216,7 @@ namespace BatallaNavalgoXNA
                         break;
                 }
             }
-            catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
+             catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
             {
                 gameOver = true;
             }
@@ -223,13 +230,51 @@ namespace BatallaNavalgoXNA
                   archivo, etc.*/
                 gameOver = true;
             }
+ 
         }
-        
+
+        public void DibujarNaves(List<NaveVista> coleccionNavesVista)
+        {
+            foreach (NaveVista naveVista in coleccionNavesVista)
+            {
+                naveVista.Dibujar();
+            }
+        }
+
         /*Pantalla de fin de juego.*/
         private void DibujarPantallaFindeJuego(SpriteBatch spriteBatch, Texture2D pantalla)
         {
             Vector2 posicionGameOver = new Vector2(200, 200);
             spriteBatch.Draw(pantalla, posicionGameOver, Color.White);
+        }
+
+        public void NotificarCreacionDeLancha(Nave nave)
+        {
+            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Gris, this.dibujadorDeNaves);
+            coleccionNaveVista.Add(navevista);
+        }
+        public void NotificarCreacionDeDestructor(Nave nave)
+        {
+            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Rojo, this.dibujadorDeNaves);
+            coleccionNaveVista.Add(navevista);
+        }
+        public void NotificarCreacionDePortaAviones(Nave nave)
+        {
+            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Gris, this.dibujadorDeNaves);
+            coleccionNaveVista.Add(navevista);
+        }
+        public void NotificarCreacionDeRompeHielo(Nave nave)
+        {
+            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Marron, this.dibujadorDeNaves);
+            coleccionNaveVista.Add(navevista);
+        }
+        public void NotificarCreacionDeBuque(Nave nave)
+        {
+            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Gris, this.dibujadorDeNaves);
+            coleccionNaveVista.Add(navevista);
+        }
+        public void Update()
+        {
         }
     }
 }

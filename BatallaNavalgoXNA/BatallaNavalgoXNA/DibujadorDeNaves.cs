@@ -20,14 +20,14 @@ namespace BatallaNavalgoXNA
         private Texture2D imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
 
         /*Se le pasa vistaTablero para saber donde tiene que dibujar*/
-        public DibujadorDeNaves(SpriteBatch sprite, VistaTablero vistaTablero)
+        public DibujadorDeNaves(SpriteBatch sprite, VistaTablero vistaTablero) 
         {
-            this.spriteBatch = sprite;
+            this.spriteBatch = sprite;  
             this.vistaTablero = vistaTablero;
         }
 
         /*Setter de parte.*/
-        public Texture2D ParteGris
+        public Texture2D ParteGris 
         {
             get { return imagenParteNaveGris; }
             set { imagenParteNaveGris = value; }
@@ -56,7 +56,7 @@ namespace BatallaNavalgoXNA
             get { return imagenParteNaveRota; }
             set { imagenParteNaveRota = value; }
         }
-
+        
         public void DibujarNave(Nave nave, Texture2D imagenParte)
         {
             if (nave.EstaDestruida())
@@ -68,6 +68,7 @@ namespace BatallaNavalgoXNA
                 int columna = posicion.Columna;
                 Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
 
+                spriteBatch.Begin();
                 if (nave.EstaDestruidaEnLaPosicion(posicion))
                 {
                     spriteBatch.Draw(imagenParteNaveRota, posicionDeImagen, Color.White);
@@ -76,6 +77,7 @@ namespace BatallaNavalgoXNA
                 {
                     spriteBatch.Draw(imagenParte, posicionDeImagen, Color.White);
                 }
+                spriteBatch.End();
 
             }
         }
