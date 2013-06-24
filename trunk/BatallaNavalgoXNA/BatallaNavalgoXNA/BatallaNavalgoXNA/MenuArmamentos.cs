@@ -73,7 +73,7 @@ namespace BatallaNavalgoXNA
         public void CrearBotonesDeMenu(Texture2D vacio, Texture2D seleccionado)
         {
             int tiposDeArmamento =1;
-            while (tiposDeArmamento <= 6)
+            while (tiposDeArmamento <= 5)
             {                
                 Vector2 posicionCorrespondienteDeBoton = new Vector2(posicionInicialEnPantalla.X, posicionInicialEnPantalla.Y + (SALTO_DE_LINEA * tiposDeArmamento));
                 CuadroDeSeleccion cuadroAuxiliar = new CuadroDeSeleccion(posicionCorrespondienteDeBoton, seleccionado, vacio);

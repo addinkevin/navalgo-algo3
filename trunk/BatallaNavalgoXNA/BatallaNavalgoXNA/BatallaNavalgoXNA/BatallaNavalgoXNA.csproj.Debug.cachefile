@@ -1,4 +1,5 @@
 Content\Imagenes\fondoAgua.xnb
+Content\Fuente\fuente.xnb
 Content\Imagenes\bloqueTablero.xnb
 Content\Imagenes\seleccionElegido.xnb
 Content\Imagenes\seleccionVacio.xnb
@@ -13,5 +14,4 @@ Content\Imagenes\minaPuntual.xnb
 Content\Imagenes\minaTriple.xnb
 Content\Imagenes\GameOver.xnb
 Content\Imagenes\Ganaste.xnb
-Content\Fuente\fuente.xnb
 Content\Imagenes\AvanzarTurno.xnb
