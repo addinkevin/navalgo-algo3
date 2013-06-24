@@ -15,17 +15,20 @@ namespace BatallaNavalgo
         private List<Armamento> armamentos;
         private List<Nave> naves;
         
+        /*Constructor del Tablero*/
         public Tablero()
         {            
             armamentos = new List<Armamento>();
             naves = new List<Nave>();
         }
 
+        /*Devuelve un iterador de las naves del tablero*/
         public List<Nave>.Enumerator DevolverIteradorNaves() 
         {
             return naves.GetEnumerator();            
         }
 
+        /*Devuelve un iterador de los armamentos del tablero*/
         public List<Armamento>.Enumerator DevolverIteradorArmamentos()
         {
             return armamentos.GetEnumerator();
@@ -42,12 +45,13 @@ namespace BatallaNavalgo
             get { return CANTIDAD_DE_COLUMNAS; }
         }
 
-
+        /*Agrega una nave al tablero*/
         public void AgregarNave(Nave nave) 
         {
             naves.Add(nave);
         }
 
+        /*Agrega un armamento al tablero*/
         public void Impactar(Armamento arma) 
         {
             if (!arma.Posicion.EstaDentroDe(Tablero.ESQUINA_IZQUIERDA_ARRIBA, Tablero.ESQUINA_DERECHA_ABAJO))
@@ -56,6 +60,7 @@ namespace BatallaNavalgo
             armamentos.Add(arma);
         }
 
+        /*Obtiene las naves del tablero que estan en una posicion*/
         public List<Nave> GetNavesEn(Posicion posicion)
         {
             List<Nave> listaNavesEnPosicion = new List<Nave>();
@@ -118,7 +123,7 @@ namespace BatallaNavalgo
         }
 
         //---------------------------------------------------------------------
-        
+        /*Si el tablero sigue teniendo alguna nave*/
         public Boolean HayNave(Posicion posicion) 
         {
             foreach (Nave nave in naves)
@@ -135,6 +140,7 @@ namespace BatallaNavalgo
             return false;
         }
 
+        /*Si el tablero sigue teniendo alguna mina*/
         public Boolean HayMina(Posicion posicion)
         {
             foreach (Armamento mina in armamentos)
@@ -148,6 +154,7 @@ namespace BatallaNavalgo
             return false;
         }
 
+        /*Estado de las naves del tablero*/
         public Boolean TieneNavesConVida()
         {
             foreach (Nave nave in naves)

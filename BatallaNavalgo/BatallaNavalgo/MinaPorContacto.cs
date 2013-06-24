@@ -7,7 +7,7 @@ namespace BatallaNavalgo
 {
     public class MinaPorContacto: Mina
     {
-        
+        /*Contructor de la MinaPorContacto*/
         public MinaPorContacto(Tablero tablero, Posicion posicion, int costo) 
         {
             base.TableroEnElQueEsta = tablero;

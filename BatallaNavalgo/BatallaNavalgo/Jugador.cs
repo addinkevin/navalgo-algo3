@@ -27,6 +27,7 @@ namespace BatallaNavalgo
             get {return this.puntos;}            
         }
 
+        /*Se descuentan los puntos por haber avanzado de turno*/
         public void DescontarPuntosPorPasoDeTurno()
         {
             if (puntos < PUNTAJE_DESCONTADO_POR_TURNO)
@@ -35,6 +36,7 @@ namespace BatallaNavalgo
             puntos -= PUNTAJE_DESCONTADO_POR_TURNO;
         }
 
+        /*Se descuentan los puntos por haber lanzado algun armamento*/
         public void DescontarPuntosPorDisparar(Armamento armamento)
         {
             if (this.puntos < armamento.Costo)

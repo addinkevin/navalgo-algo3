@@ -14,11 +14,13 @@ namespace BatallaNavalgo
 
         public abstract void Actualizar();       
 
+        /* Estado del Armamento*/
         public Boolean Explotado         
         {
             get { return estaExplotado; }            
         }
 
+        /* Tablero donde se encuentra el Armamento*/
         public Tablero TableroEnElQueEsta 
         {
             get { return tablero; }

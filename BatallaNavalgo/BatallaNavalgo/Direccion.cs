@@ -16,7 +16,7 @@ namespace BatallaNavalgo
         public static Direccion Suroeste = new Direccion(1, -1);
         public static Direccion Sureste = new Direccion(1, 1);
 
-
+        /*Unicas 8 direcciones posibles*/
         public static Direccion[] DireccionesDisponibles =
         {
             Norte, Sur, Este, Oeste, Noroeste, Noreste, Suroeste, Sureste
@@ -25,6 +25,7 @@ namespace BatallaNavalgo
         private int movimientoEnFilas;
         private int movimientoEnColumnas;
 
+        /*Constructor de Direccion*/
         private Direccion(int movimientoEnFilas, int movimientoEnColumnas)
         {
             this.movimientoEnColumnas = movimientoEnColumnas;
