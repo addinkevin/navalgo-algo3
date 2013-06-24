@@ -17,6 +17,7 @@ namespace BatallaNavalgo
         private Direccion direccion;
         private List<ParteNave> partes;
 
+        /*Obtiene la resistencia general de la nave*/
         public int ObtenerResistenciaGeneral() 
         {
             IEnumerator<ParteNave> c = partes.GetEnumerator();
@@ -39,7 +40,8 @@ namespace BatallaNavalgo
         {
             set { direccion = value; }
         }
-               
+         
+        /*Obtiene las posiciones para poder crear la nave*/
         private List<Posicion> GetPosicionesParaCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
         {
             List<Posicion> posiciones = new List<Posicion>();
@@ -181,6 +183,7 @@ namespace BatallaNavalgo
             return false;
         }
 
+        /*Verificaciones para comprobar de que se puede crear la nave*/
         public static bool SePuedeCrear(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)
         {
             Posicion posicionExtrema;

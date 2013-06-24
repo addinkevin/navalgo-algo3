@@ -7,6 +7,7 @@ namespace BatallaNavalgo
 {
     public class DisparoComun: Armamento
     {
+        /*Constructor de DisparoComun*/
         public DisparoComun(Tablero tablero, Posicion posicion, int costo)
         {
             base.TableroEnElQueEsta = tablero;

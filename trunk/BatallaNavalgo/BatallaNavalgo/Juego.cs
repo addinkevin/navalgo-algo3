@@ -21,23 +21,21 @@ namespace BatallaNavalgo
             this.observadores = new List<Observador>();
         }
 
+        /*Inicializa el Juego en un estado valido*/
         public void Inicializar()
         {
             this.tablero = new Tablero();
-
-            /*Agregado de Naves al Tablero con: 
-             * Posicion ya establecida.
-             * Direccion y Orientacion aleatoria.
-             */
             AgregarNavesAlTablero(tablero);
             this.jugador = new Jugador();
-
         }
 
+        /*Agrega observadores del juego*/
         public void AddObservador(Observador observador)
         {
             observadores.Add(observador);
         }
+
+        /*Notifica actualizaciones a los observadores*/
         public void NotificarObservadores()
         {
             foreach (Observador observador in observadores)
@@ -45,6 +43,8 @@ namespace BatallaNavalgo
                 observador.Update();
             }
         }
+
+        /*Notifica creacion de lancha a los observadores*/
         public void NotificarObservadoresDeCreacionDeLancha(Nave nave)
         {
             foreach (Observador observador in observadores)
@@ -52,6 +52,8 @@ namespace BatallaNavalgo
                 observador.NotificarCreacionDeLancha(nave);
             }
         }
+
+        /*Notifica creacion de destructor a los observadores*/
         public void NotificarObservadoresDeCreacionDeDestructor(Nave nave)
         {
             foreach (Observador observador in observadores)
@@ -59,6 +61,8 @@ namespace BatallaNavalgo
                 observador.NotificarCreacionDeDestructor(nave);
             }
         }
+
+        /*Notifica creacion de portaaviones a los observadores*/
         public void NotificarObservadoresDeCreacionDePortaAviones(Nave nave)
         {
             foreach (Observador observador in observadores)
@@ -66,6 +70,8 @@ namespace BatallaNavalgo
                 observador.NotificarCreacionDePortaAviones(nave);
             }
         }
+
+        /*Notifica creacion de rompehielo a los observadores*/
         public void NotificarObservadoresDeCreacionDeRompeHielo(Nave nave)
         {
             foreach (Observador observador in observadores)
@@ -73,6 +79,8 @@ namespace BatallaNavalgo
                 observador.NotificarCreacionDeRompeHielo(nave);
             }
         }
+
+        /*Notifica creacion de buque a los observadores*/
         public void NotificarObservadoresDeCreacionDeBuque(Nave nave)
         {
             foreach (Observador observador in observadores)
@@ -82,18 +90,19 @@ namespace BatallaNavalgo
         }
 
         //---------------------------------------------------------------------
-
+        /*Devuelve un iterador de las naves del juego*/
         public List<Nave>.Enumerator IteradorNaves() 
         {
             return tablero.DevolverIteradorNaves();
         }
 
+        /*Devuelve un iterador de los armamentos del juego*/
         public List<Armamento>.Enumerator IteradorArmamentos()
         {
             return tablero.DevolverIteradorArmamentos();
         }
 
-
+        /*Avanza al proximo turno*/
         public void AvanzarTurno()
         {
             jugador.DescontarPuntosPorPasoDeTurno();
@@ -136,6 +145,8 @@ namespace BatallaNavalgo
             tablero.AgregarNave(destructor4);
 
         }
+
+        /*Agregado de Naves al Tablero con: Posicion, Direccion y Orientacion aleatoria*/
         private void AgregarNavesAlTablero(Tablero tablero)
         {
             Nave lancha = NaveFactory.CrearLancha();
@@ -167,12 +178,13 @@ namespace BatallaNavalgo
             tablero.AgregarNave(portaAviones);
         }
         //---------------------------------------------------------------------
-
+        /*Devuelve los puntos actuales del jugador*/
         public int ObtenerPuntosDelJugador()
         {
             return jugador.Puntos;
         }
 
+        /*Se efectua un DisparoComun en el tablero*/
         public void EfectuarDisparoComun(Posicion posicion)
         {
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(this.tablero, posicion);
@@ -182,6 +194,7 @@ namespace BatallaNavalgo
             AvanzarTurno();
         }
 
+        /*Se coloca una mina puntual en el tablero*/
         public void ColocarMinaPuntual(Posicion posicion)
         {
             MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(this.tablero, posicion);
@@ -191,6 +204,7 @@ namespace BatallaNavalgo
             AvanzarTurno();
         }
 
+        /*Se coloca una mina doble en el tablero*/
         public void ColocarMinaDoble(Posicion posicion)
         {
             MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(this.tablero, posicion);
@@ -200,6 +214,7 @@ namespace BatallaNavalgo
             AvanzarTurno();
         }
 
+        /*Se coloca una mina triple en el tablero*/
         public void ColocarMinaTriple(Posicion posicion)
         {
             MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(this.tablero, posicion);
@@ -209,6 +224,7 @@ namespace BatallaNavalgo
             AvanzarTurno();
         }
 
+        /*Se coloca una mina por contacto en el tablero*/
         public void ColocarMinaPorContacto(Posicion posicion)
         {
             MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(this.tablero, posicion);
@@ -218,6 +234,7 @@ namespace BatallaNavalgo
             AvanzarTurno();
         }
 
+        /*Prueba que se pueda efectuar algun disparo posible*/
         private void VerificarPosibilidadDeDisparo(Armamento armamento)
         {
             if (EstaTerminado())
@@ -234,6 +251,8 @@ namespace BatallaNavalgo
                                        ArmamentoFactory.COSTO_MINA_POR_CONTACTO };
             return costos.Min();
         }
+
+        /*Estado del juego*/
         public bool EstaTerminado()
         {
             bool jugadorTienePuntosParaJugar = jugador.TienePuntosParaJugar(CostoMinimoDeDisparo());
@@ -247,6 +266,7 @@ namespace BatallaNavalgo
             Console.ReadKey();
         }
 
+        /*Estado del juego*/
         public Boolean Ganado()
         {
             if (tablero.TieneNavesConVida())

@@ -37,6 +37,7 @@ namespace BatallaNavalgo
             }
         }
 
+        /*Logica de a quien afecta cuando explota una MinaConRetardo*/
         private void Explotar() 
         {
             List<Posicion> posicionesAImpactar = this.Posicion.GetPosicionesEnUnRadioDe(this.Radio);
