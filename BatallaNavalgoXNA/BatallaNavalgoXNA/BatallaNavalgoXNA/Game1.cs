@@ -31,10 +31,9 @@ namespace BatallaNavalgoXNA
         ControladorMouse controladorMouse;
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
-        DibujadorDeMinas dibujadorDeMinas;
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
         List<NaveVista> coleccionNaveVista;
-
+        List<MinaVista> coleccionMinaVista;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -47,6 +46,7 @@ namespace BatallaNavalgoXNA
         protected override void Initialize()
         {
             coleccionNaveVista = new List<NaveVista>();
+            coleccionMinaVista = new List<MinaVista>();
             posicionFondoDePantalla = new Vector2(0, -700);
             vistaTablero = new VistaTablero();
             menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
@@ -86,15 +86,10 @@ namespace BatallaNavalgoXNA
 
         private void CargarImagenesDeMinas() 
         {
-            dibujadorDeMinas = new DibujadorDeMinas(spriteBatch, vistaTablero);
             imagenMinaContacto = Content.Load<Texture2D>("Imagenes\\minaContacto");
-            dibujadorDeMinas.MinaContacto = imagenMinaContacto;
             imagenMinaPuntual = Content.Load<Texture2D>("Imagenes\\minaPuntual");
-            dibujadorDeMinas.MinaPuntual = imagenMinaPuntual;
             imagenMinaDoble = Content.Load<Texture2D>("Imagenes\\minaDoble");
-            dibujadorDeMinas.MinaDoble = imagenMinaDoble;
             imagenMinaTriple = Content.Load<Texture2D>("Imagenes\\minaTriple");
-            dibujadorDeMinas.MinaTriple = imagenMinaTriple;
         }
 
         /*Carga partes de naves de distintos colores, dejndo al Dibujador en un estado valido.*/
@@ -193,8 +188,8 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
-            DibujarNaves(coleccionNaveVista);                                    
-            dibujadorDeMinas.DibujarMinas(spriteBatch, juegoBatallaNavalgo.IteradorArmamentos());            
+            DibujarMinas(coleccionMinaVista);
+            DibujarNaves(coleccionNaveVista);
             botonAvanzarTurno.Draw(spriteBatch);
             //Si termina el juego, dibuja una pantalla indicando el motivo.
             if (gameOver) 
@@ -251,7 +246,15 @@ namespace BatallaNavalgoXNA
  
         }
 
-        public void DibujarNaves(List<NaveVista> coleccionNavesVista)
+        private void DibujarMinas(List<MinaVista> coleccionMinaVista)
+        {
+            foreach (MinaVista minaVista in coleccionMinaVista)
+            {
+                minaVista.Dibujar(spriteBatch);
+            }
+        }
+
+        private void DibujarNaves(List<NaveVista> coleccionNavesVista)
         {
             foreach (NaveVista naveVista in coleccionNavesVista)
             {
@@ -290,6 +293,35 @@ namespace BatallaNavalgoXNA
         {
             NaveVista navevista = new NaveVista(nave, imagenParteNaveVerde, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
+        }
+        public void NotificarCreacionDeMinaConRetardo(MinaConRetardo mina)
+        {
+            int radio = mina.Radio;
+            Texture2D imagenMina;
+            switch (radio)
+            {
+                case 0:
+                    imagenMina = imagenMinaPuntual;
+                    break;
+                case 1:
+                    imagenMina = imagenMinaDoble;
+                    break;
+                case 2:
+                    imagenMina = imagenMinaTriple;
+                    break;
+                default:
+                    imagenMina = imagenMinaPuntual;
+                    break;
+            }
+
+            MinaVista minaVista = new MinaVista(mina, imagenMina, vistaTablero);
+            coleccionMinaVista.Add(minaVista);
+        }
+
+        public void NotificarCreacionDeMinaPorContacto(MinaPorContacto mina)
+        {
+            MinaVista minaVista = new MinaVista(mina, imagenMinaContacto, vistaTablero);
+            coleccionMinaVista.Add(minaVista);
         }
         public void Update()
         {

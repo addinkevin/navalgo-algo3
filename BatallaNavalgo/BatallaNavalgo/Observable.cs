@@ -14,5 +14,7 @@ namespace BatallaNavalgo
         void NotificarObservadoresDeCreacionDePortaAviones(Nave nave);
         void NotificarObservadoresDeCreacionDeRompeHielo(Nave nave);
         void NotificarObservadoresDeCreacionDeBuque(Nave nave);
+        void NotificarObservadoresDeCreacionDeMinaPorContacto(MinaPorContacto mina);
+        void NotificarObservadoresDeCreacionDeMinaConRetardo(MinaConRetardo mina);
     }
 }

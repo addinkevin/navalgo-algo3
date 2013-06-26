@@ -88,6 +88,21 @@ namespace BatallaNavalgo
                 observador.NotificarCreacionDeBuque(nave);
             }
         }
+        /* Notifica creacion de mina por contacto */
+        void NotificarObservadoresDeCreacionDeMinaPorContacto(MinaPorContacto mina)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDeMinaPorContacto(mina);
+            }
+        }
+        void NotificarObservadoresDeCreacionDeMinaConRetardo(MinaConRetardo mina)
+        {
+            foreach (Observador observador in observadores)
+            {
+                observador.NotificarCreacionDeMinaConRetardo(mina);
+            }
+        }
 
         //---------------------------------------------------------------------
         /*Devuelve un iterador de las naves del juego*/
@@ -199,6 +214,7 @@ namespace BatallaNavalgo
         {
             MinaConRetardo minaPuntual = ArmamentoFactory.CrearMinaPuntual(this.tablero, posicion);
             VerificarPosibilidadDeDisparo(minaPuntual);
+            NotificarObservadoresDeCreacionDeMinaConRetardo(minaPuntual);
             tablero.Impactar(minaPuntual);
             jugador.DescontarPuntosPorDisparar(minaPuntual);
             AvanzarTurno();
@@ -209,6 +225,7 @@ namespace BatallaNavalgo
         {
             MinaConRetardo minaDoble = ArmamentoFactory.CrearMinaDoble(this.tablero, posicion);
             VerificarPosibilidadDeDisparo(minaDoble);
+            NotificarObservadoresDeCreacionDeMinaConRetardo(minaDoble);
             tablero.Impactar(minaDoble);
             jugador.DescontarPuntosPorDisparar(minaDoble);
             AvanzarTurno();
@@ -219,6 +236,7 @@ namespace BatallaNavalgo
         {
             MinaConRetardo minaTriple = ArmamentoFactory.CrearMinaTriple(this.tablero, posicion);
             VerificarPosibilidadDeDisparo(minaTriple);
+            NotificarObservadoresDeCreacionDeMinaConRetardo(minaTriple);
             tablero.Impactar(minaTriple);
             jugador.DescontarPuntosPorDisparar(minaTriple);
             AvanzarTurno();
@@ -229,6 +247,7 @@ namespace BatallaNavalgo
         {
             MinaPorContacto minaContacto = ArmamentoFactory.CrearMinaPorContacto(this.tablero, posicion);
             VerificarPosibilidadDeDisparo(minaContacto);
+            NotificarObservadoresDeCreacionDeMinaPorContacto(minaContacto);
             tablero.Impactar(minaContacto);
             jugador.DescontarPuntosPorDisparar(minaContacto);
             AvanzarTurno();
