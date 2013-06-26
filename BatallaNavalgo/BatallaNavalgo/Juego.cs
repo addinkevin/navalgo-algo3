@@ -35,15 +35,6 @@ namespace BatallaNavalgo
             observadores.Add(observador);
         }
 
-        /*Notifica actualizaciones a los observadores*/
-        public void NotificarObservadores()
-        {
-            foreach (Observador observador in observadores)
-            {
-                observador.Update();
-            }
-        }
-
         /*Notifica creacion de lancha a los observadores*/
         public void NotificarObservadoresDeCreacionDeLancha(Nave nave)
         {
@@ -122,7 +113,6 @@ namespace BatallaNavalgo
         {
             jugador.DescontarPuntosPorPasoDeTurno();
             tablero.Actualizar();
-            NotificarObservadores();
         }
         //---------------------------------------------------------------------
 

@@ -8,7 +8,6 @@ namespace BatallaNavalgo
     public interface Observable
     {
         void AddObservador(Observador observador);
-        void NotificarObservadores();
         void NotificarObservadoresDeCreacionDeLancha(Nave nave);
         void NotificarObservadoresDeCreacionDeDestructor(Nave nave);
         void NotificarObservadoresDeCreacionDePortaAviones(Nave nave);
