@@ -229,13 +229,17 @@ namespace BatallaNavalgoXNA
                         break;
                 }
             }
-             catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
+            catch (BatallaNavalgoExcepciones.JuegoJugadorSinPuntajeParaDisparoException e)
             {
-                gameOver = true;
+                /* No hacemos nada porque el jugador tiene al menos alguna posibilidad de disparar */
             }
             catch (BatallaNavalgoExcepciones.ArmamentoFueraDelTableroException e)
             {
-                //TRATAR MINA FUERA DEL TABLERO
+                //Tratamiento de mina fuera de tablero. No se hace nada.
+            }
+            catch (BatallaNavalgoExcepciones.JuegoTerminadoException)
+            {
+                gameOver = false;
             }
             catch (Exception e)
             {
@@ -243,7 +247,6 @@ namespace BatallaNavalgoXNA
                   archivo, etc.*/
                 gameOver = true;
             }
- 
         }
 
         private void DibujarMinas(List<MinaVista> coleccionMinaVista)
@@ -323,8 +326,6 @@ namespace BatallaNavalgoXNA
             MinaVista minaVista = new MinaVista(mina, imagenMinaContacto, vistaTablero);
             coleccionMinaVista.Add(minaVista);
         }
-        public void Update()
-        {
-        }
+
     }
 }
