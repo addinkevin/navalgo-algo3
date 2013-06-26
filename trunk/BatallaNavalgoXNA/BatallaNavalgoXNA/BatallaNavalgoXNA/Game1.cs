@@ -188,8 +188,8 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 50), Color.White);
             spriteBatch.DrawString(fuenteBatallaNavalgo, "Impacto en columna: " + posicionDeImpactoEnElTablero.Columna,
                                     new Vector2(0, 75), Color.White);
-            DibujarMinas(coleccionMinaVista);
             DibujarNaves(coleccionNaveVista);
+            DibujarMinas(coleccionMinaVista);
             botonAvanzarTurno.Draw(spriteBatch);
             //Si termina el juego, dibuja una pantalla indicando el motivo.
             if (gameOver) 

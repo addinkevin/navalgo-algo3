@@ -89,14 +89,14 @@ namespace BatallaNavalgo
             }
         }
         /* Notifica creacion de mina por contacto */
-        void NotificarObservadoresDeCreacionDeMinaPorContacto(MinaPorContacto mina)
+        public void NotificarObservadoresDeCreacionDeMinaPorContacto(MinaPorContacto mina)
         {
             foreach (Observador observador in observadores)
             {
                 observador.NotificarCreacionDeMinaPorContacto(mina);
             }
         }
-        void NotificarObservadoresDeCreacionDeMinaConRetardo(MinaConRetardo mina)
+        public void NotificarObservadoresDeCreacionDeMinaConRetardo(MinaConRetardo mina)
         {
             foreach (Observador observador in observadores)
             {
