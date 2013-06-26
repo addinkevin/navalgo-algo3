@@ -73,7 +73,7 @@ namespace BatallaNavalgoXNA
             int fila = posicion.Fila;
             int columna = posicion.Columna;
             Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
-            Texture2D imagenMina = ObtenerImagenDeMinaConretardo(mina);
+            Texture2D imagenMina = ObtenerImagenDeMinaConRetardo(mina);
             spriteBatch.Draw(imagenMina, posicionDeImagen, Color.White);
         }
 
@@ -89,7 +89,7 @@ namespace BatallaNavalgoXNA
         }
 
         /*Obtiene textura de mina segun su radio.*/
-        private Texture2D ObtenerImagenDeMinaConretardo(MinaConRetardo mina)
+        private Texture2D ObtenerImagenDeMinaConRetardo(MinaConRetardo mina)
         {
             int radio = mina.Radio;
             switch (radio)

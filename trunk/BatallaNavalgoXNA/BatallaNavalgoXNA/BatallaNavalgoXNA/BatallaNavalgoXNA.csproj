@@ -119,6 +119,7 @@
     <Compile Include="CuadroDeSeleccion.cs" />
     <Compile Include="DibujadorDeMinas.cs" />
     <Compile Include="MenuArmamentos.cs" />
+    <Compile Include="MinaVista.cs" />
     <Compile Include="NaveVista.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
