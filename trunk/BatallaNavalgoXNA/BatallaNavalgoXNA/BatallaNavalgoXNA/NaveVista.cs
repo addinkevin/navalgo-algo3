@@ -15,38 +15,41 @@ namespace BatallaNavalgoXNA
 {
     public class NaveVista
     {
-        public enum ColorDeParte
-        {
-            Rojo, Marron, Verde, Gris,
-        }
-        private ColorDeParte colorDeParte;
         private Nave nave;
-        private DibujadorDeNaves dibujador;
-        public NaveVista(Nave nave, ColorDeParte color, DibujadorDeNaves dibujador)
+        private Texture2D imagenParte;
+        private Texture2D imagenParteRota;
+        private VistaTablero vistaTablero;
+
+        /*Se le pasa vistaTablero para saber donde tiene que dibujar*/
+        public NaveVista(Nave nave, Texture2D imagenParte,Texture2D imagenParteRota, VistaTablero vistaTablero)
         {
             this.nave = nave;
-            this.colorDeParte = color;
-            this.dibujador = dibujador;
+            this.imagenParte = imagenParte;
+            this.imagenParteRota = imagenParteRota;
+            this.vistaTablero = vistaTablero;
         }
 
-        public void Dibujar()
+        public void Dibujar(SpriteBatch spriteBatch)
         {
-
-            switch (this.colorDeParte)
+            if (nave.EstaDestruida())
+                return;
+            List<Posicion> posiciones = nave.GetPosiciones();
+            foreach (Posicion posicion in posiciones)
             {
-                case ColorDeParte.Rojo:
-                    dibujador.DibujarNave(this.nave, dibujador.ParteRoja);
-                    break;
-                case ColorDeParte.Marron:
-                    dibujador.DibujarNave(this.nave, dibujador.ParteMarron);
-                    break;
-                case ColorDeParte.Verde:
-                    dibujador.DibujarNave(this.nave, dibujador.ParteVerde);
-                    break;
-                case ColorDeParte.Gris:
-                    dibujador.DibujarNave(this.nave, dibujador.ParteGris);
-                    break;
-            };
+                int fila = posicion.Fila;
+                int columna = posicion.Columna;
+                Vector2 posicionDeImagen = vistaTablero.GetPosicionDe(fila, columna);
+
+                if (nave.EstaDestruidaEnLaPosicion(posicion))
+                {
+                    spriteBatch.Draw(imagenParteRota, posicionDeImagen, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(imagenParte, posicionDeImagen, Color.White);
+                }
+
+            }
         }
     }
 }

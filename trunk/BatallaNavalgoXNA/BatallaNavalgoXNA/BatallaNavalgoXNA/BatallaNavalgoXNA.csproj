@@ -118,7 +118,6 @@
     <Compile Include="ControladorMouse.cs" />
     <Compile Include="CuadroDeSeleccion.cs" />
     <Compile Include="DibujadorDeMinas.cs" />
-    <Compile Include="DibujadorDeNaves.cs" />
     <Compile Include="MenuArmamentos.cs" />
     <Compile Include="NaveVista.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
