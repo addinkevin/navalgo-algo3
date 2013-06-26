@@ -31,7 +31,6 @@ namespace BatallaNavalgoXNA
         ControladorMouse controladorMouse;
         Juego juegoBatallaNavalgo;
         Posicion posicionDeImpactoEnElTablero;
-        DibujadorDeNaves dibujadorDeNaves;
         DibujadorDeMinas dibujadorDeMinas;
         MouseState estadoActualDelMouse, estadoAnteriorDelMouse;
         List<NaveVista> coleccionNaveVista;
@@ -101,17 +100,11 @@ namespace BatallaNavalgoXNA
         /*Carga partes de naves de distintos colores, dejndo al Dibujador en un estado valido.*/
         private void CargarPartesDeNaves()
         {
-            dibujadorDeNaves = new DibujadorDeNaves(spriteBatch, vistaTablero);
             imagenParteNaveGris = Content.Load<Texture2D>("Imagenes\\parteNaveGris");
-            dibujadorDeNaves.ParteGris = imagenParteNaveGris;
             imagenParteNaveRoja = Content.Load<Texture2D>("Imagenes\\parteNaveRoja");
-            dibujadorDeNaves.ParteRoja = imagenParteNaveRoja;
             imagenParteNaveVerde = Content.Load<Texture2D>("Imagenes\\parteNaveVerde");
-            dibujadorDeNaves.ParteVerde = imagenParteNaveVerde;
             imagenParteNaveMarron = Content.Load<Texture2D>("Imagenes\\parteNaveMarron");
-            dibujadorDeNaves.ParteMarron = imagenParteNaveMarron;
             imagenParteNaveRota = Content.Load<Texture2D>("Imagenes\\parteNaveRota");
-            dibujadorDeNaves.ParteRota = imagenParteNaveRota;
         }               
 
         /*Elimina contenido cargado*/
@@ -262,7 +255,7 @@ namespace BatallaNavalgoXNA
         {
             foreach (NaveVista naveVista in coleccionNavesVista)
             {
-                naveVista.Dibujar();
+                naveVista.Dibujar(spriteBatch);
             }
         }
 
@@ -275,27 +268,27 @@ namespace BatallaNavalgoXNA
 
         public void NotificarCreacionDeLancha(Nave nave)
         {
-            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Gris, this.dibujadorDeNaves);
+            NaveVista navevista = new NaveVista(nave, imagenParteNaveGris, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
         public void NotificarCreacionDeDestructor(Nave nave)
         {
-            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Rojo, this.dibujadorDeNaves);
+            NaveVista navevista = new NaveVista(nave, imagenParteNaveRoja, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
         public void NotificarCreacionDePortaAviones(Nave nave)
         {
-            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Gris, this.dibujadorDeNaves);
+            NaveVista navevista = new NaveVista(nave, imagenParteNaveGris, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
         public void NotificarCreacionDeRompeHielo(Nave nave)
         {
-            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Marron, this.dibujadorDeNaves);
+            NaveVista navevista = new NaveVista(nave, imagenParteNaveMarron, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
         public void NotificarCreacionDeBuque(Nave nave)
         {
-            NaveVista navevista = new NaveVista(nave, NaveVista.ColorDeParte.Verde, this.dibujadorDeNaves);
+            NaveVista navevista = new NaveVista(nave, imagenParteNaveVerde, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
         public void Update()
