@@ -239,7 +239,7 @@ namespace BatallaNavalgoXNA
             }
             catch (BatallaNavalgoExcepciones.JuegoTerminadoException)
             {
-                gameOver = false;
+                gameOver = true;
             }
             catch (Exception e)
             {
