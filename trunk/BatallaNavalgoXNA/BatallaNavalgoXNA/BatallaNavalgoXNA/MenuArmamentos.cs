@@ -47,7 +47,6 @@ namespace BatallaNavalgoXNA
             DibujarLinea("Mina doble: 100 ptos.", spriteBatch);
             DibujarLinea("Mina triple: 125 ptos.", spriteBatch);
             DibujarLinea("Mina contacto: 150 ptos.", spriteBatch);
-            DibujarLinea("Avanzar de tuno: 10 ptos.", spriteBatch);
             
             DibujarBloquesDeSeleccion(spriteBatch);
         }
@@ -73,13 +72,12 @@ namespace BatallaNavalgoXNA
         /*Llena la cola de botones correspondientes a las distintas opciones */
         public void CrearBotonesDeMenu(Texture2D vacio, Texture2D seleccionado)
         {
-            int tiposDeArmamento =1;
-            while (tiposDeArmamento <= CANTIDAD_DE_ARMAMENTOS)
-            {                
+            for (int tiposDeArmamento = 1; tiposDeArmamento <= CANTIDAD_DE_ARMAMENTOS; tiposDeArmamento++)
+            {
                 Vector2 posicionCorrespondienteDeBoton = new Vector2(posicionInicialEnPantalla.X, posicionInicialEnPantalla.Y + (SALTO_DE_LINEA * tiposDeArmamento));
                 CuadroDeSeleccion cuadroAuxiliar = new CuadroDeSeleccion(posicionCorrespondienteDeBoton, seleccionado, vacio);
                 botones.Enqueue(cuadroAuxiliar);
-                tiposDeArmamento++;
+
             }
         }
 
