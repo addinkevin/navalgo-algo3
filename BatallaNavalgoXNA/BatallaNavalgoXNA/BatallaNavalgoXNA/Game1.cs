@@ -250,7 +250,7 @@ namespace BatallaNavalgoXNA
             NaveVista navevista = new NaveVista(nave, imagenParteNaveGris, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
-        public void NotificarCreacionDeDestructor(Nave nave)
+        public void NotificarCreacionDeDestructor(Destructor nave)
         {
             NaveVista navevista = new NaveVista(nave, imagenParteNaveRoja, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
@@ -265,7 +265,7 @@ namespace BatallaNavalgoXNA
             NaveVista navevista = new NaveVista(nave, imagenParteNaveMarron, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
         }
-        public void NotificarCreacionDeBuque(Nave nave)
+        public void NotificarCreacionDeBuque(Buque nave)
         {
             NaveVista navevista = new NaveVista(nave, imagenParteNaveVerde, imagenParteNaveRota, vistaTablero);
             coleccionNaveVista.Add(navevista);
