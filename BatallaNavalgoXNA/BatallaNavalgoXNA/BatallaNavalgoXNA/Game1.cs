@@ -20,7 +20,6 @@ namespace BatallaNavalgoXNA
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Vector2 posicionFondoDePantalla;
-        Boton botonAvanzarTurno;
         Texture2D ImagenBotonAvanzarTurno, pantallaGameOver, pantallaGanadora;
         Texture2D fondoDePantalla, bloqueTablero, botonDeRadioVacio, botonDeRadioSeleccionado;
         Texture2D imagenParteNaveGris, imagenParteNaveRoja, imagenParteNaveVerde, imagenParteNaveMarron, imagenParteNaveRota;
@@ -52,7 +51,6 @@ namespace BatallaNavalgoXNA
             menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
-            botonAvanzarTurno = new Boton(new Vector2(50, 400));
             gameOver = false;
             ganado = false;
 
@@ -81,7 +79,6 @@ namespace BatallaNavalgoXNA
             CargarPartesDeNaves();
             CargarImagenesDeMinas();
             menuArmamentos.CrearBotonesDeMenu(botonDeRadioVacio, botonDeRadioSeleccionado);
-            botonAvanzarTurno.CargarImagen(ImagenBotonAvanzarTurno);
         }
 
         private void CargarImagenesDeMinas() 
@@ -119,52 +116,29 @@ namespace BatallaNavalgoXNA
             estadoActualDelMouse = Mouse.GetState();
             int filaDeImpacto = estadoActualDelMouse.Y;
             int columnaDeImpacto = estadoActualDelMouse.X;
-
-            /*Si se clickea.*/            
-            if ((estadoActualDelMouse.LeftButton == ButtonState.Pressed) && (estadoAnteriorDelMouse.LeftButton == ButtonState.Released))
+            if (juegoBatallaNavalgo.Ganado())
+            {
+                ganado = true;
+                gameOver = true;
+            }
+            else if (juegoBatallaNavalgo.EstaTerminado())
+            {
+                ganado = false;
+                gameOver = true;
+            }
+            
+            /*Si se clickea.*/
+            Boolean seClickea = (estadoActualDelMouse.LeftButton == ButtonState.Pressed) && (estadoAnteriorDelMouse.LeftButton == ButtonState.Released);
+            if (seClickea && !gameOver && !ganado)
             {
                 ResultadoMenuDisparos seleccionActual =(ResultadoMenuDisparos) menuArmamentos.ActualizarSeleccion(filaDeImpacto, columnaDeImpacto);
                                 
                 
                 if (vistaTablero.EstaDentroDelTablero(columnaDeImpacto,filaDeImpacto))
                 {   
-                    try
-                    {
-                        //Actualizar.                        
-                        if (juegoBatallaNavalgo.Ganado()) 
-                        {
-                            ganado = true;
-                            gameOver = true;
-                        }  
-                    }
-                    catch (Exception e) 
-                    {                        
-                        gameOver = true;
-                    }
+                    //Actualizar.                        
                     posicionDeImpactoEnElTablero = controladorMouse.ObtenerPosicionDeImpacto(columnaDeImpacto, filaDeImpacto);            
-                    /*SE INGRESA EL ARMAMENTO DESPUES DE AVANZAR EL TURNO.*/
                     IngresarArmamentoDesdeMenu(posicionDeImpactoEnElTablero, seleccionActual);               
-                }
-
-                if (botonAvanzarTurno.EsClickeado(columnaDeImpacto, filaDeImpacto)) 
-                {                    
-                    try
-                    {
-                        //Actualizar.                        
-                        if (juegoBatallaNavalgo.Ganado())
-                        {
-                            ganado = true;
-                            gameOver = true;
-                        }
-                        else
-                            juegoBatallaNavalgo.AvanzarTurno();
-                    }
-                    catch (Exception e)
-                    {
-                        gameOver = true;
-                    }
-                    
-                
                 }
             
             }
@@ -190,7 +164,6 @@ namespace BatallaNavalgoXNA
                                     new Vector2(0, 75), Color.White);
             DibujarNaves(coleccionNaveVista);
             DibujarMinas(coleccionMinaVista);
-            botonAvanzarTurno.Draw(spriteBatch);
             //Si termina el juego, dibuja una pantalla indicando el motivo.
             if (gameOver) 
             {
