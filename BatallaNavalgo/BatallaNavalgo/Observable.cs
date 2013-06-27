@@ -9,10 +9,10 @@ namespace BatallaNavalgo
     {
         void AddObservador(Observador observador);
         void NotificarObservadoresDeCreacionDeLancha(Nave nave);
-        void NotificarObservadoresDeCreacionDeDestructor(Nave nave);
+        void NotificarObservadoresDeCreacionDeDestructor(Destructor nave);
         void NotificarObservadoresDeCreacionDePortaAviones(Nave nave);
         void NotificarObservadoresDeCreacionDeRompeHielo(Nave nave);
-        void NotificarObservadoresDeCreacionDeBuque(Nave nave);
+        void NotificarObservadoresDeCreacionDeBuque(Buque nave);
         void NotificarObservadoresDeCreacionDeMinaPorContacto(MinaPorContacto mina);
         void NotificarObservadoresDeCreacionDeMinaConRetardo(MinaConRetardo mina);
     }

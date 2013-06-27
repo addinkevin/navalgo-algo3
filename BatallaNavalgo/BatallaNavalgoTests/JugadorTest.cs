@@ -20,57 +20,23 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void testAlPasarUnTurnoDeberiaTener10PuntosMenos()
+        public void testAlPasarUnTurnoDeberiaTenerMenosPuntosSegunElCostoDelPasoDeTurno()
         {
             Jugador jugador = new Jugador();
             jugador.DescontarPuntosPorPasoDeTurno();
 
-            Assert.True(jugador.Puntos.Equals(9990));
+            Assert.True(jugador.Puntos.Equals(Jugador.PUNTAJE_INICIAL_JUGADOR - Jugador.PUNTAJE_DESCONTADO_POR_TURNO));
         }
 
         [Test]
-        public void testAlDispararUnDisparoComunSeTendrianQueDescontar200Puntos()
+        public void testAlDispararUnDisparoComunSeTendriaQueDescontarElCostoDeEste()
         {
             Jugador jugador = new Jugador();
-            jugador.DescontarPuntosPorDisparar(ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3)));
+            int costoDisparo = 500;
+            Armamento armamento = new DisparoComun(new Tablero(), new Posicion(1, 1), costoDisparo);
+            jugador.DescontarPuntosPorDisparar(armamento);
 
-            Assert.True(jugador.Puntos.Equals(9800));
-        }
-
-        [Test]
-        public void testAlDispararUnaMinaPuntualSeTendrianQueDescontar50Puntos()
-        {
-            Jugador jugador = new Jugador();
-            jugador.DescontarPuntosPorDisparar(ArmamentoFactory.CrearMinaPuntual(new Tablero(), new Posicion(3, 3)));
-
-            Assert.True(jugador.Puntos.Equals(9950));
-        }
-
-        [Test]
-        public void testAlDispararUnaMinaDobleSeTendrianQueDescontar100Puntos()
-        {
-            Jugador jugador = new Jugador();
-            jugador.DescontarPuntosPorDisparar(ArmamentoFactory.CrearMinaDoble(new Tablero(), new Posicion(3, 3)));
-
-            Assert.True(jugador.Puntos.Equals(9900));
-        }
-
-        [Test]
-        public void testAlDispararUnaMinaTripleSeTendrianQueDescontar125Puntos()
-        {
-            Jugador jugador = new Jugador();
-            jugador.DescontarPuntosPorDisparar(ArmamentoFactory.CrearMinaTriple(new Tablero(), new Posicion(3, 3)));
-
-            Assert.True(jugador.Puntos.Equals(9875));
-        }
-
-        [Test]
-        public void testAlDispararUnaMinaPorContactoSeTendrianQueDescontar150Puntos()
-        {
-            Jugador jugador = new Jugador();
-            jugador.DescontarPuntosPorDisparar(ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(3, 3)));
-
-            Assert.True(jugador.Puntos.Equals(9850));
+            Assert.True(jugador.Puntos.Equals(Jugador.PUNTAJE_INICIAL_JUGADOR - costoDisparo));
         }
 
         [Test, ExpectedException(typeof(JugadorPuntajeInsuficienteException))]

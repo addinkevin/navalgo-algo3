@@ -50,12 +50,14 @@ namespace BatallaNavalgo
         /* Invierte el sentido de la direccion */
         public Direccion Invertir()
         {
+            Direccion direccionOpuesta = this;
             foreach (Direccion direccion in DireccionesDisponibles)
             {
                 if (direccion.EsDireccionOpuesta(this))
-                    return direccion;
+                    direccionOpuesta = direccion;
             }
-            return this;
+
+            return direccionOpuesta;
         }
 
     }
