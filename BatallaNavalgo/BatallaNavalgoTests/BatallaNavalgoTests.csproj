@@ -54,6 +54,7 @@
     <Compile Include="MinaPorContactoTest.cs" />
     <Compile Include="NaveFactoryTest.cs" />
     <Compile Include="NaveTest.cs" />
+    <Compile Include="ObservadorParaPruebaDeIntegracion.cs" />
     <Compile Include="ParteNaveTest.cs" />
     <Compile Include="PosicionTest.cs" />
     <Compile Include="TableroTest.cs" />

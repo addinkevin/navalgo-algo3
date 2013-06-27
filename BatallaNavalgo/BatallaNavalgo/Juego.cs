@@ -45,7 +45,7 @@ namespace BatallaNavalgo
         }
 
         /*Notifica creacion de destructor a los observadores*/
-        public void NotificarObservadoresDeCreacionDeDestructor(Nave nave)
+        public void NotificarObservadoresDeCreacionDeDestructor(Destructor nave)
         {
             foreach (Observador observador in observadores)
             {
@@ -72,7 +72,7 @@ namespace BatallaNavalgo
         }
 
         /*Notifica creacion de buque a los observadores*/
-        public void NotificarObservadoresDeCreacionDeBuque(Nave nave)
+        public void NotificarObservadoresDeCreacionDeBuque(Buque nave)
         {
             foreach (Observador observador in observadores)
             {
@@ -113,11 +113,11 @@ namespace BatallaNavalgo
             NotificarObservadoresDeCreacionDeLancha(lancha2);
             tablero.AgregarNave(lancha2);
 
-            Nave destructor = NaveFactory.CrearDestructor();
+            Destructor destructor = NaveFactory.CrearDestructor();
             NotificarObservadoresDeCreacionDeDestructor(destructor);
             tablero.AgregarNave(destructor);
             
-            Nave destructor2 = NaveFactory.CrearDestructor();
+            Destructor destructor2 = NaveFactory.CrearDestructor();
             NotificarObservadoresDeCreacionDeDestructor(destructor2);
             tablero.AgregarNave(destructor2);
 
@@ -125,7 +125,7 @@ namespace BatallaNavalgo
             NotificarObservadoresDeCreacionDeRompeHielo(rompeHielos);
             tablero.AgregarNave(rompeHielos);
 
-            Nave buque = NaveFactory.CrearBuque();
+            Buque buque = NaveFactory.CrearBuque();
             NotificarObservadoresDeCreacionDeBuque(buque);
             tablero.AgregarNave(buque);
 
@@ -212,12 +212,11 @@ namespace BatallaNavalgo
             return costos.Min();
         }
 
-        /*Estado del juego*/
+        /*El juego esta terminado cuando no se puede efectuar ningun disparo mas.*/
         public bool EstaTerminado()
         {
             bool jugadorTienePuntosParaJugar = jugador.TienePuntosParaJugar(CostoMinimoDeDisparo());
-            bool hayNavesEnElTableroDeJuego = tablero.TieneNavesConVida();
-            return !(jugadorTienePuntosParaJugar && hayNavesEnElTableroDeJuego);
+            return !(jugadorTienePuntosParaJugar);
         }
 
         public static void Main(string[] args)
@@ -226,7 +225,7 @@ namespace BatallaNavalgo
             Console.ReadKey();
         }
 
-        /*Estado del juego*/
+        /*El juego está ganado cuando se destruyeron todas las naves.*/
         public Boolean Ganado()
         {
             if (tablero.TieneNavesConVida())
