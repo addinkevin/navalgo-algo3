@@ -17,14 +17,6 @@ namespace BatallaNavalgo
         private Direccion direccion;
         private List<ParteNave> partes;
 
-        /*Obtiene la resistencia general de la nave*/
-        public int ObtenerResistenciaGeneral() 
-        {
-            IEnumerator<ParteNave> c = partes.GetEnumerator();
-            c.MoveNext();
-            return c.Current.GetResistencia();            
-        }
-
         /* Constructor
          * resistenciaDePartes: numero de golpes necesarios para destruir la parte
          * posicionInicial: Posicion donde arranca la nave.
@@ -39,6 +31,7 @@ namespace BatallaNavalgo
         public Direccion Direccion 
         {
             set { direccion = value; }
+            get { return direccion; }
         }
          
         /*Obtiene las posiciones para poder crear la nave*/
@@ -91,7 +84,6 @@ namespace BatallaNavalgo
             }
             return lista;
         }
-
 
 
         /* Permite verificar si la nave esta destruida en su totalidad */
@@ -164,6 +156,10 @@ namespace BatallaNavalgo
             if (!SePuedenMoverLasPartes())
             {
                 direccion = direccion.Invertir();
+                if (!SePuedenMoverLasPartes())
+                {   // Situación en la cual la nave está estancada.
+                    return;
+                }
             }
 
             foreach(ParteNave parte in partes)

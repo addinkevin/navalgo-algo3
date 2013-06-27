@@ -20,8 +20,8 @@ namespace BatallaNavalgoTests
             Posicion pos1 = posiciones[0];
             Posicion pos2 = posiciones[1];
 
-            Assert.True(pos1.Fila == 3 && pos1.Columna == 3);
-            Assert.True(pos2.Fila == 3 && pos2.Columna == 4);
+            Assert.True(pos1.EsIgualA(new Posicion(3,3)));
+            Assert.True(pos2.EsIgualA(new Posicion(3,4)));
             
         }
         [Test]
@@ -107,7 +107,7 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void testMoverNaveHaciaPosicionFueraDeRangoYVerQueSeMueveASentidoContrario()
+        public void testMoverNaveVerticalHaciaPosicionFueraDeRangoYVerQueSeMueveASentidoContrario()
         {
             // Posicion de la nave: (9,9) y (10,9)
             Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Vertical);
@@ -119,7 +119,35 @@ namespace BatallaNavalgoTests
 
             Assert.True(posiciones[0].EsIgualA(new Posicion(8, 9)));
             Assert.True(posiciones[1].EsIgualA(new Posicion(9, 9)));
-            
+        }
+        [Test]
+        public void testMoverNaveHorizontalHaciaPosicionFueraDeRangoYVerQueSeMueveASentidoContrario()
+        {
+            // Posicion de la nave: (9,9) y (9,10)
+            Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Horizontal);
+            nave.Direccion = (Direccion.Este); // Aumenta columna +1.
+
+            // Deberia Moverse invirtiendo sentido, ya que se va del tablero.
+            nave.Mover();
+            List<Posicion> posiciones = nave.GetPosiciones();
+
+            Assert.True(posiciones[0].EsIgualA(new Posicion(9, 8)));
+            Assert.True(posiciones[1].EsIgualA(new Posicion(9, 9)));
+        }
+
+        [Test]
+        public void testDeberiaNoMoverseSiEstaEstancadaEnUnaPosicionDebidoASuDireccion()
+        {
+            // Posicion de la nave: (10,9) y (10,10)
+            Nave nave = new Nave(2, 1, new Posicion(10, 9), Orientacion.Horizontal);
+            nave.Direccion = (Direccion.Noreste); // Aumenta columna +1 Fila -1.
+
+            nave.Mover();
+            List<Posicion> posiciones = nave.GetPosiciones();
+
+            Assert.True(posiciones[0].EsIgualA(new Posicion(10, 9)));
+            Assert.True(posiciones[1].EsIgualA(new Posicion(10, 10)));
+
         }
 
         [Test]
