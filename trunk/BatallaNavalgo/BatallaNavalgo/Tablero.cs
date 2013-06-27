@@ -140,20 +140,6 @@ namespace BatallaNavalgo
             return false;
         }
 
-        /*Si el tablero sigue teniendo alguna mina*/
-        public Boolean HayMina(Posicion posicion)
-        {
-            foreach (Armamento mina in armamentos)
-            {
-                Posicion posicionMina = mina.Posicion;
-                if (posicion.EsIgualA(posicionMina))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         /*Estado de las naves del tablero*/
         public Boolean TieneNavesConVida()
         {

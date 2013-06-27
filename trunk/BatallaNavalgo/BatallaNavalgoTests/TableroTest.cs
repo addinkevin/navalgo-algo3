@@ -29,24 +29,6 @@ namespace BatallaNavalgoTests
         }
 
         [Test]
-        public void testDeberiaHaberArmamentoEnUnaPosicionLuegoDeQueSeAgrego()
-        {
-            Tablero tablero = new Tablero();
-            Armamento mina = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(3, 3));
-            tablero.Impactar(mina);
-
-            Assert.True(tablero.HayMina(new Posicion(3, 3)));
-        }
-
-        [Test]
-        public void testNoDeberiaHaberArmamentoEnUnaPosicionSiNoSeLoAgrego()
-        {
-            Tablero tablero = new Tablero();                        
-
-            Assert.False(tablero.HayMina(new Posicion(3, 3)));
-        }
-
-        [Test]
         public void testDeberiaActualizarseLaPosicionDeLaNave()
         {
             Tablero tablero = new Tablero();
