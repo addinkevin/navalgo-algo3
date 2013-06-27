@@ -94,62 +94,13 @@ namespace BatallaNavalgo
                 observador.NotificarCreacionDeMinaConRetardo(mina);
             }
         }
-
-        //---------------------------------------------------------------------
-        /*Devuelve un iterador de las naves del juego*/
-        public List<Nave>.Enumerator IteradorNaves() 
-        {
-            return tablero.DevolverIteradorNaves();
-        }
-
-        /*Devuelve un iterador de los armamentos del juego*/
-        public List<Armamento>.Enumerator IteradorArmamentos()
-        {
-            return tablero.DevolverIteradorArmamentos();
-        }
-
         /*Avanza al proximo turno*/
-        public void AvanzarTurno()
+        private void AvanzarTurno()
         {
             jugador.DescontarPuntosPorPasoDeTurno();
             tablero.Actualizar();
         }
         //---------------------------------------------------------------------
-
-        /* Auxiliar por el momento para probar la vista */
-        private void AAgregarNavesAlTablero(Tablero tablero)
-        {
-            Nave lancha = new Nave(3, 1, new Posicion(1, 1), Orientacion.Horizontal);
-            lancha.Direccion = Direccion.Oeste;
-            NotificarObservadoresDeCreacionDeLancha(lancha);
-            tablero.AgregarNave(lancha);
-
-            Nave lancha2 = new Nave(3, 1, new Posicion(8, 10), Orientacion.Vertical);
-            lancha2.Direccion = Direccion.Norte;
-            NotificarObservadoresDeCreacionDeLancha(lancha2);
-            tablero.AgregarNave(lancha2);
-            
-            Nave destructor = new Destructor(new Posicion(5, 5), Orientacion.Horizontal);
-            destructor.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor);
-            tablero.AgregarNave(destructor);
-
-            Nave destructor2 = new Destructor(new Posicion(3, 5), Orientacion.Horizontal);
-            destructor2.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor2);
-            tablero.AgregarNave(destructor2);
-
-            Nave destructor3 = new Destructor(new Posicion(7, 5), Orientacion.Horizontal);
-            destructor3.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor3);
-            tablero.AgregarNave(destructor3);
-
-            Nave destructor4 = new Destructor(new Posicion(9, 5), Orientacion.Horizontal);
-            destructor4.Direccion = Direccion.Este;
-            NotificarObservadoresDeCreacionDeDestructor(destructor4);
-            tablero.AgregarNave(destructor4);
-
-        }
 
         /*Agregado de Naves al Tablero con: Posicion, Direccion y Orientacion aleatoria*/
         private void AgregarNavesAlTablero(Tablero tablero)
@@ -257,7 +208,7 @@ namespace BatallaNavalgo
         {
             int[] costos = new int[] { ArmamentoFactory.COSTO_DISPARO_COMUN, ArmamentoFactory.COSTO_MINA_PUNTUAL,
                                        ArmamentoFactory.COSTO_MINA_DOBLE, ArmamentoFactory.COSTO_MINA_TRIPLE,
-                                       ArmamentoFactory.COSTO_MINA_POR_CONTACTO };
+                                       ArmamentoFactory.COSTO_MINA_POR_CONTACTO};
             return costos.Min();
         }
 
