@@ -10,6 +10,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoTests", "Bata
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoExcepciones", "BatallaNavalgoExcepciones\BatallaNavalgoExcepciones.csproj", "{69DD752B-5C79-46B2-A9DF-CAB69D347D52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoXNA", "..\BatallaNavalgoXNA\BatallaNavalgoXNA\BatallaNavalgoXNA\BatallaNavalgoXNA.csproj", "{B98AEABC-801A-4BE2-A098-FC16C7222A11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatallaNavalgoXNAContent", "..\BatallaNavalgoXNA\BatallaNavalgoXNA\BatallaNavalgoXNAContent\BatallaNavalgoXNAContent.contentproj", "{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +54,22 @@ Global
 		{69DD752B-5C79-46B2-A9DF-CAB69D347D52}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{69DD752B-5C79-46B2-A9DF-CAB69D347D52}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{69DD752B-5C79-46B2-A9DF-CAB69D347D52}.Release|x86.ActiveCfg = Release|Any CPU
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Debug|x86.ActiveCfg = Debug|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Debug|x86.Build.0 = Debug|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Release|Any CPU.ActiveCfg = Release|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Release|Mixed Platforms.Build.0 = Release|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Release|x86.ActiveCfg = Release|x86
+		{B98AEABC-801A-4BE2-A098-FC16C7222A11}.Release|x86.Build.0 = Release|x86
+		{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}.Debug|x86.ActiveCfg = Debug|x86
+		{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}.Release|Any CPU.ActiveCfg = Release|x86
+		{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{F6F39D7C-C13B-45B0-979E-D09B46EDF2A6}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
