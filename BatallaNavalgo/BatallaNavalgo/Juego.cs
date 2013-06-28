@@ -219,12 +219,6 @@ namespace BatallaNavalgo
             return !(jugadorTienePuntosParaJugar);
         }
 
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello world!");
-            Console.ReadKey();
-        }
-
         /*El juego está ganado cuando se destruyeron todas las naves.*/
         public Boolean Ganado()
         {

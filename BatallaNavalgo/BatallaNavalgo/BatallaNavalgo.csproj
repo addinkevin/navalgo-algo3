@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{DF0DD775-43DC-49D9-84BD-62EA9168CA38}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BatallaNavalgo</RootNamespace>
     <AssemblyName>BatallaNavalgo</AssemblyName>
