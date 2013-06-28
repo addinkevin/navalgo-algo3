@@ -109,7 +109,6 @@ namespace BatallaNavalgo
                     parte.RecibirAtaque();
                     return;
                 }
-
             }
         }
 
@@ -123,19 +122,6 @@ namespace BatallaNavalgo
         public virtual void RecibirAtaque(Mina mina, Posicion posicion)
         {
             RecibirAtaqueGeneral(mina, posicion);
-        }
-
-        /* Ataca la parte de la nave correspondiente a la posicion pasada */
-        private void RecibirAtaqueEn(Posicion posicion)
-        {
-            foreach (ParteNave parte in partes)
-            {
-                if (parte.Posicion.EsIgualA(posicion))
-                {
-                    parte.RecibirAtaque();
-                    return;
-                }
-            }            
         }
 
         /* Verifica que la nueva posicion de las partes este dentro del rango del Tablero */
