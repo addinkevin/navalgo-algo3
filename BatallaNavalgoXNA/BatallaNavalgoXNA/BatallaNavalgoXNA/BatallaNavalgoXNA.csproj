@@ -60,13 +60,6 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BatallaNavalgo">
-      <HintPath>..\..\..\BatallaNavalgo\BatallaNavalgo\bin\Debug\BatallaNavalgo.exe</HintPath>
-    </Reference>
-    <Reference Include="BatallaNavalgoExcepciones, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BatallaNavalgo\BatallaNavalgo\bin\Debug\BatallaNavalgoExcepciones.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <Private>False</Private>
     </Reference>
@@ -129,6 +122,14 @@
     <Content Include="GameThumbnail.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BatallaNavalgo\BatallaNavalgoExcepciones\BatallaNavalgoExcepciones.csproj">
+      <Project>{69DD752B-5C79-46B2-A9DF-CAB69D347D52}</Project>
+      <Name>BatallaNavalgoExcepciones</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BatallaNavalgo\BatallaNavalgo\BatallaNavalgo.csproj">
+      <Project>{DF0DD775-43DC-49D9-84BD-62EA9168CA38}</Project>
+      <Name>BatallaNavalgo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BatallaNavalgoXNAContent\BatallaNavalgoXNAContent.contentproj">
       <Name>BatallaNavalgoXNAContent</Name>
       <XnaReferenceType>Content</XnaReferenceType>
