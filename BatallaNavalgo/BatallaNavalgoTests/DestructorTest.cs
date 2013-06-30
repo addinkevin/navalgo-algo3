@@ -12,8 +12,8 @@ namespace BatallaNavalgoTests
     {
         [Test]
         public void testNoDeberiaDestruirloSiLoAtacoConMinas()
-        {
-            Destructor destructor = new Destructor( new Posicion(3,3), Orientacion.Vertical);
+        {            
+            Destructor destructor = new Destructor( new Posicion(3,3), Orientacion.Vertical, Direccion.Norte);
             Mina mina1 = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(3, 3));
             Mina mina2 = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(4, 3));
             Mina mina3 = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(5, 3));
@@ -27,7 +27,8 @@ namespace BatallaNavalgoTests
         [Test]
         public void testDeberiaDestruirloSiLoAtacoConDisparosComunes()
         {
-            Destructor destructor = new Destructor(new Posicion(3, 3), Orientacion.Vertical);
+
+            Destructor destructor = new Destructor(new Posicion(3, 3), Orientacion.Vertical,Direccion.Norte);
             DisparoComun disparo1 = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
             DisparoComun disparo2 = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(4, 3));
             DisparoComun disparo3 = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(5, 3));

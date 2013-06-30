@@ -11,9 +11,9 @@ namespace BatallaNavalgo
         private static int RESISTENCIA_DE_PARTES_DEL_DESTRUCTOR = 1;
 
         /*Constructor de la clase Destructor*/
-        public Destructor(Posicion posicionInicial, Orientacion orientacion)
+        public Destructor(Posicion posicionInicial, Orientacion orientacion, Direccion direccion)
             : base(NUMERO_DE_PARTES_DEL_DESTRUCTOR, RESISTENCIA_DE_PARTES_DEL_DESTRUCTOR,
-                    posicionInicial, orientacion)
+                    posicionInicial, orientacion, direccion)
         {
         }
 

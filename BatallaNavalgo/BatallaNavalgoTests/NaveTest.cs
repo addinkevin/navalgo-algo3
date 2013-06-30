@@ -14,7 +14,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testCrearNaveHorizontalDadaUnaPosicionInicialYVerificar()
         {
-            Nave nave = new Nave(2, 1, new Posicion(3, 3), Orientacion.Horizontal);
+            Nave nave = new Nave(2, 1, new Posicion(3, 3), Orientacion.Horizontal, Direccion.Norte);
             List<Posicion> posiciones = nave.GetPosiciones();
 
             Posicion pos1 = posiciones[0];
@@ -27,7 +27,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testCrearNaveVerticalDadaUnaPosicionInicialYVerificar()
         {
-            Nave nave = new Nave(2, 1, new Posicion(4, 3), Orientacion.Vertical);
+            Nave nave = new Nave(2, 1, new Posicion(4, 3), Orientacion.Vertical,Direccion.Este);
             List<Posicion> posiciones = nave.GetPosiciones();
 
             Posicion pos1 = posiciones[0];
@@ -41,26 +41,26 @@ namespace BatallaNavalgoTests
         [Test, ExpectedException(typeof(ImposibleCrearNaveException))]
         public void testDeberiaLanzarExcepcionAlCrearUnaNaveFueraDelTablero()
         {
-            Nave nave = new Nave(2, 2, new Posicion(100, 100), Orientacion.Vertical);
+            Nave nave = new Nave(2, 2, new Posicion(100, 100), Orientacion.Vertical, Direccion.Norte);
         }
 
         [Test, ExpectedException(typeof(ImposibleCrearNaveException))]
         public void testDeberiaLanzarExcepcionSiQuedaAlgunaParteFueraDelTablero()
         {
-            Nave nave = new Nave(10, 3, new Posicion(6, 6), Orientacion.Vertical);
+            Nave nave = new Nave(10, 3, new Posicion(6, 6), Orientacion.Vertical, Direccion.Norte);
         }
 
         [Test]
         public void deberiaLaNaveEstarNoDestruidaAlMomentoDeSuCreacion()
         {
-            Nave nave = new Nave(3, 3, new Posicion(1, 1), Orientacion.Vertical);
+            Nave nave = new Nave(3, 3, new Posicion(1, 1), Orientacion.Vertical, Direccion.Norte);
             Assert.False(nave.EstaDestruida());
         }
 
         [Test]
         public void deberiaNaveDeUnaParteSeguirNoDestruidaSiTieneResistenciaMayorAUnoYRecibeDisparo()
         {
-            Nave nave = new Nave(1, 2, new Posicion(1, 1), Orientacion.Vertical);
+            Nave nave = new Nave(1, 2, new Posicion(1, 1), Orientacion.Vertical, Direccion.Norte);
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(1, 1));
             nave.RecibirAtaque(disparo, disparo.Posicion);
 
@@ -71,7 +71,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void deberiaDestruirLaNaveDeUnaParteSiTieneResistenciaDosYRecibeDosDisparos()
         {
-            Nave nave = new Nave(1, 2, new Posicion(1, 1), Orientacion.Vertical);
+            Nave nave = new Nave(1, 2, new Posicion(1, 1), Orientacion.Vertical, Direccion.Norte);
 
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(),new Posicion(1, 1));
             
@@ -84,7 +84,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void deberiaDestruirLaNaveDeUnaParteSiTieneResistenciaDosYRecibeDosMinasDeAtaque()
         {
-            Nave nave = new Nave(1, 2, new Posicion(1, 1), Orientacion.Vertical);
+            Nave nave = new Nave(1, 2, new Posicion(1, 1), Orientacion.Vertical, Direccion.Norte);
 
             Mina mina = ArmamentoFactory.CrearMinaPorContacto(new Tablero(), new Posicion(1, 1));
             nave.RecibirAtaque(mina, mina.Posicion);
@@ -96,9 +96,8 @@ namespace BatallaNavalgoTests
         [Test]
         public void testMoverUnaNaveDadaUnaDireccion()
         {
-            Nave nave = new Nave(2, 1, new Posicion(5, 5), Orientacion.Vertical);
-            nave.Direccion = (Direccion.Sur);
-
+            Nave nave = new Nave(2, 1, new Posicion(5, 5), Orientacion.Vertical, Direccion.Sur);
+            
             nave.Mover();
             List<Posicion> posiciones = nave.GetPosiciones();
 
@@ -110,8 +109,7 @@ namespace BatallaNavalgoTests
         public void testMoverNaveVerticalHaciaPosicionFueraDeRangoYVerQueSeMueveASentidoContrario()
         {
             // Posicion de la nave: (9,9) y (10,9)
-            Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Vertical);
-            nave.Direccion = (Direccion.Sur);
+            Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Vertical, Direccion.Sur);            
 
             // Deberia Moverse invirtiendo sentido, ya que se va del tablero.
             nave.Mover();
@@ -124,8 +122,8 @@ namespace BatallaNavalgoTests
         public void testMoverNaveHorizontalHaciaPosicionFueraDeRangoYVerQueSeMueveASentidoContrario()
         {
             // Posicion de la nave: (9,9) y (9,10)
-            Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Horizontal);
-            nave.Direccion = (Direccion.Este); // Aumenta columna +1.
+            Nave nave = new Nave(2, 1, new Posicion(9, 9), Orientacion.Horizontal, Direccion.Este);
+            //Direccion.Este Aumenta columna +1.
 
             // Deberia Moverse invirtiendo sentido, ya que se va del tablero.
             nave.Mover();
@@ -139,8 +137,8 @@ namespace BatallaNavalgoTests
         public void testDeberiaNoMoverseSiEstaEstancadaEnUnaPosicionDebidoASuDireccion()
         {
             // Posicion de la nave: (10,9) y (10,10)
-            Nave nave = new Nave(2, 1, new Posicion(10, 9), Orientacion.Horizontal);
-            nave.Direccion = (Direccion.Noreste); // Aumenta columna +1 Fila -1.
+            Nave nave = new Nave(2, 1, new Posicion(10, 9), Orientacion.Horizontal, Direccion.Noreste);
+            //Direccion.Noreste Aumenta columna +1 Fila -1.
 
             nave.Mover();
             List<Posicion> posiciones = nave.GetPosiciones();
@@ -153,7 +151,7 @@ namespace BatallaNavalgoTests
         [Test]
         public void testAtacarALaNaveConUnDisparoEnUnaDeSusPartesYVerificarQueEsteDestruida()
         {
-            Nave nave = new Nave(3, 1, new Posicion(1,1), Orientacion.Vertical);
+            Nave nave = new Nave(3, 1, new Posicion(1, 1), Orientacion.Vertical, Direccion.Noreste);
             DisparoComun disparo = new DisparoComun(new Tablero(), new Posicion(2,1), 100);
 
             nave.RecibirAtaque(disparo, disparo.Posicion);
