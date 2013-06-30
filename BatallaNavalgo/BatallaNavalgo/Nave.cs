@@ -31,9 +31,9 @@ namespace BatallaNavalgo
 
         public Direccion Direccion 
         {
-           // set { direccion = value; }
             get { return direccion; }
         }
+
          
         /*Obtiene las posiciones para poder crear la nave*/
         private List<Posicion> GetPosicionesParaCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)

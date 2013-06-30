@@ -22,18 +22,6 @@ namespace BatallaNavalgo
             naves = new List<Nave>();
         }
 
-        /*Devuelve un iterador de las naves del tablero*/
-        public List<Nave>.Enumerator DevolverIteradorNaves() 
-        {
-            return naves.GetEnumerator();            
-        }
-
-        /*Devuelve un iterador de los armamentos del tablero*/
-        public List<Armamento>.Enumerator DevolverIteradorArmamentos()
-        {
-            return armamentos.GetEnumerator();
-        }
-
         //---------------------------------------------------------------------
         public static int Filas 
         {
