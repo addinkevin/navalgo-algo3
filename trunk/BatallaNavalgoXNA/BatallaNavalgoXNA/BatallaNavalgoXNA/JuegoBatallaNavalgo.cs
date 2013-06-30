@@ -47,7 +47,7 @@ namespace BatallaNavalgoXNA
             coleccionNaveVista = new List<NaveVista>();
             coleccionMinaVista = new List<MinaVista>();
             posicionFondoDePantalla = new Vector2(0, -700);
-            vistaTablero = new VistaTablero();
+            vistaTablero = new VistaTablero(Tablero.Filas, Tablero.Columnas);
             menuArmamentos = new MenuArmamentos(new Vector2(0, 120));
             controladorMouse = new ControladorMouse(vistaTablero);
             posicionDeImpactoEnElTablero = new Posicion(0, 0);
