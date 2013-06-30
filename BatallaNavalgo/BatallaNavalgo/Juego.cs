@@ -6,11 +6,11 @@ using BatallaNavalgoExcepciones;
 
 namespace BatallaNavalgo
 {
-    public class Juego : Observable
+    public class Juego : IObservable
     {
         private Jugador jugador;
         private Tablero tablero;
-        private List<Observador> observadores;
+        private List<IObservador> observadores;
 
         /* Constructor
          * jugador: sera el jugador que este jugando BatallaNavalgo.
@@ -18,7 +18,7 @@ namespace BatallaNavalgo
          */
         public Juego()
         {
-            this.observadores = new List<Observador>();
+            this.observadores = new List<IObservador>();
         }
 
         /*Inicializa el Juego en un estado valido*/
@@ -30,7 +30,7 @@ namespace BatallaNavalgo
         }
 
         /*Agrega observadores del juego*/
-        public void AddObservador(Observador observador)
+        public void AddObservador(IObservador observador)
         {
             observadores.Add(observador);
         }
@@ -38,7 +38,7 @@ namespace BatallaNavalgo
         /*Notifica creacion de lancha a los observadores*/
         public void NotificarObservadoresDeCreacionDeLancha(Nave nave)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDeLancha(nave);
             }
@@ -47,7 +47,7 @@ namespace BatallaNavalgo
         /*Notifica creacion de destructor a los observadores*/
         public void NotificarObservadoresDeCreacionDeDestructor(Destructor nave)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDeDestructor(nave);
             }
@@ -56,7 +56,7 @@ namespace BatallaNavalgo
         /*Notifica creacion de portaaviones a los observadores*/
         public void NotificarObservadoresDeCreacionDePortaAviones(Nave nave)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDePortaAviones(nave);
             }
@@ -65,7 +65,7 @@ namespace BatallaNavalgo
         /*Notifica creacion de rompehielo a los observadores*/
         public void NotificarObservadoresDeCreacionDeRompeHielo(Nave nave)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDeRompeHielo(nave);
             }
@@ -74,7 +74,7 @@ namespace BatallaNavalgo
         /*Notifica creacion de buque a los observadores*/
         public void NotificarObservadoresDeCreacionDeBuque(Buque nave)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDeBuque(nave);
             }
@@ -82,14 +82,14 @@ namespace BatallaNavalgo
         /* Notifica creacion de mina por contacto */
         public void NotificarObservadoresDeCreacionDeMinaPorContacto(MinaPorContacto mina)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDeMinaPorContacto(mina);
             }
         }
         public void NotificarObservadoresDeCreacionDeMinaConRetardo(MinaConRetardo mina)
         {
-            foreach (Observador observador in observadores)
+            foreach (IObservador observador in observadores)
             {
                 observador.NotificarCreacionDeMinaConRetardo(mina);
             }

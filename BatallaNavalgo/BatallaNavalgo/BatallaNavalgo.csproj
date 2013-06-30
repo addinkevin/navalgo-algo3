@@ -61,8 +61,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="NaveFactory.cs" />
-    <Compile Include="Observable.cs" />
-    <Compile Include="Observador.cs" />
+    <Compile Include="IObservable.cs" />
+    <Compile Include="IObservador.cs" />
     <Compile Include="ParteNave.cs">
       <SubType>Code</SubType>
     </Compile>
