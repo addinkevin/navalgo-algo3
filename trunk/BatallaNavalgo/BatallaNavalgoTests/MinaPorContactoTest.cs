@@ -39,7 +39,7 @@ namespace BatallaNavalgoTests
         {
             Tablero tablero = new Tablero();
             Posicion posicionNave = new Posicion(5, 5);
-            Nave nave = new Nave(1, 1, posicionNave, Orientacion.Vertical);
+            Nave nave = new Nave(1, 1, posicionNave, Orientacion.Vertical, Direccion.Norte);
             tablero.AgregarNave(nave);
             int costoRandom = 100;
             MinaPorContacto mina = new MinaPorContacto(tablero, posicionNave, costoRandom);
@@ -55,8 +55,8 @@ namespace BatallaNavalgoTests
             /*En este caso las naves son puntuales para comprobar su destruccion total*/
             Tablero tablero = new Tablero();
             Posicion posicion = new Posicion(5, 5);
-            Nave nave1 = new Nave(1, 1, posicion, Orientacion.Vertical);
-            Nave nave2 = new Nave(1, 1, posicion, Orientacion.Horizontal);
+            Nave nave1 = new Nave(1, 1, posicion, Orientacion.Vertical, Direccion.Norte);
+            Nave nave2 = new Nave(1, 1, posicion, Orientacion.Horizontal, Direccion.Norte);
             tablero.AgregarNave(nave1);
             tablero.AgregarNave(nave2);
             int costoRandom = 100;
@@ -73,7 +73,7 @@ namespace BatallaNavalgoTests
             /*En este caso las naves son puntuales para comprobar que no se destruye*/
             Tablero tablero = new Tablero();
             Posicion posicionNave = new Posicion(6, 5);
-            Nave nave1 = new Nave(1, 1, posicionNave, Orientacion.Horizontal);            
+            Nave nave1 = new Nave(1, 1, posicionNave, Orientacion.Horizontal, Direccion.Norte);            
             tablero.AgregarNave(nave1);
             Posicion posicionMina = new Posicion(5, 5);
             int costoRandom = 100;
@@ -89,8 +89,8 @@ namespace BatallaNavalgoTests
         {
             Posicion posicionNave = new Posicion(5, 5);
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, posicionNave, Orientacion.Vertical);
-            Nave nave2 = new Nave(5, 5, posicionNave, Orientacion.Vertical);
+            Nave nave = new Nave(1, 1, posicionNave, Orientacion.Vertical, Direccion.Norte);
+            Nave nave2 = new Nave(5, 5, posicionNave, Orientacion.Vertical, Direccion.Norte);
             tablero.AgregarNave(nave);
             int costoRandom = 100;
             MinaPorContacto mina = new MinaPorContacto(tablero, posicionNave, costoRandom);

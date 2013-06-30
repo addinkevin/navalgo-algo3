@@ -12,9 +12,9 @@ namespace BatallaNavalgo
         private Boolean estaDestruida;
 
         /*Constructor de la clase Buque*/
-        public Buque(Posicion posicionInicial, Orientacion orientacion)
+        public Buque(Posicion posicionInicial, Orientacion orientacion, Direccion direccion)
             :base(NUMERO_DE_PARTES_DEL_BUQUE , RESISTENCIA_DE_PARTES_DEL_BUQUE,
-                  posicionInicial,orientacion)
+                  posicionInicial,orientacion,direccion)
         {
             estaDestruida = false;
         }

@@ -44,7 +44,7 @@ namespace BatallaNavalgoTests
         public void testSiHayNaveEnSuRadioDeAlcanceDeberiaDañarla()
         {
             Posicion posicionNave = new Posicion(2, 3);
-            Nave nave = new Nave(1, 1, posicionNave, Orientacion.Horizontal);
+            Nave nave = new Nave(1, 1, posicionNave, Orientacion.Horizontal, Direccion.Este);
             Tablero tablero = new Tablero();
             tablero.AgregarNave(nave);
             Posicion posicionMina = new Posicion(3, 3);

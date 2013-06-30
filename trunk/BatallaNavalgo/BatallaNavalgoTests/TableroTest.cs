@@ -15,7 +15,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaHaberNaveEnUnaPosicionLuegoDeQueSeAgrego()
         {
             Tablero tablero = new Tablero();
-            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Orientacion.Horizontal));
+            tablero.AgregarNave(new Nave(1, 1, new Posicion(1, 1), Orientacion.Horizontal,Direccion.Noreste));
 
             Assert.True(tablero.HayNave(new Posicion(1, 1)));
         }
@@ -32,8 +32,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaActualizarseLaPosicionDeLaNave()
         {
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical);
-            nave.Direccion = (Direccion.Sur);
+            Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical,Direccion.Sur);            
             tablero.AgregarNave(nave);
             
             tablero.Actualizar();
@@ -45,7 +44,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaHaberUnaNaveEnUnaPosicionLuegoDeAgregarla()
         {
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical);
+            Nave nave = new Nave(1, 1, new Posicion(5, 5), Orientacion.Vertical, Direccion.Este);
             tablero.AgregarNave(nave);
             
             List<Nave> naves = tablero.GetNavesEn(new Posicion(5, 5));
@@ -65,8 +64,7 @@ namespace BatallaNavalgoTests
         public void testDeberiaNoTenerNaveConVidaSiLaAtaco()
         {
             Tablero tablero = new Tablero();
-            Nave nave = new Nave(1, 1, new Posicion(3, 3), Orientacion.Horizontal);
-            nave.Direccion = (Direccion.Sur);
+            Nave nave = new Nave(1, 1, new Posicion(3, 3), Orientacion.Horizontal, Direccion.Sur);            
             tablero.AgregarNave(nave);
             DisparoComun disparo = ArmamentoFactory.CrearDisparoComun(new Tablero(), new Posicion(3, 3));
             disparo.TableroEnElQueEsta = (tablero);
