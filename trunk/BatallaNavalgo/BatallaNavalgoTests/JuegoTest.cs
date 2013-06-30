@@ -29,6 +29,23 @@ namespace BatallaNavalgoTests
             }
         }
 
+        private List<Posicion> ObtenerPosicionesDeNaveEnElTurnoTres(Nave nave)
+        {
+            List<Posicion> posiciones = nave.GetPosiciones();
+            int deltaFilas = posiciones[1].Fila - posiciones[0].Fila;
+            Orientacion orientacionNaveCopia;
+            if (deltaFilas == 0)
+                orientacionNaveCopia = Orientacion.Horizontal;
+            else
+                orientacionNaveCopia = Orientacion.Vertical;
+            Nave naveCopia = new Nave(nave.GetPosiciones().Count, 1, posiciones[0], orientacionNaveCopia, nave.Direccion);
+
+            naveCopia.Mover();
+            naveCopia.Mover();
+
+            return naveCopia.GetPosiciones();
+        }
+
         [Test]
         public void testElJuegoNoDebeEstarTerminadoAlCrearse()
         {
@@ -171,10 +188,110 @@ namespace BatallaNavalgoTests
                     juego.EfectuarDisparoComun(nave.GetPosiciones()[i]);
                 }
             }
-
             Assert.True(juego.Ganado());
 
         }
-        
+
+
+        [Test]
+        public void testDeberiaDescontarlePuntosAUnJugadorLuegoDeEfectuarUnDisparo()
+        {
+            Juego juego = new Juego();
+            juego.Inicializar();
+
+            int puntajeJugadorInicial = juego.ObtenerPuntosDelJugador();
+            juego.EfectuarDisparoComun(new Posicion(1, 1));
+
+            int puntajeJugadorDespuesDeDisparar = juego.ObtenerPuntosDelJugador();
+
+            Assert.AreEqual(Jugador.PUNTAJE_DESCONTADO_POR_TURNO + ArmamentoFactory.COSTO_DISPARO_COMUN,
+                            puntajeJugadorInicial - puntajeJugadorDespuesDeDisparar);
+        }
+
+        [Test]
+        public void testColocarMinaPorContactoYVerificarQueRompaLaNave()
+        {
+            ObservadorParaPruebaDeIntegracion observador = new ObservadorParaPruebaDeIntegracion();
+            Juego juego = new Juego();
+            juego.AddObservador(observador);
+            juego.Inicializar();
+
+            // Nave que se destruye con un solo ataque, ya sea disparo comun o mina
+            Buque nave = observador.NavesBuque[0];
+
+            juego.ColocarMinaPorContacto(nave.GetPosiciones()[0]);
+
+            Assert.True(nave.EstaDestruida());
+        }
+
+        [Test]
+        public void testColocarMinaPuntualYVerificarQueRompaLaNave()
+        {
+            ObservadorParaPruebaDeIntegracion observador = new ObservadorParaPruebaDeIntegracion();
+            Juego juego = new Juego();
+            juego.AddObservador(observador);
+            juego.Inicializar();
+
+            // Nave que se destruye con un solo ataque, ya sea disparo comun o mina
+            Buque nave = observador.NavesBuque[0];
+            List<Posicion> posicionesNaveEnTurnoTres = ObtenerPosicionesDeNaveEnElTurnoTres(nave);
+
+            // Coloca la mina en la posicion que estará la nave en el turno 3, de forma de asegurar que explote en la nave.
+            juego.ColocarMinaPuntual(posicionesNaveEnTurnoTres[0]);
+            juego.EfectuarDisparoComun(new Posicion(1, 1)); // Para avanzar turno.
+            juego.EfectuarDisparoComun(new Posicion(1, 1)); // Para avanzar turno.
+
+            Assert.True(nave.EstaDestruida());
+        }
+
+        [Test]
+        public void testColocarMinaDobleYVerificarQueRompaLaNave()
+        {
+            ObservadorParaPruebaDeIntegracion observador = new ObservadorParaPruebaDeIntegracion();
+            Juego juego = new Juego();
+            juego.AddObservador(observador);
+            juego.Inicializar();
+
+            // Nave que se destruye con un solo ataque, ya sea disparo comun o mina
+            Buque nave = observador.NavesBuque[0];
+            List<Posicion> posicionesNaveEnTurnoTres = ObtenerPosicionesDeNaveEnElTurnoTres(nave);
+
+            // Coloca la mina en la posicion que estará la nave en el turno 3, de forma de asegurar que explote en la nave.
+            juego.ColocarMinaDoble(posicionesNaveEnTurnoTres[0]);
+            juego.EfectuarDisparoComun(new Posicion(1, 1)); // Para avanzar turno.
+            juego.EfectuarDisparoComun(new Posicion(1, 1)); // Para avanzar turno.
+
+            Assert.True(nave.EstaDestruida());
+
+        }
+
+        [Test]
+        public void testColocarMinaTripleYVeficiarQueRompaLaNave()
+        {
+            ObservadorParaPruebaDeIntegracion observador = new ObservadorParaPruebaDeIntegracion();
+            Juego juego = new Juego();
+            juego.AddObservador(observador);
+            juego.Inicializar();
+
+            // Nave que se destruye con un solo ataque, ya sea disparo comun o mina
+            Buque nave = observador.NavesBuque[0];
+            List<Posicion> posicionesNaveEnTurnoTres = ObtenerPosicionesDeNaveEnElTurnoTres(nave);
+
+            // Coloca la mina en la posicion que estará la nave en el turno 3, de forma de asegurar que explote en la nave.
+            juego.ColocarMinaTriple(posicionesNaveEnTurnoTres[0]);
+            juego.EfectuarDisparoComun(new Posicion(1, 1)); // Para avanzar turno.
+            juego.EfectuarDisparoComun(new Posicion(1, 1)); // Para avanzar turno.
+
+            Assert.True(nave.EstaDestruida());
+        }
+
+        [Test,ExpectedException(typeof(ArmamentoFueraDelTableroException))]
+        public void testDeberiaLanzarExcepcionSiPongoUnDisparoFueraDelTablero()
+        {
+            Juego juego = new Juego();
+            juego.Inicializar();
+
+            juego.EfectuarDisparoComun(new Posicion(0, 0));
+        }
     }
 }
