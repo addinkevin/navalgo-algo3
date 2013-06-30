@@ -13,7 +13,7 @@ using BatallaNavalgo;
 namespace BatallaNavalgoXNA
 {
     /*Clase pricipal del juego.*/
-    public class JuegoBatallaNavalgo : Microsoft.Xna.Framework.Game, Observador
+    public class JuegoBatallaNavalgo : Microsoft.Xna.Framework.Game, IObservador
     {
         public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO, NO_HACER_NADA };
         private Boolean gameOver, ganado;

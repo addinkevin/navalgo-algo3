@@ -5,9 +5,9 @@ using System.Text;
 
 namespace BatallaNavalgo
 {
-    public interface Observable
+    public interface IObservable
     {
-        void AddObservador(Observador observador);
+        void AddObservador(IObservador observador);
         void NotificarObservadoresDeCreacionDeLancha(Nave nave);
         void NotificarObservadoresDeCreacionDeDestructor(Destructor nave);
         void NotificarObservadoresDeCreacionDePortaAviones(Nave nave);

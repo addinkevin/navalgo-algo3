@@ -6,7 +6,7 @@ using BatallaNavalgo;
 
 namespace BatallaNavalgoTests
 {
-    public class ObservadorParaPruebaDeIntegracion: Observador
+    public class ObservadorParaPruebaDeIntegracion: IObservador
     {
         List<Nave> navesLancha;
         List<Destructor> navesDestructor;
