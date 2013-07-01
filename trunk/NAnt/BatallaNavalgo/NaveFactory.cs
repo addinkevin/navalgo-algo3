@@ -44,9 +44,9 @@ namespace BatallaNavalgo
                 orientacionNave = ObtenerOrientacionAleatoria();               
             } while (!Nave.SePuedeCrear(numeroDePartesLancha, posicionAleatoria, orientacionNave));
 
-            Nave lancha = new Nave(numeroDePartesLancha, resistenciaDeLancha, posicionAleatoria, orientacionNave);
-            Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            lancha.Direccion = direccionDeNave;
+            Direccion direccionDeNave = ObtenerDireccionAleatoria();            
+            Nave lancha = new Nave(numeroDePartesLancha, resistenciaDeLancha, posicionAleatoria, orientacionNave, direccionDeNave);
+            
             return lancha;
         }
 
@@ -61,9 +61,9 @@ namespace BatallaNavalgo
                 orientacionNave = ObtenerOrientacionAleatoria();
             } while (!Destructor.SePuedeCrear(posicionAleatoria, orientacionNave));
 
-            Destructor destructor = new Destructor(posicionAleatoria, orientacionNave);
-            Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            destructor.Direccion = direccionDeNave;
+            Direccion direccionDeNave = ObtenerDireccionAleatoria();            
+            Destructor destructor = new Destructor(posicionAleatoria, orientacionNave,direccionDeNave);
+            
             return destructor;
         }
 
@@ -80,10 +80,10 @@ namespace BatallaNavalgo
                 orientacionNave = ObtenerOrientacionAleatoria();
                 posicionAleatoria = ObtenerPosicionAleatoria();
             } while (!Nave.SePuedeCrear(numeroDePartesPortaAviones, posicionAleatoria, orientacionNave));
-            
-            Nave portaAviones = new Nave(numeroDePartesPortaAviones, resistenciaDePartesPortaAviones, posicionAleatoria, orientacionNave);
-            Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            portaAviones.Direccion = direccionDeNave;
+
+            Direccion direccionDeNave = ObtenerDireccionAleatoria();            
+            Nave portaAviones = new Nave(numeroDePartesPortaAviones, resistenciaDePartesPortaAviones, posicionAleatoria, orientacionNave, direccionDeNave);
+           
             return portaAviones;
         }
         
@@ -100,9 +100,9 @@ namespace BatallaNavalgo
                 posicionAleatoria = ObtenerPosicionAleatoria();
             } while (!Nave.SePuedeCrear(numeroDePartesRompeHielo, posicionAleatoria, orientacionNave));
 
-            Nave rompeHielos = new Nave(numeroDePartesRompeHielo, resistenciaDePartesRompeHielo, posicionAleatoria, orientacionNave);
-            Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            rompeHielos.Direccion = direccionDeNave;
+            Direccion direccionDeNave = ObtenerDireccionAleatoria();            
+            Nave rompeHielos = new Nave(numeroDePartesRompeHielo, resistenciaDePartesRompeHielo, posicionAleatoria, orientacionNave,direccionDeNave);
+            
             return rompeHielos;
         }
 
@@ -117,9 +117,9 @@ namespace BatallaNavalgo
                 orientacionNave = ObtenerOrientacionAleatoria();
             } while (!Buque.SePuedeCrear(posicionAleatoria, orientacionNave));
 
-            Buque buque = new Buque(posicionAleatoria, orientacionNave);
-            Direccion direccionDeNave = ObtenerDireccionAleatoria();
-            buque.Direccion = direccionDeNave;
+            Direccion direccionDeNave = ObtenerDireccionAleatoria();            
+            Buque buque = new Buque(posicionAleatoria, orientacionNave,direccionDeNave);
+            
             return buque;
         }
     }

@@ -10,34 +10,41 @@ namespace BatallaNavalgoXNA
 {
     public class VistaTablero
     {
-        private Vector2 posicionTableroEnPantalla;
+        private static Vector2 POSICION_TABLERO_EN_PANTALLA = new Vector2(400, 80);
+        public static int TAMANIO_BLOQUE_DEL_TABLERO = 40;
+
         private int altoTablero;
         private int anchoTablero;
-        private Tablero tablero;
-        public int tamanioBloqueTablero;
-        public int posicionIncialTableroEnX;
-        public int posicionIncialTableroEnY;
+        private int posicionInicialTableroEnX;
+        private int posicionInicialTableroEnY;
         private int posicionFinalTableroEnX;
         private int posicionFinalTableroEnY;
 
-        public VistaTablero()
+        public VistaTablero(int altoTablero, int anchoTablero)
         {
-            tablero = new Tablero();
-            altoTablero = Tablero.Filas;
-            anchoTablero = Tablero.Columnas;
-            posicionTableroEnPantalla = new Vector2(400, 80);            
-            tamanioBloqueTablero = 40;
-            posicionIncialTableroEnX = (int)posicionTableroEnPantalla.X;
-            posicionIncialTableroEnY = (int)posicionTableroEnPantalla.Y;
-            posicionFinalTableroEnX = (int)posicionIncialTableroEnX + (tamanioBloqueTablero * anchoTablero);
-            posicionFinalTableroEnY = (int)posicionIncialTableroEnY + (tamanioBloqueTablero * altoTablero);
+            this.altoTablero = altoTablero;
+            this.anchoTablero = anchoTablero;
+            posicionInicialTableroEnX = (int)POSICION_TABLERO_EN_PANTALLA.X;
+            posicionInicialTableroEnY = (int)POSICION_TABLERO_EN_PANTALLA.Y;
+            posicionFinalTableroEnX = posicionInicialTableroEnX + (TAMANIO_BLOQUE_DEL_TABLERO * anchoTablero);
+            posicionFinalTableroEnY = posicionInicialTableroEnY + (TAMANIO_BLOQUE_DEL_TABLERO * altoTablero);
         }
 
+        public int PosicionInicialTableroEnX
+        {
+            get { return posicionInicialTableroEnX; }
+        }
+
+        public int PosicionInicialTableroEnY
+        {
+            get { return posicionInicialTableroEnY; }
+        }
+        
         public Boolean EstaDentroDelTablero(int x, int y)
         {
-            if ((y > posicionIncialTableroEnY) && (y < posicionFinalTableroEnY))
+            if ((y > posicionInicialTableroEnY) && (y < posicionFinalTableroEnY))
             {
-                if ((x > posicionIncialTableroEnX) && (x < posicionFinalTableroEnX))
+                if ((x > posicionInicialTableroEnX) && (x < posicionFinalTableroEnX))
                 {
                     return true;
                 }
@@ -51,9 +58,9 @@ namespace BatallaNavalgoXNA
             {
                 for (int j = 0; j < anchoTablero; j++)
                 {
-                    int ancho = posicionIncialTableroEnX + (i * tamanioBloqueTablero);
-                    int alto = posicionIncialTableroEnY + (j * tamanioBloqueTablero);
-                    spriteBatch.Draw(bloqueTablero, new Rectangle(ancho, alto, tamanioBloqueTablero, tamanioBloqueTablero), null, Color.White);
+                    int ancho = posicionInicialTableroEnX + (i * TAMANIO_BLOQUE_DEL_TABLERO);
+                    int alto = posicionInicialTableroEnY + (j * TAMANIO_BLOQUE_DEL_TABLERO);
+                    spriteBatch.Draw(bloqueTablero, new Rectangle(ancho, alto, TAMANIO_BLOQUE_DEL_TABLERO, TAMANIO_BLOQUE_DEL_TABLERO), null, Color.White);
                 }
             }
             DibujarPosicionesDelTablero(spriteBatch, fuenteBatallaNavalgo);
@@ -61,22 +68,27 @@ namespace BatallaNavalgoXNA
 
         public void DibujarPosicionesDelTablero(SpriteBatch spriteBatch, SpriteFont fuenteBatallaNavalgo)
         {
-            int posicionInicialEnX = posicionIncialTableroEnX + 10; //Se suma el 10 en ambas posiciones
-            int posicionInicialEnY = posicionIncialTableroEnY + 10; //solo por un tema de vista.
-            for (int i = 1; i < 11; i++)
+            int posicionInicialEnX = posicionInicialTableroEnX + 10; //Se suma el 10 en ambas posiciones
+            int posicionInicialEnY = posicionInicialTableroEnY + 10; //solo por un tema de vista.
+            for (int i = 0; i < Tablero.Filas; i++)
             {
-                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(375, posicionInicialEnY), Color.White);
-                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + i, new Vector2(posicionInicialEnX, 55), Color.White);
+                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + (i + 1), new Vector2(375, posicionInicialEnY), Color.White);
+                posicionInicialEnY += 40;              
+            }
+            for (int j = 0; j< Tablero.Columnas; j++)
+            {
+                spriteBatch.DrawString(fuenteBatallaNavalgo, "" + (j + 1), new Vector2(posicionInicialEnX, 55), Color.White);
                 posicionInicialEnX += 40;
-                posicionInicialEnY += 40;
             }
         }
 
         public Vector2 GetPosicionDe(int fila, int columna)
         {
             Vector2 posicionEnPantalla = new Vector2(0,0);
-            posicionEnPantalla.X = (posicionIncialTableroEnX + 10) + ((columna - 1) * tamanioBloqueTablero); //Se suma el 10 en ambas posiciones
-            posicionEnPantalla.Y = (posicionIncialTableroEnY + 10) + ((fila - 1) * tamanioBloqueTablero); //solo por un tema de vista.
+            posicionEnPantalla.X = (posicionInicialTableroEnX + 10) +
+                                    ((columna - 1) * VistaTablero.TAMANIO_BLOQUE_DEL_TABLERO); //Se suma el 10 en ambas posiciones
+            posicionEnPantalla.Y = (posicionInicialTableroEnY + 10) + 
+                                    ((fila - 1) * VistaTablero.TAMANIO_BLOQUE_DEL_TABLERO); //solo por un tema de vista.
 
             return posicionEnPantalla;
             
