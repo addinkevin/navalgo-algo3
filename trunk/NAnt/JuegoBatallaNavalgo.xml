@@ -11,7 +11,7 @@
 	<target name="build" description="compile Program.cs">
 		<csc target="exe" output="BatallaNavalgo.exe" debug="${debug}">						
 			<references>
-				<include name="XNA/nunit.framework.dll" />
+				<include name="XNA/Microsoft.Xna.Framework.Game.dll" />				
 				<include name="XNA/Microsoft.Xna.Framework.Avatar.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll" />
@@ -19,8 +19,7 @@
 				<include name="XNA/Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll" />
-				<include name="XNA/Microsoft.Xna.Framework.dll" />
-				<include name="XNA/Microsoft.Xna.Framework.Game.dll" />
+				<include name="XNA/Microsoft.Xna.Framework.dll" />				
 				<include name="XNA/Microsoft.Xna.Framework.GamerServices.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Graphics.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Net.dll" />
@@ -28,12 +27,13 @@
 				<include name="XNA/Microsoft.Xna.Framework.Video.dll" />
 				<include name="XNA/Microsoft.Xna.Framework.Xact.dll" />								
 				<include name="NUnit/nunit.framework.dll" />
+				<include name="XNA/**/*.*" />
 			</references>
 			
 			<sources>
 				<include name="BatallaNavalgo/**/*.cs" />
 				<include name="BatallaNavalgoExcepciones/**/*.cs" />
-				<include name="**/*.cs" />				
+				<include name="**/*.cs" />								
 			</sources>			
 		</csc>
 	</target>
