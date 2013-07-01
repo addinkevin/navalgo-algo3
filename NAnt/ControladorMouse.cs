@@ -22,10 +22,11 @@ namespace BatallaNavalgoXNA
             Posicion posicionDeImpacto;
             if (vistaTableroActual.EstaDentroDelTablero(x,y))
             {
-                int posicionDeImpactoEnX = (int)(x - vistaTableroActual.posicionIncialTableroEnX) / vistaTableroActual.tamanioBloqueTablero;
-                int posicionDeImpactoEnY = (int)(y - vistaTableroActual.posicionIncialTableroEnY) / vistaTableroActual.tamanioBloqueTablero;
+                int posicionDeImpactoEnX = (int)(x - vistaTableroActual.PosicionInicialTableroEnX) / VistaTablero.TAMANIO_BLOQUE_DEL_TABLERO;
+                int posicionDeImpactoEnY = (int)(y - vistaTableroActual.PosicionInicialTableroEnY) / VistaTablero.TAMANIO_BLOQUE_DEL_TABLERO;
                 return (posicionDeImpacto = new Posicion(posicionDeImpactoEnY + 1, posicionDeImpactoEnX + 1));
             }
+            /* Se devuelve una posicion fuera del tablero, ya que no se impacta */
             return (posicionDeImpacto = new Posicion(0,0));
         }
     }

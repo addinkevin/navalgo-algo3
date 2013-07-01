@@ -23,16 +23,17 @@ namespace BatallaNavalgo
          * orientacion = HORIZONTAL : Crea la nave desde la posicion inicial hacia la derecha ( suma de columna)
          * orientacion = VERTICAL : Crea la nave desde la posicion inicial hacia abajo ( suma de filas )
          */
-        public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, Orientacion orientacion)
+        public Nave(int numeroDePartes, int resistenciaDePartes, Posicion posicionInicial, Orientacion orientacion, Direccion direccion)
         {
-            this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);            
+            this.CrearPartes(numeroDePartes, resistenciaDePartes, posicionInicial, orientacion);
+            this.direccion = direccion;
         }
 
         public Direccion Direccion 
         {
-            set { direccion = value; }
             get { return direccion; }
         }
+
          
         /*Obtiene las posiciones para poder crear la nave*/
         private List<Posicion> GetPosicionesParaCrearNave(int numeroDePartes, Posicion posicionInicial, Orientacion orientacion)

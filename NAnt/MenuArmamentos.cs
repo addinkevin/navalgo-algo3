@@ -12,19 +12,17 @@ namespace BatallaNavalgoXNA
     {
         public enum ResultadoMenuDisparos { NINGUNO, DISPARO_COMUN, MINA_PUNTUAL, MINA_DOBLE, MINA_TRIPLE, MINA_POR_CONTACTO};
         private static int CANTIDAD_DE_ARMAMENTOS = 5;
-        private Vector2 posicionInicialEnPantalla;
-        private int cantidadDeLineas;        
+        private static Vector2 POSICION_INICIAL_EN_PANTALLA = new Vector2(0, 120);    
         private SpriteFont fuente;
         private const int SALTO_DE_LINEA = 40;
         private const int LADO_DE_BOTON = 24;
-        private ResultadoMenuDisparos DisparoSeleccionado;
+        private ResultadoMenuDisparos disparoSeleccionado;
         private Queue<CuadroDeSeleccion> botones;
 
 
-        public MenuArmamentos(Vector2 posicionMenuEnPantalla)
+        public MenuArmamentos()
         {   
-            posicionInicialEnPantalla = posicionMenuEnPantalla;
-            DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
+            disparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
             botones = new Queue<CuadroDeSeleccion>();           
         }
 
@@ -37,26 +35,25 @@ namespace BatallaNavalgoXNA
         /*Dibuja el menu con los botones correspondientes*/
         public void Draw(SpriteBatch spriteBatch, SpriteFont fuente) 
         {
-            cantidadDeLineas = 0;
+            int cantidadDeLineas = 0;
             this.fuente = fuente;
-            spriteBatch.DrawString(fuente, "Seleccion de disparo.", posicionInicialEnPantalla, Color.Wheat);
+            spriteBatch.DrawString(fuente, "Seleccion de disparo.", POSICION_INICIAL_EN_PANTALLA, Color.Wheat);
             cantidadDeLineas++;           
 
-            DibujarLinea("Convencional: 200 ptos." ,spriteBatch);
-            DibujarLinea("Mina puntual: 50 ptos.", spriteBatch);
-            DibujarLinea("Mina doble: 100 ptos.", spriteBatch);
-            DibujarLinea("Mina triple: 125 ptos.", spriteBatch);
-            DibujarLinea("Mina contacto: 150 ptos.", spriteBatch);
+            DibujarLinea("Convencional: 200 ptos." ,spriteBatch, cantidadDeLineas++);
+            DibujarLinea("Mina puntual: 50 ptos.", spriteBatch, cantidadDeLineas++);
+            DibujarLinea("Mina doble: 100 ptos.", spriteBatch, cantidadDeLineas++);
+            DibujarLinea("Mina triple: 125 ptos.", spriteBatch, cantidadDeLineas++);
+            DibujarLinea("Mina contacto: 150 ptos.", spriteBatch, cantidadDeLineas++);
             
             DibujarBloquesDeSeleccion(spriteBatch);
         }
 
-        private void DibujarLinea(String texto, SpriteBatch spriteBatch)
+        private void DibujarLinea(String texto, SpriteBatch spriteBatch, int linea)
         {
             int sangria = LADO_DE_BOTON + 10;
-            Vector2 vectorAuxiliar = new Vector2(posicionInicialEnPantalla.X + sangria, posicionInicialEnPantalla.Y + (SALTO_DE_LINEA * cantidadDeLineas));
+            Vector2 vectorAuxiliar = new Vector2(POSICION_INICIAL_EN_PANTALLA.X + sangria, POSICION_INICIAL_EN_PANTALLA.Y + (SALTO_DE_LINEA * linea));
             spriteBatch.DrawString(fuente, texto, vectorAuxiliar, Color.White);           
-            cantidadDeLineas++;
         }
             
 
@@ -74,7 +71,7 @@ namespace BatallaNavalgoXNA
         {
             for (int tiposDeArmamento = 1; tiposDeArmamento <= CANTIDAD_DE_ARMAMENTOS; tiposDeArmamento++)
             {
-                Vector2 posicionCorrespondienteDeBoton = new Vector2(posicionInicialEnPantalla.X, posicionInicialEnPantalla.Y + (SALTO_DE_LINEA * tiposDeArmamento));
+                Vector2 posicionCorrespondienteDeBoton = new Vector2(POSICION_INICIAL_EN_PANTALLA.X, POSICION_INICIAL_EN_PANTALLA.Y + (SALTO_DE_LINEA * tiposDeArmamento));
                 CuadroDeSeleccion cuadroAuxiliar = new CuadroDeSeleccion(posicionCorrespondienteDeBoton, seleccionado, vacio);
                 botones.Enqueue(cuadroAuxiliar);
 
@@ -85,22 +82,21 @@ namespace BatallaNavalgoXNA
         public ResultadoMenuDisparos ActualizarSeleccion(int fila, int columna)
         {
             IEnumerator<CuadroDeSeleccion> c = botones.GetEnumerator();
-            ResultadoMenuDisparos disparoAnterior = DisparoSeleccionado;
-            DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
+            ResultadoMenuDisparos disparoAnterior = disparoSeleccionado;
+            disparoSeleccionado = ResultadoMenuDisparos.NINGUNO;
             while (c.MoveNext())
             {
-                DisparoSeleccionado++;
+                disparoSeleccionado++;
                 if (EstaDentroDeBoton(c.Current, fila, columna))
                 {                                                          
                     QuitarSelecciones();
                     c.Current.Seleccionado=true;                    
-                    return DisparoSeleccionado;
+                    return disparoSeleccionado;
                 }               
             }
             //Si no corresponde a ninguno, es porque no se selecciono ningun boton, entonces vuelvo
-            //a la anterior, que era valida, pues no cambio.
-            DisparoSeleccionado = ResultadoMenuDisparos.NINGUNO;            
-            DisparoSeleccionado = disparoAnterior;
+            //a la anterior, que era valida, pues no cambio.         
+            disparoSeleccionado = disparoAnterior;
             return disparoAnterior;            
         }
 
@@ -130,7 +126,7 @@ namespace BatallaNavalgoXNA
 
          public ResultadoMenuDisparos DevolverSeleccion()         
         {
-            return DisparoSeleccionado;
+            return disparoSeleccionado;
         }
                 
     }
