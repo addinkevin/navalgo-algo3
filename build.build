@@ -59,7 +59,7 @@
 		</csc>
 	</target>
 	<target name="buildBatallaNavalgoXNA" depends="buildBatallaNavalgo">
-		<csc output="bin\Programa.exe" target="exe" win32icon="BatallaNavalgoXNA\BatallaNavalgoXNA\BatallaNavalgoXNA\Game.ico" platform="x86">>
+		<csc output="bin\Programa.exe" target="winexe" win32icon="BatallaNavalgoXNA\BatallaNavalgoXNA\BatallaNavalgoXNA\Game.ico" platform="x86">
 			<nowarn>
 				<!-- do not report warnings for missing XML comments -->
 				<warning number="0168" />
