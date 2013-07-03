@@ -1,0 +1,92 @@
+<project name="NAnt para el juego BatallaNavalgo" default="rebuild">
+	<property name="BatallaNavalgo.dir" value="BatallaNavalgo\BatallaNavalgo" />
+	<property name="BatallaNavalgoExcepciones.dir" value="BatallaNavalgo\BatallaNavalgoExcepciones" />
+	<property name="BatallaNavalgoTests.dir" value="BatallaNavalgo\BatallaNavalgoTests" />
+	<property name="BatallaNavalgoXNA.dir" value="BatallaNavalgo\BatallaNavalgoXNA" />
+	<property name="Content" value="BatallaNavalgo\BatallaNavalgoXNAContent" />
+	<target name="clean" description="Delete all previously compiled binaries.">
+		<delete dir="bin">
+		</delete>
+	</target>
+	<target name="buildBatallaNavalgoTests" depends="buildBatallaNavalgo, buildBatallaNavalgoExcepciones">
+		<csc target="library" output="bin\BatallaNavalgoTests.dll">
+			<sources basedir="${BatallaNavalgoTests.dir}">
+				<include name="*.cs" />
+			</sources>
+			<references>
+				<include name="bin\BatallaNavalgo.dll" />
+				<include name="bin\BatallaNavalgoExcepciones.dll" />
+				<include name="libs\NUnit\nunit.framework.dll" />
+			</references>
+		</csc>
+	</target>
+	<target name="run-tests" depends="buildBatallaNavalgoTests">
+		<nunit2>
+			<formatter type="Plain" />
+			<test>
+				<assemblies basedir="bin">
+					<include name="BatallaNavalgoTests.dll" />
+				</assemblies>
+				<references>
+					<include name="bin\BatallaNavalgo.dll" />
+					<include name="bin\BatallaNavalgoExcepciones.dll" />
+					<include name="libs\NUnit\nunit.framework.dll" />
+				</references>
+			</test>
+		</nunit2>
+	</target>
+	<target name="buildBatallaNavalgoExcepciones">
+		<csc target="library" output="bin/BatallaNavalgoExcepciones.dll">
+			<sources basedir="${BatallaNavalgoExcepciones.dir}">
+				<include name="*.cs" />
+			</sources>
+		</csc>
+	</target>
+	<target name="buildBatallaNavalgo" depends="buildBatallaNavalgoExcepciones">
+		<csc target="library" output="bin\BatallaNavalgo.dll">
+			<sources basedir="${BatallaNavalgo.dir}">
+				<include name="*.cs" />
+			</sources>
+			<references>
+				<include name="bin\BatallaNavalgoExcepciones.dll" />
+			</references>
+		</csc>
+	</target>
+	<target name="buildBatallaNavalgoXNA" depends="buildBatallaNavalgo">
+		<csc output="bin\Programa.exe" target="winexe" win32icon="BatallaNavalgo\BatallaNavalgoXNA\Game.ico" platform="x86">
+			<nowarn>
+				<!-- do not report warnings for missing XML comments -->
+				<warning number="0168" />
+			</nowarn>
+			<references>
+				<include name="bin\*.dll" />
+				<include name="libs\XNA\*.dll" />
+			</references>
+			<sources basedir="${BatallaNavalgoXNA.dir}">
+				<include name="*.cs" />
+			</sources>
+		</csc>
+		<copy todir="bin\Content">
+			<fileset basedir="${Content}">
+				<include name="**/*.*" />
+				<include name="**/*.*" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="build" description="Build all targets.">
+		<mkdir dir="bin" />
+		<call target="buildBatallaNavalgoXNA" />
+	</target>
+	<target name="rebuild" depends="clean, build" />
+	<!-- run-juego -->
+	<target name="run-juego" depends="buildBatallaNavalgoXNA">
+		<exec program="bin\Programa.exe" />
+	</target>
+	<target name="help">
+		<echo message="Tareas disponibles" />
+		<echo message="nant run-juego: Compila y corre el juego." />
+		<echo message="nant run-tests: Compila y corre los tests." />
+		<echo message="nant build: Compila el juego y genera el .exe" />
+		<echo message="nant clean: Borra la carpeta bin generada." />
+	</target>
+</project>
