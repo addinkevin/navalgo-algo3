@@ -1,12 +1,11 @@
-<project name="NAnt para el juego BatallaNavalgo" default="rebuild">
+<project name="NAnt para el juego BatallaNavalgo" default="run-juego">
 	<property name="BatallaNavalgo.dir" value="BatallaNavalgo\BatallaNavalgo" />
 	<property name="BatallaNavalgoExcepciones.dir" value="BatallaNavalgo\BatallaNavalgoExcepciones" />
 	<property name="BatallaNavalgoTests.dir" value="BatallaNavalgo\BatallaNavalgoTests" />
 	<property name="BatallaNavalgoXNA.dir" value="BatallaNavalgo\BatallaNavalgoXNA" />
 	<property name="Content" value="BatallaNavalgo\BatallaNavalgoXNAContent" />
 	<target name="clean" description="Delete all previously compiled binaries.">
-		<delete dir="bin">
-		</delete>
+		<delete dir="bin" />
 	</target>
 	<target name="buildBatallaNavalgoTests" depends="buildBatallaNavalgo, buildBatallaNavalgoExcepciones">
 		<csc target="library" output="bin\BatallaNavalgoTests.dll">
